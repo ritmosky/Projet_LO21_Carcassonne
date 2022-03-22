@@ -1,0 +1,40 @@
+
+
+
+Contraintes jeu Carcassonne
+
+
+- la tuile piochée doit être adjacente à au moins une tuile du plateau
+- la tuile piochée ne doit pas couper de paysage mais le prolonger
+- le personnage ne peut aller que sur la tuile piochée
+
+- personnage dans un pré = paysan (il est couché)
+- personnage sur une route = voleur
+- personnage dans une ville = chevalier
+- personnage dans un abbaye = moine
+
+- une tuile est occupée par au plus un personnage et un personnage peut occuper au plus une tuile
+
+
+
+
+POUR GAGNER DES POINTS
+
+
+- si une tuile posée clôture un territoire alors le jouer ayant son personnage dessus gagne des points et retire son personnage (sauf le paysan)
+
+- le paysan reste sur la tuile jusqu’à la fin de la partie
+
+- les 2 extrémités de la route doivent être fermées ou bouclées (autant de points que de nombre de tuiles formant la route)
+- les 8 cases autour de l’abbaye doivent être remplies -> le joueur gagne 9 points
+- la ville entièrement fermées = 2 points/tuile et 1point/symbole_bouclier
+
+
+
+POUR GAGNER DES POINTS A LA FIN
+
+
+- 1point/personnage(voleur, chevalier, moine)  sur une zone inachevée (route, ville, abbaye)
+- 3points/ville terminée sur le pré d’un paysan
+
+
