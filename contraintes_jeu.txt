@@ -15,6 +15,13 @@ Contraintes jeu Carcassonne
 
 - une tuile est occupée par au plus un personnage et un personnage peut occuper au plus une tuile
 
+- on ne peut placer de mipple que sur la tuile que l'on vient de poser
+
+- Si on ne peut pas poser sa tuile (aucune possibilité) on doit reposer le tuile sous le jeu et piocher une autre tuile
+
+- Si on agrandit une ville controlé par un mipple d'un autre joueur, on ne peut y poser de mipple. de la meme facon, on ne peut poser de mipple sur chemin controler par un autre joueur 
+
+
 
 
 
