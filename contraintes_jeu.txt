@@ -19,9 +19,23 @@ Contraintes jeu Carcassonne
 
 - Si on ne peut pas poser sa tuile (aucune possibilité) on doit reposer le tuile sous le jeu et piocher une autre tuile
 
-- Si on agrandit une ville controlé par un mipple d'un autre joueur, on ne peut y poser de mipple. de la meme facon, on ne peut poser de mipple sur chemin controler par un autre joueur 
+- Si on agrandit une ville controlé par un mipple d'un autre joueur / ou par un de ses mipple, on ne peut y poser de mipple. de la meme facon, on ne peut poser de mipple sur chemin controler par un autre joueur 
+Attention : on peut poser un mipple sur un tuile qui pourra venir plus tard compléter la ville : si égalité alors on les 2 joueurs gagnent le meme nombre de points, sinon majorité l'emporte. Same pour les routes
+
+- Les tuiles de ville se touchant par les coins sont consindérés comme 2 villes distinctent
+
+- Si un joueur n'a plus de mipple au début de son tour mais que par son action il récupère un mipple (exemple il fini une ville), il ne peut PAS reposer le mipple direct
 
 
+Pour la rivière : 
+	Lac est la dernière tuile à être pioché et la première est la source
+	On ne peut pas placer de mipple sur la rivière
+	Pas possibilité de continuer un virage dans un même sens (2 tuiles consécutives)
+
+
+Pour l'abbé
+	Possibilité de poser sur abbaye ou sur jardin 
+	SI on ne pose pas de tuile pendant un tour, on peut recup abbé et de comptabiliser les points de l'abbaye mais si pas encerclé (gagne nombre de points = au nombre de tuile autour)
 
 
 
@@ -34,15 +48,21 @@ POUR GAGNER DES POINTS
 
 - les 2 extrémités de la route doivent être fermées ou bouclées (autant de points que de nombre de tuiles formant la route)
 - les 8 cases autour de l’abbaye doivent être remplies -> le joueur gagne 9 points
-- la ville entièrement fermées = 2 points/tuile et 1point/symbole_bouclier
+- la ville entièrement fermées = 2 points/tuile et 1point/ (il me semble que c'est 2 points par bouclier (ambroise))symbole_bouclier
+
+- Quand un decompte de points à été effectué, les mipple ayant permis de faire gagner des points sont recupéré par le joueur les ayant placé
+
+- Le décompte s'effectue après le placement de mipple
+
+
 
 
 
 POUR GAGNER DES POINTS A LA FIN
 
 
-- 1point/personnage(voleur, chevalier, moine)  sur une zone inachevée (route, ville, abbaye)
-- 3points/ville terminée sur le pré d’un paysan
+- 1point/personnage(voleur, chevalier, moine)  sur une zone inachevée (route, ville, abbaye), point des boucliers divisé par 2
+- 3points/ville terminée qui touche le pré d’un paysan : si 2 champs se rejoigne, les 2 joueurs ont le meme nombre de point
 
 
 
