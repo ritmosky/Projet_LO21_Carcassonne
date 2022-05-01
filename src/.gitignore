@@ -12,3 +12,7 @@ cmake-build-debug/
 
 #Exclu l'ensemble du dossier .idea/
 .idea/
+
+#Exclu les dossiers inutiles liés à Qt
+build-carcassone-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
+carcassone.pro.user
