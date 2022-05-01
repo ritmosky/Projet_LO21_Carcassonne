@@ -1,0 +1,14 @@
+# ------------ Fichier gitignore ------------
+
+# ------------------
+# ---- Ambroise ----
+# ------------------
+
+#Exclu le fichier CMakeLIsts.txt
+CMakeLists.txt
+
+#Exclu l'ensemble du dossier cmake-build-debug/
+cmake-build-debug/
+
+#Exclu l'ensemble du dossier .idea/
+.idea/
