@@ -1,12 +1,13 @@
+#include "mainwindow.h"
+
 #include <QApplication>
-#include "vue/vuepartie.h"
 
-int main(int argc, char* argv[]) {
-    QApplication app(argc, argv);
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
 
-    VuePartie partie;
-    partie.show();
+    MainWindow w;
+    w.show();
 
-    return app.exec();
-
+    return a.exec();
 }
