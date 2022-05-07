@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DBA2AB932826C17C0033B516 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA2AB922826C17C0033B516 /* main.cpp */; };
+		DBA2AB9B2826C2520033B516 /* Tuiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA2AB992826C2520033B516 /* Tuiles.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,9 @@
 
 /* Begin PBXFileReference section */
 		DBA2AB8F2826C17C0033B516 /* Caracassonne */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Caracassonne; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBA2AB922826C17C0033B516 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DBA2AB922826C17C0033B516 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Tuiles/main.cpp; sourceTree = "<group>"; };
+		DBA2AB992826C2520033B516 /* Tuiles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tuiles.cpp; sourceTree = SOURCE_ROOT; };
+		DBA2AB9C2826C2790033B516 /* Tuiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuiles.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +44,8 @@
 		DBA2AB862826C17C0033B516 = {
 			isa = PBXGroup;
 			children = (
-				DBA2AB912826C17C0033B516 /* Caracassonne */,
+				DBA2AB922826C17C0033B516 /* main.cpp */,
+				DBA2AB912826C17C0033B516 /* Tuiles */,
 				DBA2AB902826C17C0033B516 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +58,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBA2AB912826C17C0033B516 /* Caracassonne */ = {
+		DBA2AB912826C17C0033B516 /* Tuiles */ = {
 			isa = PBXGroup;
 			children = (
-				DBA2AB922826C17C0033B516 /* main.cpp */,
+				DBA2AB9C2826C2790033B516 /* Tuiles.h */,
+				DBA2AB992826C2520033B516 /* Tuiles.cpp */,
 			);
-			path = Caracassonne;
+			path = Tuiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBA2AB932826C17C0033B516 /* main.cpp in Sources */,
+				DBA2AB9B2826C2520033B516 /* Tuiles.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
