@@ -5,14 +5,14 @@
 # ------------------
 
 #Exclu le fichier CMakeLIsts.txt
-CMakeLists.txt
+src/CMakeLists.txt
 
 #Exclu l'ensemble du dossier cmake-build-debug/
 cmake-build-debug/
 
 #Exclu l'ensemble du dossier .idea/
 .idea/
-../.idea/
+
 
 
 #Exclu les dossiers inutiles liés à Qt
