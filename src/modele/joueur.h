@@ -1,13 +1,9 @@
-
 #ifndef _JOUEUR_H
 #define _JOUEUR_H 
 
 
 #include <stdio.h>
 #include "meeple.h"
-
-
-
 class Joueur {
 	
 	private:
@@ -29,7 +25,5 @@ class Joueur {
 		inline int getScore() { return score;}
 
 };
-
-
 
 #endif
