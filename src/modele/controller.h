@@ -2,7 +2,10 @@
 #define _CONTROLLER_H
 #include <iostream>
 #include <string>
-
+#include <vector>
+#include "pioche.h"
+#include "joueur.h"
+#include "plateau.h"
 
 enum State {
     GAME_MENU, GAME_START, PLACING_TILE, PLACING_MEEPLE, GAME_OVER;
@@ -23,13 +26,13 @@ class Controller{
     private:
 
         bool fini;
-        Joueur** joueur;
-        ModeJeu modeJeu[5];
-        Plateau* plateau;
-        Pioche* pioche;
-        int nbJoueur;
+        vector<Joueur*> listeJoueurs;
+        ModeJeu *modeJeu;
+        Plateau *plateau;
+        Pioche *pioche;
         State state;
         int tour;
+        int nbJoueurs;
 
     public:
 
@@ -42,13 +45,11 @@ class Controller{
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
 
-        void debut();
-        void fin();
-        void debutTour();
-        void finTour();
         void placementTuile(Tuile t);
         void placementMeeple(Meeple m);
         void setState(State s); 
+        void compteScore();
+        void nextTour();
 
         //Getters
         inline bool getFini() const{
