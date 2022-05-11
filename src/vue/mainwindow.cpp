@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "nameWindow.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,9 +9,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //Création de la page d'accueil (NB de joueur, choix de l'extention)
+
     setWindowTitle("CARCASSONNE");
     setFixedSize(600,300);
 
+    // photo de fond d'écran (mettre l'adresse de l'image)
 
     QPixmap bkgnd("C:/Users/TavernyK.000/OneDrive/Bureau/Documents/Projet4/R");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
@@ -19,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
 
-
+    // NB de joueur, création label
 
     this->m_NBjoueur = new QLabel("Nombre de joueur", this);
     m_NBjoueur->setGeometry(50, 50,120, 25);
@@ -27,10 +30,13 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     this->NBjoueurLayout = new QFormLayout;
-    NBjoueurLayout->addRow( "Nom du premier :" ,m_NBjoueur);
+    NBjoueurLayout->addRow( "" ,m_NBjoueur);
 
     this->L_NBjoueur = new QLineEdit("",this);
     L_NBjoueur->setGeometry(220, 50,50, 25);
+
+
+    // choix de l'extention
 
     this->m_extention = new QLabel("Choisir l'extention", this);
     m_extention->setGeometry(50, 100,120, 25);
@@ -44,17 +50,19 @@ MainWindow::MainWindow(QWidget *parent)
     Choix_Extention->setStyleSheet("QLabel { background-color : white; color : black; }");
 
 
+    // bouton next et son action
     this->m_Next = new QPushButton("Next", this);
     m_Next->setGeometry(500, 260,81, 25);
     QObject::connect(m_Next, SIGNAL(clicked()), this, SLOT(next()));
 
-
+    //buton QUIT et son action
     this-> m_Quit = new QPushButton("Quit", this);
     m_Quit->setGeometry(50, 260,81, 25);
     QObject::connect(m_Quit, SIGNAL(clicked()), this, SLOT(exit()));
 
 }
 
+// Fonction pour transformer les caractères récupérés dans le lineEdit de nbjoueur en int.
 int MainWindow::IntNBjoueur(){
 
     QString contenu = L_NBjoueur->text();
@@ -64,61 +72,20 @@ int MainWindow::IntNBjoueur(){
 }
 
 
-NameWindow::NameWindow():QMainWindow()
-
-{
-    setWindowTitle("CARCASSONNE");
-    setFixedSize(800,800);
-
-    m_window = new QWidget(this);
-
-    m_vLayout = new QVBoxLayout(this);
-    m_window->setLayout(m_vLayout);
-
-
-    for (int i=1; i <= 6 ;i++)
-    {
-
-    QLabel *L_prenom = new QLabel("Nom joueur n° " ,m_window);
-    this->m_listLabel.append(L_prenom);
-    QString str ="";
-    str = QString::number(i);
-    L_prenom->setText("Nom joueur n° "+ str);
-    m_vLayout->addWidget(L_prenom);
-    L_prenom->move(50,i*30);
-
-    QLineEdit *m_prenom= new QLineEdit("",m_window);
-    this->m_listLineEdit.append(m_prenom);
-    m_vLayout->addWidget(m_prenom);
-    m_prenom->move(100,i*30);
-
-    QFormLayout *formLayout1 = new QFormLayout;
-
-    QVBoxLayout *layout1= new QVBoxLayout;
-    layout1->addLayout(formLayout1);
-
-    }
-    QPushButton* commencer = new QPushButton("Commencer",m_window);
-    commencer->move(0,0);
-
-
-    setCentralWidget(m_window);
-
-}
-
-
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+//action du buton next.
 void MainWindow::next(){
     NameWindow *window = new NameWindow();
     window->show();
 
 }
 
+//action du buton quit.
 void MainWindow::exit()
 {
 close();

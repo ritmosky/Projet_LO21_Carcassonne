@@ -51,7 +51,7 @@ private:
     QLabel* Choix_Extention;
     QGridLayout* layoutPlateau;
     QHBoxLayout* layoutInformations;
-    //QVBoxLayout* m_vLayout;
+    QVBoxLayout* m_vLayout;
     QLabel* score;
 
     friend int add(MainWindow, MainWindow);
@@ -67,22 +67,5 @@ private slots:
 
 };
 
-class NameWindow : public QMainWindow
-{
-    Q_OBJECT
-public:
-    NameWindow();
-
-
-
-private:
-
-
-    QList<QLabel*> m_listLabel;
-    QList<QLineEdit*> m_listLineEdit;
-    QVBoxLayout* m_vLayout;
-    QWidget* m_window;
-
-    friend int add(MainWindow, MainWindow);
-};
 #endif // MAINWINDOW_H
+
