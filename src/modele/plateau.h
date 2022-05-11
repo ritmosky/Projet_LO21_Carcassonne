@@ -2,11 +2,15 @@
 #define PROJET_LO21_CARCASSONNE_PLATEAU_H
 #include<vector>
 #include <iostream>
+#include "tuile.h"
+#include "espace.h"
+
+
 
 class Plateau{
 private:
-    std::vector<Tuile> tuiles;
-    std::vector<Espace> espaces;
+    std::vector<Tuile*> tuiles;
+    std::vector<Espace*> espaces;
     int nbrEspaces;
     int nbrTuiles;
 
