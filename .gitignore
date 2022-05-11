@@ -18,3 +18,10 @@ cmake-build-debug/
 #Exclu les dossiers inutiles liés à Qt
 build-carcassone-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
 carcassone.pro.user
+
+# ------------------
+# ---- Massil ----
+# ------------------
+
+src/Caracassonne.xcodeproj/
+Caracassonne/
