@@ -1,4 +1,4 @@
-#include "Plateau.h"
+#include "plateau.h"
 
 void Plateau::ajouterTuiles(const int &tuile) {
 
