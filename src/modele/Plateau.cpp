@@ -1,9 +1,10 @@
-#include "plateau.h"
+#include <iostream>
 
-void Plateau::ajouterTuiles(const int &tuile) {
+#include "plateau.h"
+void Plateau::ajouterTuiles(const Tuile &tuile) {
 
 }
 
-void Plateau::ajouterEspace(const int &tuile) {
+void Plateau::ajouterEspace(const Espace &espace) {
 
 }
