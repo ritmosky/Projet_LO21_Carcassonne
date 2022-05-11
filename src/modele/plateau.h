@@ -23,8 +23,8 @@ public:
     void setNbrTuiles(const int &nbrT) {this->nbrTuiles = nbrT;}
     void setNbrEspaces(const int &nbrE) {this->nbrEspaces = nbrE;}
 
-    void ajouterTuiles(const Tuile& tuile);
-    void ajouterEspace(const Espace& espace);
+    void ajouterTuiles(const Tuile* tuile);
+    void ajouterEspace(const Espace* espace);
 };
 
 
