@@ -2,7 +2,15 @@ QT += widgets
 
 SOURCES += \
     main.cpp \
+    vue/vueAccueil.cpp \
+    vue/vueFormNom.cpp
+
 
 
 HEADERS += \
-    modele/set.h \
+    vue/vueAccueil.h \
+    vue/vueFormNom.h
+
+FORMS += \
+    vue/vueAccueil.ui
+

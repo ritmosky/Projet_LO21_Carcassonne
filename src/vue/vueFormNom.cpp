@@ -1,7 +1,7 @@
-#include "nameWindow.h"
+#include "vueFormNom.h"
 
 
-NameWindow::NameWindow():QMainWindow()
+VueFormNom::VueFormNom():QMainWindow()
 
 {
     // Création de la fenêtre de NOM des joueur
@@ -50,12 +50,12 @@ NameWindow::NameWindow():QMainWindow()
 
 }
 
-NameWindow::~NameWindow()
+VueFormNom::~VueFormNom()
 {
 }
 
 //action du button commencer.
-void NameWindow::commencer(){
+void VueFormNom::commencer(){
     /*
     VuePartie *window = new VuePartie();
     window->show();

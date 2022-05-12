@@ -1,9 +1,9 @@
-#include "mainwindow.h"
+#include "vueAccueil.h"
 #include "ui_mainwindow.h"
-#include "nameWindow.h"
+#include "vueFormNom.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
+VueAccueil::VueAccueil(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -16,10 +16,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // photo de fond d'écran (mettre l'adresse de l'image)
 
-    QPixmap bkgnd("C:/Users/TavernyK.000/OneDrive/Bureau/Documents/Projet4/R");
+    QPixmap bkgnd("/Users/ambroisethibault/Documents/LO21/projet/Projet_LO21_Carcassonne/src/ressources/images/image_accueil.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
-    palette.setBrush(QPalette::Background, bkgnd);
+    palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
     // NB de joueur, création label
@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 // Fonction pour transformer les caractères récupérés dans le lineEdit de nbjoueur en int.
-int MainWindow::IntNBjoueur(){
+int VueAccueil::IntNBjoueur(){
 
     QString contenu = L_NBjoueur->text();
     bool ok;
@@ -73,20 +73,20 @@ int MainWindow::IntNBjoueur(){
 
 
 
-MainWindow::~MainWindow()
+VueAccueil::~VueAccueil()
 {
     delete ui;
 }
 
 //action du buton next.
-void MainWindow::next(){
-    NameWindow *window = new NameWindow();
+void VueAccueil::next(){
+    VueFormNom *window = new VueFormNom();
     window->show();
 
 }
 
 //action du buton quit.
-void MainWindow::exit()
+void VueAccueil::exit()
 {
 close();
 qApp->quit();
