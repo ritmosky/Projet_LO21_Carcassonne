@@ -45,8 +45,9 @@ class Controller{
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
 
-        void placementTuile(Tuile t);
-        void placementMeeple(Meeple m);
+        boolean placementTuileAutorise(Tuile t);
+        bool est_compatible(Tuile newTuile, Tuile voisin);
+        boolean placementMeeple(Meeple m);
         void setState(State s); 
         void compteScore();
         void nextTour();
@@ -67,6 +68,7 @@ class Controller{
         inline int getTour() const{
             return this->tour;
         }
+
 }
 
 #endif
