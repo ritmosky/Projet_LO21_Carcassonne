@@ -11501,7 +11501,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAnxNhsi2vJqY="
 									},
-									"name": "TypeTuiles"
+									"name": "TypeTuiles",
+									"type": ""
 								}
 							]
 						},
@@ -12452,6 +12453,7 @@
 										"$ref": "AAAAAAGAzXX7I9rkhtE="
 									},
 									"name": "const NomMeeple& name",
+									"type": "",
 									"defaultValue": "rien"
 								}
 							]
