@@ -15,7 +15,7 @@ class VueTuile : public QWidget
 public:
     explicit VueTuile(Tuile tuile ,QWidget *parent = nullptr);
     ~VueTuile();
-    void setContenuTuile(Tuile tuile);
+    void setContenuTuile(Tuile& tuile);
 
 private:
     Ui::VueTuile *ui;

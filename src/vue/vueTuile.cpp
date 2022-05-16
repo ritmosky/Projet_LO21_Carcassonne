@@ -16,13 +16,44 @@ VueTuile::~VueTuile()
 }
 
 
-void VueTuile::setContenuTuile(Tuile tuile){
-    for (int i = 0; i<9; i++){
-
+void VueTuile::setContenuTuile(Tuile& tuile){
+    int placement, typeTuile;
+    vector<ContenanceTuile> contenance = tuile.getContenance();
+    for (auto itContenance = contenance.cbegin(); itContenance < contenance.cend(); itContenance++){
+           placement = itContenance->getNumPlacement();
+           typeTuile = itContenance->getType();
+           VueContenuTuile* contenuTuile = new VueContenuTuile(typeTuile, placement);
+           switch (placement) {
+           case 0:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 0,0);
+               break;
+           case 1:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 0,1);
+               break;
+           case 2:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 0,2);
+               break;
+           case 3:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 1,2);
+               break;
+           case 4:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 2,2);
+               break;
+           case 5:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 2,1);
+               break;
+           case 6:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 2,0);
+               break;
+           case 7:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 0,1);
+               break;
+           case 8:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 1,1);
+               break;
+           default:
+               break;
+           }
     }
-    ui->grilleContenuTuile->addWidget(
-                // Premier paramètre : le Widget vueContenuTuile
-                // Second paramètre : la ligne
-                // 3ème paramètre : la colonne
-                );
+
 }
