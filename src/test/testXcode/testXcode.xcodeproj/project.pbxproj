@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DBA2AB932826C17C0033B516 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA2AB922826C17C0033B516 /* main.cpp */; };
-		DBA2AB9B2826C2520033B516 /* Tuiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA2AB992826C2520033B516 /* Tuiles.cpp */; };
+		659E09B12832EE5200C362E2 /* joueur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09A82832EE5200C362E2 /* joueur.cpp */; };
+		659E09B22832EE5200C362E2 /* meeple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09AB2832EE5200C362E2 /* meeple.cpp */; };
+		659E09B32832EE5200C362E2 /* tuile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09AC2832EE5200C362E2 /* tuile.cpp */; };
+		659E09B42832EE5200C362E2 /* pioche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09AD2832EE5200C362E2 /* pioche.cpp */; };
+		659E09B52832EE5200C362E2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09AE2832EE5200C362E2 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DBA2AB8D2826C17C0033B516 /* CopyFiles */ = {
+		659E099C2832EE2800C362E2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,14 +27,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DBA2AB8F2826C17C0033B516 /* Caracassonne */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Caracassonne; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBA2AB922826C17C0033B516 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Tuiles/main.cpp; sourceTree = "<group>"; };
-		DBA2AB992826C2520033B516 /* Tuiles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tuiles.cpp; sourceTree = SOURCE_ROOT; };
-		DBA2AB9C2826C2790033B516 /* Tuiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuiles.h; sourceTree = "<group>"; };
+		659E099E2832EE2800C362E2 /* testXcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testXcode; sourceTree = BUILT_PRODUCTS_DIR; };
+		659E09A82832EE5200C362E2 /* joueur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = joueur.cpp; path = ../../joueur.cpp; sourceTree = "<group>"; };
+		659E09A92832EE5200C362E2 /* joueur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = joueur.h; path = ../../joueur.h; sourceTree = "<group>"; };
+		659E09AA2832EE5200C362E2 /* pioche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pioche.h; path = ../../pioche.h; sourceTree = "<group>"; };
+		659E09AB2832EE5200C362E2 /* meeple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = meeple.cpp; path = ../../meeple.cpp; sourceTree = "<group>"; };
+		659E09AC2832EE5200C362E2 /* tuile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tuile.cpp; path = ../../tuile.cpp; sourceTree = "<group>"; };
+		659E09AD2832EE5200C362E2 /* pioche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pioche.cpp; path = ../../pioche.cpp; sourceTree = "<group>"; };
+		659E09AE2832EE5200C362E2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
+		659E09AF2832EE5200C362E2 /* meeple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meeple.h; path = ../../meeple.h; sourceTree = "<group>"; };
+		659E09B02832EE5200C362E2 /* tuile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tuile.h; path = ../../tuile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DBA2AB8C2826C17C0033B516 /* Frameworks */ = {
+		659E099B2832EE2800C362E2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,67 +50,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DBA2AB862826C17C0033B516 = {
+		659E09952832EE2800C362E2 = {
 			isa = PBXGroup;
 			children = (
-				DBA2AB922826C17C0033B516 /* main.cpp */,
-				DBA2AB912826C17C0033B516 /* Tuiles */,
-				DBA2AB902826C17C0033B516 /* Products */,
+				659E09A02832EE2800C362E2 /* testXcode */,
+				659E099F2832EE2800C362E2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DBA2AB902826C17C0033B516 /* Products */ = {
+		659E099F2832EE2800C362E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DBA2AB8F2826C17C0033B516 /* Caracassonne */,
+				659E099E2832EE2800C362E2 /* testXcode */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBA2AB912826C17C0033B516 /* Tuiles */ = {
+		659E09A02832EE2800C362E2 /* testXcode */ = {
 			isa = PBXGroup;
 			children = (
-				DBA2AB9C2826C2790033B516 /* Tuiles.h */,
-				DBA2AB992826C2520033B516 /* Tuiles.cpp */,
+				659E09A82832EE5200C362E2 /* joueur.cpp */,
+				659E09A92832EE5200C362E2 /* joueur.h */,
+				659E09AE2832EE5200C362E2 /* main.cpp */,
+				659E09AB2832EE5200C362E2 /* meeple.cpp */,
+				659E09AF2832EE5200C362E2 /* meeple.h */,
+				659E09AD2832EE5200C362E2 /* pioche.cpp */,
+				659E09AA2832EE5200C362E2 /* pioche.h */,
+				659E09AC2832EE5200C362E2 /* tuile.cpp */,
+				659E09B02832EE5200C362E2 /* tuile.h */,
 			);
-			path = Tuiles;
+			path = testXcode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DBA2AB8E2826C17C0033B516 /* Caracassonne */ = {
+		659E099D2832EE2800C362E2 /* testXcode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBA2AB962826C17C0033B516 /* Build configuration list for PBXNativeTarget "Caracassonne" */;
+			buildConfigurationList = 659E09A52832EE2800C362E2 /* Build configuration list for PBXNativeTarget "testXcode" */;
 			buildPhases = (
-				DBA2AB8B2826C17C0033B516 /* Sources */,
-				DBA2AB8C2826C17C0033B516 /* Frameworks */,
-				DBA2AB8D2826C17C0033B516 /* CopyFiles */,
+				659E099A2832EE2800C362E2 /* Sources */,
+				659E099B2832EE2800C362E2 /* Frameworks */,
+				659E099C2832EE2800C362E2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Caracassonne;
-			productName = Caracassonne;
-			productReference = DBA2AB8F2826C17C0033B516 /* Caracassonne */;
+			name = testXcode;
+			productName = testXcode;
+			productReference = 659E099E2832EE2800C362E2 /* testXcode */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DBA2AB872826C17C0033B516 /* Project object */ = {
+		659E09962832EE2800C362E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
-					DBA2AB8E2826C17C0033B516 = {
+					659E099D2832EE2800C362E2 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
 				};
 			};
-			buildConfigurationList = DBA2AB8A2826C17C0033B516 /* Build configuration list for PBXProject "Caracassonne" */;
+			buildConfigurationList = 659E09992832EE2800C362E2 /* Build configuration list for PBXProject "testXcode" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +124,33 @@
 				en,
 				Base,
 			);
-			mainGroup = DBA2AB862826C17C0033B516;
-			productRefGroup = DBA2AB902826C17C0033B516 /* Products */;
+			mainGroup = 659E09952832EE2800C362E2;
+			productRefGroup = 659E099F2832EE2800C362E2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBA2AB8E2826C17C0033B516 /* Caracassonne */,
+				659E099D2832EE2800C362E2 /* testXcode */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DBA2AB8B2826C17C0033B516 /* Sources */ = {
+		659E099A2832EE2800C362E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBA2AB932826C17C0033B516 /* main.cpp in Sources */,
-				DBA2AB9B2826C2520033B516 /* Tuiles.cpp in Sources */,
+				659E09B32832EE5200C362E2 /* tuile.cpp in Sources */,
+				659E09B52832EE5200C362E2 /* main.cpp in Sources */,
+				659E09B12832EE5200C362E2 /* joueur.cpp in Sources */,
+				659E09B22832EE5200C362E2 /* meeple.cpp in Sources */,
+				659E09B42832EE5200C362E2 /* pioche.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		DBA2AB942826C17C0033B516 /* Debug */ = {
+		659E09A32832EE2800C362E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,7 +208,7 @@
 			};
 			name = Debug;
 		};
-		DBA2AB952826C17C0033B516 /* Release */ = {
+		659E09A42832EE2800C362E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +259,7 @@
 			};
 			name = Release;
 		};
-		DBA2AB972826C17C0033B516 /* Debug */ = {
+		659E09A62832EE2800C362E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -249,7 +267,7 @@
 			};
 			name = Debug;
 		};
-		DBA2AB982826C17C0033B516 /* Release */ = {
+		659E09A72832EE2800C362E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -260,25 +278,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DBA2AB8A2826C17C0033B516 /* Build configuration list for PBXProject "Caracassonne" */ = {
+		659E09992832EE2800C362E2 /* Build configuration list for PBXProject "testXcode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBA2AB942826C17C0033B516 /* Debug */,
-				DBA2AB952826C17C0033B516 /* Release */,
+				659E09A32832EE2800C362E2 /* Debug */,
+				659E09A42832EE2800C362E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBA2AB962826C17C0033B516 /* Build configuration list for PBXNativeTarget "Caracassonne" */ = {
+		659E09A52832EE2800C362E2 /* Build configuration list for PBXNativeTarget "testXcode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBA2AB972826C17C0033B516 /* Debug */,
-				DBA2AB982826C17C0033B516 /* Release */,
+				659E09A62832EE2800C362E2 /* Debug */,
+				659E09A72832EE2800C362E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DBA2AB872826C17C0033B516 /* Project object */;
+	rootObject = 659E09962832EE2800C362E2 /* Project object */;
 }
