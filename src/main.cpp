@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 //    VuePartie partie;
 //    partie.show();
 
-    VueContenuTuile testContenuTuile(nullptr, 5);
+    VueContenuTuile testContenuTuile(2, 1);
 
 
     testContenuTuile.show();

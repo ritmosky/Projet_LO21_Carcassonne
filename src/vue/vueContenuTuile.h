@@ -14,9 +14,10 @@ class VueContenuTuile : public QWidget
 private:
     Ui::VueContenuTuile *ui;
     int typeTuile;
+    int numPlacement;
 
 public:
-    explicit VueContenuTuile(QWidget *parent = nullptr, int type = 0);
+    explicit VueContenuTuile(int type, int numPlacement, QWidget *parent = nullptr);
     ~VueContenuTuile();
 
     void setCouleur();
