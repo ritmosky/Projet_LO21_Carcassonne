@@ -9,7 +9,16 @@ SOURCES += \
     vue/vuePlateau.cpp \
     vue/vueScore1Joueur.cpp \
     vue/vueTuile.cpp \
-    vue/vueJouerTour.cpp
+    vue/vueJouerTour.cpp \
+    modele/tuile.cpp \
+    modele/plateau.cpp \
+    modele/pioche.cpp \
+    modele/modeJeu.cpp \
+    modele/meeple.cpp \
+    modele/joueur.cpp \
+    modele/espace.cpp \
+    modele/controller.cpp \
+    modele/contenuTuile.cpp
 
 
 
@@ -21,7 +30,16 @@ HEADERS += \
     vue/vuePlateau.h \
     vue/vueScore1Joueur.h \
     vue/vueTuile.h \
-    vue/vueJouerTour.h
+    vue/vueJouerTour.h \
+    modele/tuile.h \
+    modele/plateau.h \
+    modele/pioche.h \
+    modele/modeJeu.h \
+    modele/meeple.h \
+    modele/joueur.h \
+    modele/espace.h \
+    modele/controller.h \
+    modele/contenuTuile.h
 
 FORMS += \
     vue/vueAccueil.ui \
