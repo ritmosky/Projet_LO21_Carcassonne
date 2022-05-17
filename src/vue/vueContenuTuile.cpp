@@ -1,11 +1,10 @@
 #include "vueContenuTuile.h"
 #include "ui_vueContenuTuile.h"
 
-VueContenuTuile::VueContenuTuile(TypesTuiles type, int numPlacement,QWidget *parent) :
+VueContenuTuile::VueContenuTuile(TypesTuiles type,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VueContenuTuile),
-    typeTuile(type),
-    numPlacement(numPlacement)
+    typeTuile(type)
 {
     ui->setupUi(this);
     setCouleur();

@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include "../modele/tuile.h"
-
+#include <vector>
+#include "vueContenuTuile.h"
 namespace Ui {
 class VueTuile;
 }
@@ -19,6 +20,7 @@ public:
 
 private:
     Ui::VueTuile *ui;
+    vector<VueContenuTuile*> tabContenuTuile;
 };
 
 #endif // VUETUILE_H
