@@ -1,11 +1,6 @@
-//
-//  Tuiles.cpp
-//  Caracassonne
-//
-//  Created by Massil on 07/05/2022.
-//
 
 #include "tuile.h"
+
 
 void ContenanceTuile::setBouclier(){
     if (type == ville) {bouclier = true ;}

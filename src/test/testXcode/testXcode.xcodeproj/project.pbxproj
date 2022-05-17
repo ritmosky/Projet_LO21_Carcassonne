@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6552EEFA2833B46B00C5D538 /* espace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6552EEF82833B46B00C5D538 /* espace.cpp */; };
 		659E09B12832EE5200C362E2 /* joueur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09A82832EE5200C362E2 /* joueur.cpp */; };
 		659E09B22832EE5200C362E2 /* meeple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09AB2832EE5200C362E2 /* meeple.cpp */; };
 		659E09B32832EE5200C362E2 /* tuile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 659E09AC2832EE5200C362E2 /* tuile.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6552EEF82833B46B00C5D538 /* espace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = espace.cpp; sourceTree = "<group>"; };
+		6552EEF92833B46B00C5D538 /* espace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = espace.h; sourceTree = "<group>"; };
 		659E099E2832EE2800C362E2 /* testXcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testXcode; sourceTree = BUILT_PRODUCTS_DIR; };
 		659E09A82832EE5200C362E2 /* joueur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = joueur.cpp; path = ../../joueur.cpp; sourceTree = "<group>"; };
 		659E09A92832EE5200C362E2 /* joueur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = joueur.h; path = ../../joueur.h; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 				659E09AA2832EE5200C362E2 /* pioche.h */,
 				659E09AC2832EE5200C362E2 /* tuile.cpp */,
 				659E09B02832EE5200C362E2 /* tuile.h */,
+				6552EEF82833B46B00C5D538 /* espace.cpp */,
+				6552EEF92833B46B00C5D538 /* espace.h */,
 			);
 			path = testXcode;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6552EEFA2833B46B00C5D538 /* espace.cpp in Sources */,
 				659E09B32832EE5200C362E2 /* tuile.cpp in Sources */,
 				659E09B52832EE5200C362E2 /* main.cpp in Sources */,
 				659E09B12832EE5200C362E2 /* joueur.cpp in Sources */,

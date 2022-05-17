@@ -1,9 +1,3 @@
-//
-//  Tuiles.h
-//  Caracassonne
-//
-//  Created by Massil on 07/05/2022.
-//
 
 #ifndef tuile_h
 #define tuile_h

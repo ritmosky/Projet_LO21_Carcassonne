@@ -1,6 +1,7 @@
 #include <iostream>
-#include "tuile.h"
+//#include "tuile.h"
 #include "joueur.h"
+#include "espace.h"
 
 
 
@@ -88,5 +89,27 @@ int main(){
 //    cout << T1 << endl;
 
 
+    // Test Espace OK //
+    
+    Espace E(ville);
+    
+    E.addMeeple(M1);
+    E.addMeeple(M2);
+    
+    cout << "adresse du meeple 1 : " << &M1 << endl;
+    cout << "adresse du meeple 2 : " << &M2 << endl;
+    cout << E;
+    
+    E.addContenance(c1);
+    E.addContenance(c3);
+    E.addContenance(c2);
+    ContenanceTuile c5(ville, 4);
+    E.addContenance(c5);
+    cout << "adresse de la contenance 1 : " << &c1 << endl;
+    cout << "adresse de la contenance 2 : " << &c3 << endl;
+    cout << "adresse de la contenance 3 : " << &c2 << endl;
+    cout << "adresse de la contenance 4 : " << &c5 << endl;
+    cout << E;
+    
     return 0;
 }
