@@ -17,36 +17,37 @@ VueTuile::~VueTuile()
 
 
 void VueTuile::setContenuTuile(Tuile& tuile){
-    int placement, typeTuile;
+    int placement;
+    TypesTuiles typeTuile;
     vector<ContenanceTuile> contenance = tuile.getContenance();
     for (auto itContenance = contenance.cbegin(); itContenance < contenance.cend(); itContenance++){
            placement = itContenance->getNumPlacement();
            typeTuile = itContenance->getType();
            VueContenuTuile* contenuTuile = new VueContenuTuile(typeTuile, placement);
            switch (placement) {
-           case 0:
+           case route:
                ui->grilleContenuTuile->addWidget(contenuTuile, 0,0);
                break;
-           case 1:
+           case abbaye:
                ui->grilleContenuTuile->addWidget(contenuTuile, 0,1);
                break;
-           case 2:
+           case ville:
                ui->grilleContenuTuile->addWidget(contenuTuile, 0,2);
                break;
-           case 3:
+           case champs:
                ui->grilleContenuTuile->addWidget(contenuTuile, 1,2);
                break;
-           case 4:
+           case rivière:
                ui->grilleContenuTuile->addWidget(contenuTuile, 2,2);
                break;
-           case 5:
+           case auberge:
                ui->grilleContenuTuile->addWidget(contenuTuile, 2,1);
                break;
-           case 6:
+           case cathédrale:
                ui->grilleContenuTuile->addWidget(contenuTuile, 2,0);
                break;
-           case 7:
-               ui->grilleContenuTuile->addWidget(contenuTuile, 0,1);
+           case jardin:
+               ui->grilleContenuTuile->addWidget(contenuTuile, 1,0);
                break;
            case 8:
                ui->grilleContenuTuile->addWidget(contenuTuile, 1,1);

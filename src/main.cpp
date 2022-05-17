@@ -2,6 +2,8 @@
 #include "vue/vueAccueil.h"
 #include "vue/vuePartie.h"
 #include "vue/vueContenuTuile.h"
+#include "vue/vueTuile.h"
+#include "modele/tuile.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
@@ -13,10 +15,20 @@ int main(int argc, char* argv[]) {
 //    VuePartie partie;
 //    partie.show();
 
-    VueContenuTuile testContenuTuile(2, 1);
-
-
+    VueContenuTuile testContenuTuile(auberge, 1);
     testContenuTuile.show();
+
+    // Test pour un objet tuile
+    vector<ContenanceTuile> c(9);
+    c[0] = ContenanceTuile(auberge,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
+    c[7] = ContenanceTuile(rivière,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
+    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(auberge,4);
+
+    Tuile T(c);
+    VueTuile testTuile(c);
+    testTuile.show();
+
+
 
     return app.exec();
 

@@ -4,8 +4,8 @@
 
 
 #include <stdio.h>
-#include <tuile.h>
-#include <nomMeeple.h>
+#include "tuile.h"
+
 
 
 

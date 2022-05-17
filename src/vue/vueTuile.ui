@@ -22,7 +22,11 @@
      <height>301</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="grilleContenuTuile"/>
+   <layout class="QGridLayout" name="grilleContenuTuile">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+   </layout>
   </widget>
  </widget>
  <resources/>

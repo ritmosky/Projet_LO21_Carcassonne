@@ -2,6 +2,7 @@
 #define VUECONTENUTUILE_H
 
 #include <QWidget>
+#include "../modele/tuile.h"
 
 namespace Ui {
 class VueContenuTuile;
@@ -13,16 +14,16 @@ class VueContenuTuile : public QWidget
 
 private:
     Ui::VueContenuTuile *ui;
-    int typeTuile;
+    TypesTuiles typeTuile;
     int numPlacement;
 
 public:
-    explicit VueContenuTuile(int type, int numPlacement, QWidget *parent = nullptr);
+    explicit VueContenuTuile(TypesTuiles type, int numPlacement, QWidget *parent = nullptr);
     ~VueContenuTuile();
 
     void setCouleur();
     void setNom();
-    int getTypeTuile() const {return this->typeTuile;}
+    TypesTuiles getTypeTuile() const {return this->typeTuile;}
 
 
 

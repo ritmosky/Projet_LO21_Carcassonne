@@ -1,7 +1,7 @@
 #include "vueContenuTuile.h"
 #include "ui_vueContenuTuile.h"
 
-VueContenuTuile::VueContenuTuile(int type, int numPlacement,QWidget *parent) :
+VueContenuTuile::VueContenuTuile(TypesTuiles type, int numPlacement,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VueContenuTuile),
     typeTuile(type),
@@ -20,20 +20,29 @@ VueContenuTuile::~VueContenuTuile()
 
 void VueContenuTuile::setCouleur(){
     switch (this->getTypeTuile()) {
-    case 1:
+    case route:
         this->setStyleSheet("background-color: brown;font-size: 70pt;");
         break;
-    case 2:
+    case abbaye:
         this->setStyleSheet("background-color: yellow;font-size: 70pt;");
         break;
-    case 3:
+    case ville:
         this->setStyleSheet("background-color: orange;font-size: 70pt;");
         break;
-    case 4:
+    case champs:
         this->setStyleSheet("background-color: green;font-size: 70pt;");
         break;
-    case 5:
+    case rivière:
         this->setStyleSheet("background-color: blue;font-size: 70pt;");
+        break;
+    case auberge:
+        this->setStyleSheet("background-color: purple;font-size: 70pt;");
+        break;
+    case cathédrale:
+        this->setStyleSheet("background-color: golden;font-size: 70pt;");
+        break;
+    case jardin:
+        this->setStyleSheet("background-color: yellow;font-size: 70pt;");
         break;
     default:
         this->setStyleSheet("background-color: black;font-size: 70pt;");
@@ -44,20 +53,29 @@ void VueContenuTuile::setCouleur(){
 
 void VueContenuTuile::setNom(){
     switch (this->getTypeTuile()) {
-    case 1:
+    case route:
         ui->nomTypeTuile->setText("ROUTE");
         break;
-    case 2:
+    case abbaye:
         ui->nomTypeTuile->setText("ABBAYE");
         break;
-    case 3:
+    case ville:
         ui->nomTypeTuile->setText("VILLE");
         break;
-    case 4:
+    case champs:
         ui->nomTypeTuile->setText("CHAMP");
         break;
-    case 5:
+    case rivière:
         ui->nomTypeTuile->setText("RIVIERE");
+        break;
+    case auberge:
+        ui->nomTypeTuile->setText("AUBERGE");
+        break;
+    case cathédrale:
+        ui->nomTypeTuile->setText("CATHEDRALE");
+        break;
+    case jardin:
+        ui->nomTypeTuile->setText("JARDIN");
         break;
     default:
         ui->nomTypeTuile->setText("PAS DE TYPE");
