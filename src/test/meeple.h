@@ -24,7 +24,7 @@ enum NomMeeple {
 
 
 // Convertir Enum en String 
-static const char* NomMeeple_str[] = { "Chevalier", "Paysan", "Abbe", "Voleur" };
+static const char* NomMeeple_str[] = { "chevalier", "paysan", "abbe", "voleur" };
 
 
 
@@ -62,6 +62,7 @@ class Meeple {
 	public:
 
         Meeple(): contenanceTuile(nullptr) {}
+    
 		Meeple(const Meeple&) = delete;
 		Meeple& operator=(const Meeple&) = delete;
 
