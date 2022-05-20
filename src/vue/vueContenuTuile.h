@@ -21,8 +21,7 @@ public:
     explicit VueContenuTuile(TypesTuiles type, QWidget *parent = nullptr);
     ~VueContenuTuile();
 
-    void setCouleur();
-    void setNom();
+    void setNomCouleur();
     TypesTuiles getTypeTuile() const {return this->typeTuile;}
 
 

@@ -9,8 +9,7 @@ VueContenuTuile::VueContenuTuile(TypesTuiles type,QWidget *parent) :
     ui->setupUi(this);
     this->resize(75,75);
     ui->nomTypeTuile->resize(75,75);
-//    setCouleur();
-    setNom();
+    setNomCouleur();
 }
 
 VueContenuTuile::~VueContenuTuile()
@@ -19,40 +18,7 @@ VueContenuTuile::~VueContenuTuile()
 }
 
 
-void VueContenuTuile::setCouleur(){
-    switch (this->getTypeTuile()) {
-    case route:
-        this->setStyleSheet("background-color: brown;");
-        break;
-    case abbaye:
-        this->setStyleSheet("background-color: yellow;");
-        break;
-    case ville:
-        this->setStyleSheet("background-color: orange;");
-        break;
-    case champs:
-        this->setStyleSheet("background-color: green;");
-        break;
-    case rivière:
-        this->setStyleSheet("background-color: blue;");
-        break;
-    case auberge:
-        this->setStyleSheet("background-color: purple;");
-        break;
-    case cathédrale:
-        this->setStyleSheet("background-color: golden;");
-        break;
-    case jardin:
-        this->setStyleSheet("background-color: yellow;");
-        break;
-    default:
-        this->setStyleSheet("background-color: black;");
-        break;
-    }
-}
-
-
-void VueContenuTuile::setNom(){
+void VueContenuTuile::setNomCouleur(){
     switch (this->getTypeTuile()) {
     case route:
         ui->nomTypeTuile->setText("ROUTE");
