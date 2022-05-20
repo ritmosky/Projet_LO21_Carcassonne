@@ -9,22 +9,23 @@ VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
     ui->setupUi(this);
 //    VueContenuTuile* testContenuTuile = new VueContenuTuile(route);
 //    ui->grilleContenuTuile->addWidget(testContenuTuile, 0,0);
-
+    this->resize(225,225);
+    ui->gridLayoutWidget->resize(225,225);
     vector<VueContenuTuile*> tabTest(9);
-    int i = 0;
-    tabTest[0] = new VueContenuTuile(ville);
-    tabTest[1] = new VueContenuTuile(route);
-    tabTest[2] = new VueContenuTuile(auberge);
-    tabTest[3] = new VueContenuTuile(route);
-    tabTest[4] = new VueContenuTuile(ville);
-    tabTest[5] = new VueContenuTuile(route);
-    tabTest[6] = new VueContenuTuile(ville);
-    tabTest[7] = new VueContenuTuile(route);
-    tabTest[8] = new VueContenuTuile(ville);
+//    int i = 0;
+//    tabTest[0] = new VueContenuTuile(ville);
+//    tabTest[1] = new VueContenuTuile(route);
+//    tabTest[2] = new VueContenuTuile(auberge);
+//    tabTest[3] = new VueContenuTuile(route);
+//    tabTest[4] = new VueContenuTuile(ville);
+//    tabTest[5] = new VueContenuTuile(route);
+//    tabTest[6] = new VueContenuTuile(ville);
+//    tabTest[7] = new VueContenuTuile(route);
+//    tabTest[8] = new VueContenuTuile(ville);
 
-    ui->grilleContenuTuile->addWidget(tabTest[0], 0,0);
-    ui->grilleContenuTuile->addWidget(tabTest[2], 0,1);
-    ui->grilleContenuTuile->addWidget(tabTest[1], 0,2);
+//    ui->grilleContenuTuile->addWidget(tabTest[0], 0,0);
+//    ui->grilleContenuTuile->addWidget(tabTest[2], 0,1);
+//    ui->grilleContenuTuile->addWidget(tabTest[1], 0,2);
 
 //    i= 1;
 //    tabTest[i] = new VueContenuTuile(route);
@@ -34,9 +35,7 @@ VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
 //    tabTest[i] = new VueContenuTuile(route);
 //    ui->grilleContenuTuile->addWidget(tabTest[i], 2,0);
 
-
-
-//    setContenuTuile(tuile);
+    setContenuTuile(tuile);
 }
 
 VueTuile::~VueTuile()

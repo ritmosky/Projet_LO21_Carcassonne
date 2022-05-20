@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
 //    VuePartie partie;
 //    partie.show();
 
-    VueContenuTuile testContenuTuile(auberge);
-    testContenuTuile.show();
+//    VueContenuTuile testContenuTuile(ville);
+//    testContenuTuile.show();
 
 
     // Test pour un objet tuile
@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
 
     Tuile T(c);
     VueTuile testTuile(c);
+
 
     testTuile.show();
 

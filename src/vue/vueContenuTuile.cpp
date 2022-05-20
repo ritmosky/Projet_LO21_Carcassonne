@@ -7,7 +7,9 @@ VueContenuTuile::VueContenuTuile(TypesTuiles type,QWidget *parent) :
     typeTuile(type)
 {
     ui->setupUi(this);
-    setCouleur();
+    this->resize(75,75);
+    ui->nomTypeTuile->resize(75,75);
+//    setCouleur();
     setNom();
 }
 
@@ -20,31 +22,31 @@ VueContenuTuile::~VueContenuTuile()
 void VueContenuTuile::setCouleur(){
     switch (this->getTypeTuile()) {
     case route:
-        this->setStyleSheet("background-color: brown;font-size: 70pt;");
+        this->setStyleSheet("background-color: brown;");
         break;
     case abbaye:
-        this->setStyleSheet("background-color: yellow;font-size: 70pt;");
+        this->setStyleSheet("background-color: yellow;");
         break;
     case ville:
-        this->setStyleSheet("background-color: orange;font-size: 70pt;");
+        this->setStyleSheet("background-color: orange;");
         break;
     case champs:
-        this->setStyleSheet("background-color: green;font-size: 70pt;");
+        this->setStyleSheet("background-color: green;");
         break;
     case rivière:
-        this->setStyleSheet("background-color: blue;font-size: 70pt;");
+        this->setStyleSheet("background-color: blue;");
         break;
     case auberge:
-        this->setStyleSheet("background-color: purple;font-size: 70pt;");
+        this->setStyleSheet("background-color: purple;");
         break;
     case cathédrale:
-        this->setStyleSheet("background-color: golden;font-size: 70pt;");
+        this->setStyleSheet("background-color: golden;");
         break;
     case jardin:
-        this->setStyleSheet("background-color: yellow;font-size: 70pt;");
+        this->setStyleSheet("background-color: yellow;");
         break;
     default:
-        this->setStyleSheet("background-color: black;font-size: 70pt;");
+        this->setStyleSheet("background-color: black;");
         break;
     }
 }
@@ -54,30 +56,39 @@ void VueContenuTuile::setNom(){
     switch (this->getTypeTuile()) {
     case route:
         ui->nomTypeTuile->setText("ROUTE");
+        ui->nomTypeTuile->setStyleSheet("background-color: brown;");
         break;
     case abbaye:
         ui->nomTypeTuile->setText("ABBAYE");
+        ui->nomTypeTuile->setStyleSheet("background-color: yellow;");
         break;
     case ville:
         ui->nomTypeTuile->setText("VILLE");
+        ui->nomTypeTuile->setStyleSheet("background-color: orange;");
         break;
     case champs:
         ui->nomTypeTuile->setText("CHAMP");
+        ui->nomTypeTuile->setStyleSheet("background-color: green;");
         break;
     case rivière:
         ui->nomTypeTuile->setText("RIVIERE");
+        ui->nomTypeTuile->setStyleSheet("background-color: blue;");
         break;
     case auberge:
         ui->nomTypeTuile->setText("AUBERGE");
+        ui->nomTypeTuile->setStyleSheet("background-color: purple;");
         break;
     case cathédrale:
         ui->nomTypeTuile->setText("CATHEDRALE");
+        ui->nomTypeTuile->setStyleSheet("background-color: golden;");
         break;
     case jardin:
         ui->nomTypeTuile->setText("JARDIN");
+        ui->nomTypeTuile->setStyleSheet("background-color: yellow;");
         break;
     default:
         ui->nomTypeTuile->setText("PAS DE TYPE");
+        ui->nomTypeTuile->setStyleSheet("background-color: brown;");
         break;
     }
     ui->nomTypeTuile->setAlignment(Qt::AlignCenter);
