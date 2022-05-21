@@ -23,7 +23,11 @@
       <height>331</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="affichageScore"/>
+    <layout class="QVBoxLayout" name="affichageScore">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+    </layout>
    </widget>
   </widget>
  </widget>
