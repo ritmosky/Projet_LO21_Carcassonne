@@ -4,15 +4,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "pioche.h"
-#include "joueur.h"
-#include "plateau.h"
+#include "tuile.h"
+#include "Meeple.h"
+using namespace std;
+
 
 
 class ModeJeu{
 
     public:
-    
+        ModeJeu(){
+            cout<<"ModeJeu"<<endl;
+        }
         virtual bool validationPlacementT(Tuile t);
         virtual bool validationPlacementM(Meeple m);
 
@@ -21,8 +24,9 @@ class ModeJeu{
 
 class Standard : public ModeJeu{
     public:
-        ModeJeu();
-        ~ModeJeu();
+        Standard(){
+            cout<<"Standard"<<endl;
+        }
         bool validationPlacementT(Tuile t);
         bool validationPlacementM(Meeple m);
 };
@@ -30,8 +34,9 @@ class Standard : public ModeJeu{
 
 class Riviere:public ModeJeu{
     public:
-        ModeJeu();
-        ~ModeJeu();
+        Riviere(){
+            cout<<"Riviere"<<endl;
+        }
         bool validationPlacementT(Tuile t);
         bool validationPlacementM(Meeple m);
 };
@@ -39,16 +44,18 @@ class Riviere:public ModeJeu{
 
 class AubergesEtCathedrales:public ModeJeu{
     public:
-        ModeJeu();
-        ~ModeJeu();
+        AubergesEtCathedrales(){
+            cout<<"AubergesEtCathedrales"<<endl;
+        }
         bool validationPlacementT(Tuile t);
         bool validationPlacementM(Meeple m);
 };
 
 class Paysan: public ModeJeu{
     public:
-        ModeJeu();
-        ~ModeJeu();
+        Paysan(){
+            cout<<"Paysan"<<endl;
+        }
         bool validationPlacementT(Tuile t);
         bool validationPlacementM(Meeple m);
 };

@@ -28,7 +28,7 @@ class Controller{
 
         bool fini;
         vector<Joueur*> listeJoueurs;
-        ModeJeu *modeJeu;
+        //ModeJeu* modeJeu;
         Plateau *plateau;
         Pioche *pioche;
         State state;
@@ -46,14 +46,21 @@ class Controller{
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
 
-        bool placementTuileAutorise(const Tuile t);
-        bool estCompatible(Tuile newTuile,const Tuile* voisin,Tuile* tuile);
+        bool placementTuileAutorise(Tuile newTuile);
+        bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
+        bool estCompatible(Tuile newTuile,int x,int y,Plateau *plateau);
+        bool estCompatible(Tuile newTuile,int x,int y);
         bool placementMeeple(Meeple m);
         void setState(State s); 
         void compteScore(State s);
         void compteScore(TypesTuiles t, State s);
         void nextTour();
         void compteScoreAbbaye(State s);
+        void AffichageJoueurs(){
+            for(int i=0;i<listeJoueurs.size();i++){
+                cout << "Joueur " << i << " : " << listeJoueurs.at(i)->getNbrMeeples() << " meeples" << endl;
+            }
+        }
 
         //Getters
         inline bool getFini() const{

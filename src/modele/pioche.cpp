@@ -17,28 +17,15 @@
 
 
 
-ostream& operator<<(ostream& f, const Pioche& P){
-    
-    for (int i = 0 ; i < P.getNbTuiles(); i++){
-        f << "Tuile " << i << " : " << endl<< endl;
-        f << P.getTuile(i) << endl << endl;
-        f << " -----------------------" << endl<< endl;
-    }
-    return f;
-}
 
 
-const Tuile& Pioche::Piocher() const{
+
+Tuile Pioche::Piocher(){
     if (Pioche::estVide()) throw ("Pioche vide");
     // Génération d'un nb entre 0 et le nombre de carte qui reste dans la pioche
     size_t i = rand()% tuiles.size() ;
     // On la pioche
-    const Tuile& T = tuiles[i];
-    
-// décrémenter le vecteur
-    
-    
-    return T;
+    return tuiles[i];
 }
     
     

@@ -1,6 +1,12 @@
+//
+//  Tuiles.h
+//  Caracassonne
+//
+//  Created by Massil on 07/05/2022.
+//
 
-#ifndef tuile_h
-#define tuile_h
+#ifndef Tuiles_h
+#define Tuiles_h
 
 #include <stdio.h>
 #include <vector>
@@ -24,8 +30,7 @@ enum TypesTuiles {
 
 
 
-// Convertir Enum en String
-static const char* TypesTuiles_str[] = { "Route", "Abbaye", "Ville", "Champs", "Rivière", "Auberge", "Cathédrale", "Jardin", "DoubleRoute" };
+
 
 
 class ContenanceTuile{
@@ -44,8 +49,12 @@ public:
     inline const int getNumPlacement() const {return numPlacement;}
     const bool getBouclier() const { return bouclier; }
     void setBouclier();
-};
 
+    
+    
+    
+    
+};
 
 class Tuile {
     
@@ -63,16 +72,23 @@ public :
     Tuile(const vector<ContenanceTuile>& c);
     inline const int getX() const {return posX;}
     inline const int getY() const {return posY;}
-    inline const Tuile* getVoisinHaut() const {return voisin_haut;}
-    inline const Tuile* getVoisinBas() const {return voisin_bas;}
-    inline const Tuile* getVoisinGauche() const {return voisin_gauche;}
-    inline const Tuile* getVoisinDroite() const {return voisin_droite;}
     const vector<ContenanceTuile> getContenance() const {return contenance; }
     const ContenanceTuile getContenance(int i) const {return contenance[i]; }
     const TypesTuiles& getContenu(int i) const { return contenance[i].getType() ; }
-    void changerOrientation() const;
+    void changerOrientation();
+    inline Tuile* getVoisinHaut() const {return voisin_haut;}
+    inline Tuile* getVoisinBas() const {return voisin_bas;}
+    inline Tuile* getVoisinGauche() const {return voisin_gauche;}
+    inline Tuile* getVoisinDroite() const {return voisin_droite;}
 
     Tuile& operator=(const Tuile&)= delete;
+    //setter x et y
+    void setX(int x){
+        posX = x;
+    }
+    void setY(int y){
+        posY = y;
+    }
     
     
     

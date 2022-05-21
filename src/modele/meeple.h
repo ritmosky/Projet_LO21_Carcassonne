@@ -23,11 +23,6 @@ enum NomMeeple {
 
 
 
-// Convertir Enum en String 
-static const char* NomMeeple_str[] = { "Chevalier", "Paysan", "Abbe", "Voleur" };
-
-
-
 // CLASSE MÈRE
 class TypeMeeple {
 	

@@ -20,7 +20,7 @@ class Joueur {
 
 	public:
 
-		Joueur(int uid, int nb) : id(uid), nbrMeeples(nb), score(0), meeples(NULL) {}
+		Joueur(int uid, int nb) : id(uid), nbrMeeples(nb), score(0){}
 		Joueur(int uid) : id(uid){}
 		//~Joueur();
 
