@@ -17,26 +17,15 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1030</x>
-      <y>0</y>
-      <width>251</width>
-      <height>481</height>
+      <x>879</x>
+      <y>69</y>
+      <width>351</width>
+      <height>331</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="affichageScore"/>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1280</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
