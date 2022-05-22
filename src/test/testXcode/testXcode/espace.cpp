@@ -11,6 +11,7 @@ void Espace::addContenance(const ContenanceTuile& C){
 }
 
 
+
 void Espace::addMeeple(const Meeple& M){
     meeples.push_back(&M);
     nbrMeeple += 1;

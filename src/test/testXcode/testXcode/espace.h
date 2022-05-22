@@ -8,18 +8,6 @@
 #include <vector>
 
 
-
-/*
-class SetException {
-    public:
-        SetException(const string& i) :info(i) {}
-        string getInfo() const { return info; }
-    private:
-        string info;
-};
-*/
-
-
 class Espace {
     
 private :
@@ -42,7 +30,6 @@ public :
     inline const size_t getNbrContenanceTuile() const { return contenus.size(); }
     
     inline void addBouclier() { nbrBouclier += 1; }
-    
     void addContenance(const ContenanceTuile& C);
     void addMeeple(const Meeple& M);
     
@@ -50,6 +37,8 @@ public :
     void calculScore();
 };
 
+
 ostream& operator<<(ostream& f, const Espace& E);
+
 
 #endif

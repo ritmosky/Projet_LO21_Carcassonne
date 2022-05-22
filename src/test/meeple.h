@@ -12,6 +12,7 @@
 using namespace std;
 
 
+
 // Definition enum NomMeeple
 enum NomMeeple {
 	chevalier, 

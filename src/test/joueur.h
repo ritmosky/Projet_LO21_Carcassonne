@@ -23,7 +23,6 @@ class Joueur {
 
 		Joueur(int uid, int nb) : id(uid), nbrMeeples(nb), score(0), meeples(NULL) {}
 		Joueur(int uid) : id(uid){}
-		//~Joueur();
 
 		inline const int getId() const { return id; }
 		inline const int getScore() const { return score; }

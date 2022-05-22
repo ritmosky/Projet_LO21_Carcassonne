@@ -6,13 +6,13 @@
 
 
 void Joueur::addMeeple(const Meeple& m) {
+    
     if (meeples.size() > nbrMeeples){
         cout << "Il y\'a trop de meeples";
     }
 
     meeples.push_back(&m);
 }
-
 
 
 

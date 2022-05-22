@@ -1,17 +1,20 @@
+
 #include <iostream>
-//#include "tuile.h"
+#include "pioche.h"
 #include "joueur.h"
 #include "espace.h"
 
 
 
-
 using namespace std;
+
+
 
 int main(){
     
     
-    // Test TypeMeeple OK //
+    
+    // Test TYPEMEEPLE OK //
     
     cout << endl << "\n---------- Pour TypeMeeple ---------- \n\n";
     
@@ -31,7 +34,7 @@ int main(){
 
     
     
-    // Test Meeple + ContenanceTuile OK //
+    // Test MEEPLE + CONTENANCETUILE OK //
     
     Meeple M1;
     M1.setType(tm2);
@@ -46,7 +49,8 @@ int main(){
     cout << M2;
     
     
-    // Test Joueur + Tuile OK //
+    
+    // Test JOUEUR + TUILE OK //
     
     vector<ContenanceTuile> c;
     c.push_back(c1);       // ville
@@ -77,19 +81,10 @@ int main(){
     
     cout << j;
     cout << j1;
-    
-    
-//    vector<void*> c0;
-//    for (int i = 0; i < 9 ; i++){
-//        TypesTuiles t = static_cast<TypesTuiles>(rand() % champs + 1);
-//        ContenanceTuile c0[i](t,i);
-//    }
-//
-//    Tuile T1(c0);
-//    cout << T1 << endl;
 
 
-    // Test Espace OK //
+
+    // Test ESPACE OK //
     
     Espace E(ville);
     
@@ -98,6 +93,7 @@ int main(){
     
     cout << "adresse du meeple 1 : " << &M1 << endl;
     cout << "adresse du meeple 2 : " << &M2 << endl;
+    
     cout << E;
     
     E.addContenance(c1);
@@ -105,11 +101,74 @@ int main(){
     E.addContenance(c2);
     ContenanceTuile c5(ville, 4);
     E.addContenance(c5);
-    cout << "adresse de la contenance 1 : " << &c1 << endl;
-    cout << "adresse de la contenance 2 : " << &c3 << endl;
-    cout << "adresse de la contenance 3 : " << &c2 << endl;
-    cout << "adresse de la contenance 4 : " << &c5 << endl;
+    
     cout << E;
     
+    
+    // Test PIOCHE OK //
+    cout << endl << "\n---------- Pour Pioche ---------- \n\n";
+    
+    vector<int> mode;
+    cout << mode;
+
+    mode.push_back(1);
+    cout << mode;
+
+
+    Pioche pioche(mode);
+    cout << pioche << endl;
+    
+    Tuile T1(pioche.piocher());
+    cout<< T1 << endl;
+    
+    Tuile T2 = pioche.piocher();
+    cout << T2 << endl;
+
+    Tuile T3 = pioche.piocher();
+    cout << T3 << endl;
+    
+    
+    cout << pioche << endl;
+
+    
+    
+    // Test de CHANGERORIENTATION :
+    cout << endl << "\n---------- Pour changerOrientation ---------- \n\n";
+
+    cout << endl << "---------- avant changerOrientation ---------- \n\n";
+    cout << T << endl;
+    cout << endl << "---------- après changerOrientation ---------- \n\n";
+    T.changerOrientation();
+    cout << T << endl;
+    
+    cout << endl << "---------- avant changerOrientation ---------- \n\n";
+    cout << T << endl << endl;
+    cout << endl << "---------- après changerOrientation ---------- \n\n";
+    T.changerOrientation();
+    cout << T << endl << endl;
+    
+    
+    
+    // Test AFFECTATION
+    cout << endl << "\n---------- Affectation de tuile ---------- \n\n";
+    
+    Tuile T11(c);
+    cout << T11 << endl << endl;
+    
+    
+    const Tuile T22 = T11;
+    cout << "\n- avec affectaion : \n\n" << T22 << endl << endl;
+    
+    
+    vector<ContenanceTuile> cc(9);
+    for (int i = 0; i < 9 ; i++){
+        TypesTuiles t = static_cast<TypesTuiles>(rand() % champs + 1);
+        cc[i] = ContenanceTuile(t,i);
+    }
+
+    Tuile t(cc);
+    cout << endl << endl << t << endl;
+
+
     return 0;
 }
