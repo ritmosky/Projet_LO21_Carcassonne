@@ -7,8 +7,8 @@ VueContenuTuile::VueContenuTuile(TypesTuiles type,QWidget *parent) :
     typeTuile(type)
 {
     ui->setupUi(this);
-    this->resize(75,75);
-    ui->nomTypeTuile->resize(75,75);
+//    this->resize(75,75);
+//    ui->nomTypeTuile->resize(75,75);
     setNomCouleur();
 }
 

@@ -12,32 +12,22 @@ int main(int argc, char* argv[]) {
 
 //    VueAccueil w;
 //    w.show();
+    //    VueContenuTuile testContenuTuile(ville);
+    //    testContenuTuile.show();
 
+//         Test pour un objet tuile
+        vector<ContenanceTuile> c(9);
+        c[0] = ContenanceTuile(auberge,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
+        c[7] = ContenanceTuile(rivière,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
+        c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(auberge,4);
 
-    VuePartie partie;
+        Tuile T(c);
+//        VueTuile testTuile(T);
+
+//        testTuile.show();
+
+    VuePartie partie(T);
     partie.show();
-
-
-
-
-
-
-//    VueContenuTuile testContenuTuile(ville);
-//    testContenuTuile.show();
-
-    // Test pour un objet tuile
-//    vector<ContenanceTuile> c(9);
-//    c[0] = ContenanceTuile(auberge,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
-//    c[7] = ContenanceTuile(rivière,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
-//    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(auberge,4);
-
-//    Tuile T(c);
-//    VueTuile testTuile(c);
-
-
-//    testTuile.show();
-
-
 
 
     return app.exec();

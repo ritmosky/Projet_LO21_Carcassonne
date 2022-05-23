@@ -7,8 +7,8 @@ VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
     ui(new Ui::VueTuile)
 {
     ui->setupUi(this);
-    this->resize(225,225);
-    ui->gridLayoutWidget->resize(225,225);
+//    this->resize(225,225);
+//    ui->gridLayoutWidget->resize(225,225);
     setContenuTuile(tuile);
 }
 

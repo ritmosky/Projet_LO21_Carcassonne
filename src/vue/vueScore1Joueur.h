@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::VueScore1Joueur *ui;
+
 };
 
 #endif // VUESCORE1JOUEUR_H

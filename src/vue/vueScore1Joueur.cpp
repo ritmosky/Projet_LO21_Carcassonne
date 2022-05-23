@@ -6,7 +6,7 @@ VueScore1Joueur::VueScore1Joueur(QWidget *parent) :
     ui(new Ui::VueScore1Joueur)
 {
     ui->setupUi(this);
-    this->autoFillBackground();
+    ui->nom->setText("test");
 }
 
 VueScore1Joueur::~VueScore1Joueur()
