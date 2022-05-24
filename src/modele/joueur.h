@@ -32,6 +32,9 @@ class Joueur {
     
 		inline void addScore(int pts) { score += pts; }
 		void addMeeple(const Meeple& m);
+		void removeMeeple(){
+			nbrMeeples--;
+		}
 };
 
 

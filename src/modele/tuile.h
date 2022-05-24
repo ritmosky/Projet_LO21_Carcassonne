@@ -28,6 +28,8 @@ enum TypesTuiles {
     droute
 };
 
+// Convertir Enum en String
+static const char* TypesTuiles_str[] = { "Route", "Abbaye", "Ville", "Champs", "Rivière", "Auberge", "Cathédrale", "Jardin", "DoubleRoute" };
 
 
 
@@ -80,7 +82,25 @@ public :
     inline Tuile* getVoisinBas() const {return voisin_bas;}
     inline Tuile* getVoisinGauche() const {return voisin_gauche;}
     inline Tuile* getVoisinDroite() const {return voisin_droite;}
-
+    void setVoisinHaut(Tuile* t){
+        voisin_haut = t;
+    }
+    void setVoisinBas(Tuile* t){
+        voisin_bas = t;
+    }
+    void setVoisinGauche(Tuile* t){
+        voisin_gauche = t;
+    }
+    void setVoisinDroite(Tuile* t){
+        voisin_droite = t;
+    }
+    void setPosX(int x){
+        this->posX = x;
+    }
+    void setPosY(int y){
+        posY = y;
+    }
+    
     Tuile& operator=(const Tuile&)= delete;
     //setter x et y
     void setX(int x){

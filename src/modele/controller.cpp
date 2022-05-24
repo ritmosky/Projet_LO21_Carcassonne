@@ -3,15 +3,50 @@
 #define NBRE_MEEPLE_MAX 7
 
 
-//Il faut rajouter les fonctions getVoisinHaut(), getVoisinBas(), getVoisinGauche(), getVoisinDroite() dans Tuile
-// Rajouter getTuiles() permettant de récupérer la liste des tuiles présentes sur le plateau
-
-//Gerer les meeples + tableau modedeJeu (template method) + newestTuile
+//Il faut rajouter les setter pour les vosins et les posX et posY
+// Rajouter getTuiles() permettant de récupérer la liste des tuiles présentes sur le plateau    
+//tableau modedeJeu (template method)
 
 
     Controller::Controller(int nj):nbJoueurs(nj){
         setState(GAME_MENU);
         tour = 0;
+    }
+
+    void Controller::placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau){
+        Tuile *t = plateau->existeTuile(x,y);
+        ContenanceTuile contenance = t->getContenance(i);
+        m->setContenance(contenance);
+        m->setIdJoueur(j->getId());
+        m->setType(tm);
+        cout << *m;
+        j->removeMeeple();
+    }
+
+    void Controller::placementTuile(Tuile *newTuile,int x,int y,Plateau *plateau){
+        newTuile->setPosX(x);
+        newTuile->setPosY(y);
+        plateau->ajouterTuiles(newTuile);
+        //Voisin du haut
+        if(plateau->existeTuile(x,y-1)){
+            newTuile->setVoisinHaut(plateau->existeTuile(x,y-1));
+            plateau->existeTuile(x,y-1)->setVoisinBas(newTuile);
+        }
+        //Voisin du bas
+        if(plateau->existeTuile(x,y+1)){
+            newTuile->setVoisinBas(plateau->existeTuile(x,y+1));
+            plateau->existeTuile(x,y+1)->setVoisinHaut(newTuile);
+        }
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            newTuile->setVoisinGauche(plateau->existeTuile(x-1,y));
+            plateau->existeTuile(x-1,y)->setVoisinDroite(newTuile);
+        }
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            newTuile->setVoisinDroite(plateau->existeTuile(x+1,y));
+            plateau->existeTuile(x+1,y)->setVoisinGauche(newTuile);
+        }
     }
 
     bool Controller::placementTuileAutorise(Tuile newTuile){
@@ -208,35 +243,20 @@
 
 
    
-    //PlacementMeeple
-    //bool Controller::placementMeepleAutorise(Meeple m){}
-
-        /*
-    //Comptage des scores
-    void Controller::compteScore(State state){
-		if (state == GAME_OVER){
-           compteScore(TypesTuiles::champs, state);
-        }
-		compteScore(TypesTuiles::ville, state);
-		compteScore(TypesTuiles::route, state); // à implémenter une méthode compte score pour les routes et villes
-		compteScoreAbbaye(state);
-	}
-*/
     
-    /*
+  
     //Tour suivant
     void Controller::nextTour(){
         if(pioche->getNbTuiles() == 0){
             setState(GAME_OVER);
         }
         else{
-            compteScore(getState());
             tour++;
             setState(PLACING_TILE);
         }
     }
 
-    */
+    
 //ok
 void Controller::setState(State state){
     
@@ -260,30 +280,33 @@ void Controller::setState(State state){
         case GAME_START:{
             //initialisation le plateau,la pioche de tuile, et de lancer la partie, avec la vue Qt du plateau
             plateau = new Plateau(0);
-            //La pioche doit être initialisée avec le mode de jeu et avec un booléen abbé
+            //La pioche doit être initialisée avec le mode de jeu
             vector<int> mode = {1,2};
-            //setState(PLACING_TILE);
+            pioche = new Pioche(mode);
+            cout << pioche->getNbTuiles() << endl;
+            setState(PLACING_TILE);
             break;
             }
 
 
         case PLACING_TILE:
             //on place une tuile sur le plateau, avec la vue Qt du plateau
-            placementTuileAutorise(pioche->Piocher());
+            if(!placementTuileAutorise(pioche->Piocher())){
+                //On supprime la tuile de la pioche
+            }
             setState(PLACING_MEEPLE);
             break;
 
         case PLACING_MEEPLE:
             //Si le joueur actuelle a 0 meeple on passe le tour
             if(listeJoueurs.at(tour%nbJoueurs)->getNbrMeeples() == 0){
-               //nextTour();
+               nextTour();
             }
-
             //placementMeeple();
             //nextTour();
             break;
 
-            //Fin de la partie et comptage des scores des joueurs , Joueurs.getscore()
+            //Fin de la partie et comptage des scores des joueurs
         case GAME_OVER:
             //compteScore(getState());
             break;
@@ -348,3 +371,14 @@ void Controller::Abbaye(State s) {
 
     */
 
+        /*
+    //Comptage des scores
+    void Controller::compteScore(State state){
+		if (state == GAME_OVER){
+           compteScore(TypesTuiles::champs, state);
+        }
+		compteScore(TypesTuiles::ville, state);
+		compteScore(TypesTuiles::route, state); // à implémenter une méthode compte score pour les routes et villes
+		compteScoreAbbaye(state);
+	}
+*/

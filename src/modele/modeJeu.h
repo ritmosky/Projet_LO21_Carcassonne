@@ -6,6 +6,8 @@
 #include <vector>
 #include "tuile.h"
 #include "Meeple.h"
+#include "espace.h"
+
 using namespace std;
 
 
@@ -16,8 +18,8 @@ class ModeJeu{
         ModeJeu(){
             cout<<"ModeJeu"<<endl;
         }
-        virtual bool validationPlacementT(Tuile t);
-        virtual bool validationPlacementM(Meeple m);
+        virtual bool validationPlacementT(Tuile t)=0;
+        virtual bool validationPlacementM(Meeple m,Espace e)=0;
 
 };
 
@@ -28,7 +30,7 @@ class Standard : public ModeJeu{
             cout<<"Standard"<<endl;
         }
         bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m);
+        bool validationPlacementM(Meeple m ,Espace e);
 };
 
 
@@ -38,7 +40,7 @@ class Riviere:public ModeJeu{
             cout<<"Riviere"<<endl;
         }
         bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m);
+        bool validationPlacementM(Meeple m ,Espace e);
 };
 
 
@@ -48,7 +50,7 @@ class AubergesEtCathedrales:public ModeJeu{
             cout<<"AubergesEtCathedrales"<<endl;
         }
         bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m);
+        bool validationPlacementM(Meeple m ,Espace e);
 };
 
 class Paysan: public ModeJeu{
@@ -57,7 +59,7 @@ class Paysan: public ModeJeu{
             cout<<"Paysan"<<endl;
         }
         bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m);
+        bool validationPlacementM(Meeple m ,Espace e);
 };
 
 
