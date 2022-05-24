@@ -66,8 +66,8 @@ int main(){
     Tuile T(c);
     cout << T << endl;
     
-    Joueur j(1,5);
-    Joueur j1(2,7);
+    Joueur j(1,5,"Taoufiq");
+    Joueur j1(2);
     
     j.addScore(50);
     j1.addScore(24);
@@ -81,7 +81,10 @@ int main(){
     
     cout << j;
     cout << j1;
-
+    
+    cout << j;
+    j1.addName("Amenadiel");
+    cout << j1;
 
 
     // Test ESPACE OK //
@@ -168,7 +171,6 @@ int main(){
 
     Tuile t(cc);
     cout << endl << endl << t << endl;
-
 
     return 0;
 }

@@ -15,12 +15,17 @@ void Joueur::addMeeple(const Meeple& m) {
 }
 
 
+void Joueur::addName(const string& str){
+    name = str;
+}
+
+
 
 ostream& operator<<(ostream& f, const Joueur& J){
 
     f << "--------------------------------------------------------\n";
     
-    f << "\n Joueur ID : " << J.getId();
+    f << "\n Joueur ID : " << J.getId() << " nom : " << J.getName();
     f << "\n Score : " << J.getScore();
     f << "\n Nombre de meeples autorisé : " << J.getNbrMeeples();
     f << "\n Nombre de meeples utilisé : " << J.getNbrMeeplesUsed();
