@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include<string>
 #include<iostream>
 
 
@@ -50,6 +51,11 @@ public:
     inline const int getNumPlacement() const {return numPlacement;}
     const bool getBouclier() const { return bouclier; }
     void setBouclier();
+    bool operator==(const ContenanceTuile& c) const {return this->type == c.getType(); };
+
+    ContenanceTuile(const ContenanceTuile& c);
+    ContenanceTuile& operator=(const ContenanceTuile& c);
+
 
 
 
@@ -71,14 +77,26 @@ private:
 
 public :
     Tuile(const vector<ContenanceTuile>& c);
+    Tuile() = default;
+    inline const size_t getSize() const {return contenance.size();}
     inline const int getX() const {return posX;}
     inline const int getY() const {return posY;}
+    inline const Tuile* getVoisinHaut() const {return voisin_haut;}
+    inline const Tuile* getVoisinBas() const {return voisin_bas;}
+    inline const Tuile* getVoisinGauche() const {return voisin_gauche;}
+    inline const Tuile* getVoisinDroite() const {return voisin_droite;}
+
+
     const vector<ContenanceTuile> getContenance() const {return contenance; }
     const ContenanceTuile getContenance(int i) const {return contenance[i]; }
     const TypesTuiles& getContenu(int i) const { return contenance[i].getType() ; }
     void changerOrientation();
 
-    Tuile& operator=(const Tuile&)= delete;
+    Tuile(const Tuile& T);
+    Tuile& operator=(const Tuile& T);
+
+    bool operator==(const Tuile& T) const {return this->contenance == T.getContenance(); };
+
 
 
 

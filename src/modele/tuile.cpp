@@ -1,5 +1,15 @@
-#include "tuile.h"
-#include <vector>
+//
+//  Tuiles.cpp
+//  Caracassonne
+//
+//  Created by Massil on 07/05/2022.
+//
+
+#include "Tuiles.h"
+
+
+
+// --------------------------------------------- Class ContenanceTuile ------------------------------------------------
 
 
 void ContenanceTuile::setBouclier(){
@@ -8,11 +18,28 @@ void ContenanceTuile::setBouclier(){
 }
 
 
-Tuile::Tuile(const vector<ContenanceTuile>& c): voisin_haut(nullptr),voisin_bas(nullptr),voisin_gauche(nullptr),voisin_droite(nullptr),contenance(c.size()){
-    for ( size_t i = 0; i < c.size(); i++){
+ContenanceTuile::ContenanceTuile(const ContenanceTuile& c):numPlacement(c.numPlacement), type(c.type), bouclier(c.bouclier){;}
+
+ContenanceTuile& ContenanceTuile::operator=(const ContenanceTuile& c){
+    numPlacement = c.numPlacement;
+    type = c.type;
+    bouclier = c.bouclier;
+    return *this;
+}
+
+
+
+// ------------------------------------------------ Class Tuile -------------------------------------------------------
+
+
+
+Tuile::Tuile(const vector<ContenanceTuile>& c): voisin_haut(nullptr),voisin_bas(nullptr),voisin_gauche(nullptr),voisin_droite(nullptr),
+                                                contenance(c.size()){
+    for ( size_t i = 0; i < size(c); i++){
         contenance[i] = c[i];
     }
 }
+
 
 void Tuile::changerOrientation(){
     ContenanceTuile c0 = contenance[0];
@@ -26,10 +53,32 @@ void Tuile::changerOrientation(){
 
 
 
+Tuile::Tuile(const Tuile& T):
+        voisin_haut(T.voisin_haut),voisin_bas(T.voisin_bas),voisin_gauche(T.voisin_gauche),voisin_droite(T.voisin_droite),
+        posX(T.posX),posY(T.posY),
+        contenance(T.contenance.size()){    // Impossible d'initialiser contenance avec T.getSize()
+    for (int i = 0 ; i < 9; i++){
+        contenance[i] = T.contenance[i];
+    }
+
+}
+
+Tuile& Tuile::operator=(const Tuile& T){
+
+    voisin_haut = T.voisin_haut;
+    voisin_bas = T.voisin_bas;
+    voisin_gauche = T.voisin_gauche;
+    voisin_droite = T.voisin_droite;
+    posX = T.posX;
+    posY = T.posY;
+    contenance = T.contenance;
+    return *this;
+}
+
 
 ostream& operator<<(ostream& f, const Tuile& T){
 
-
+    f << &T <<endl;
     for (int i = 0; i < 3 ; i++ )
     {
         f << i << " : " << T.getContenu(i) << '\t';
