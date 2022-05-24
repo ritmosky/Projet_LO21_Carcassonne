@@ -1,72 +1,85 @@
 
-#ifndef _MEEPLE_H
-#define _MEEPLE_H 
+#ifndef meeple_h
+#define meeple_h
 
 
 #include <stdio.h>
-#include <tuile.h>
-#include <nomMeeple.h>
+#include <iostream>
+#include "tuile.h"
 
+
+
+using namespace std;
 
 
 
 // Definition enum NomMeeple
-enum NomMeeple { 
-	chevalier, 
-	paysan, 
-	abbe, 
-	voleur
+enum NomMeeple {
+    chevalier,
+    paysan,
+    abbe,
+    voleur,
+    rien
 };
 
 
-// Convertir Enum en String 
-static const char* NomMeeple_str[] = { "Chevalier", "Paysan", "Abbe", "Voleur" };
+
+// Convertir Enum en String
+static const char* NomMeeple_str[] = { "chevalier", "paysan", "abbe", "voleur" };
 
 
 
 // CLASSE MÈRE
 class TypeMeeple {
-	
-	private:
 
-		NomMeeple nom;
+private:
 
-	public:
+    NomMeeple nom;
 
-		TypeMeeple(NomMeeple& un_nom) : nom(un_nom) {}  // constructeur
-		~TypeMeeple() = default;
+public:
 
-		TypeMeeple(const TypeMeeple&) = delete;
-		TypeMeeple& operator=(const TypeMeeple&) = delete;
+    TypeMeeple(const NomMeeple& name=rien): nom(name){}  // constructeur
 
-		// idonnePoint();
-		// contraintePlacement();
+    inline const NomMeeple& getNom() const { return nom; }
+    inline void setNom(const NomMeeple& name) { nom = name; }
 };
+
+
+
+ostream& operator<<(ostream& f, const TypeMeeple& Tm);
+
 
 
 
 // CLASSE FILLE
-class Meeple : public TypeMeeple {
-	
-	private:
+class Meeple {
 
-		Tuile* tuile;
-		TypeMeeple type;
-		int positionSurT;
-		Joueur* joueur;
+private:
 
-	public:
+    ContenanceTuile* contenanceTuile;
+    TypeMeeple type;
+    int id_joueur;
 
-		Meeple(Tuile& t, TypeMeeple& un_type, int pos, Joueur& j) : tuile(t), type(un_type), positionSurT(pos), joueur(j) {}
-		~Meeple();
-		
-		Meeple(const Meeple&) = delete;
-		Meeple& operator=(const Meeple&) = delete;
+public:
 
-		inline bool isUsed() { return tuile == nullptr;}
-		inline int getPosition() { return positionSurT;}
+    Meeple(): contenanceTuile(nullptr) {}
+
+    Meeple(const Meeple&) = delete;
+    Meeple& operator=(const Meeple&) = delete;
+
+    inline bool isUsed() const { return contenanceTuile != nullptr; } // 1 si nullptr 0 sinon
+    inline const TypeMeeple& getType() const { return type; }
+    inline const int getIdJoueur() const { return id_joueur; }
+    inline const ContenanceTuile* getContenanceTuile() const { return contenanceTuile; }
+
+    inline void setType(const TypeMeeple& ty) { type = ty; };
+    inline void setType(const NomMeeple& name) { type.setNom(name); };
+    inline void setIdJoueur(int i) { id_joueur = i; }
+    inline void setContenance(ContenanceTuile& ct) { contenanceTuile = &ct; }
 };
 
+
+ostream& operator<<(ostream& f, const Meeple& M);
 
 
 #endif
