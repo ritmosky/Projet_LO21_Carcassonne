@@ -74,6 +74,11 @@ public:
         return this->fini;
     }
 
+    inline Pioche* getPioche() const{
+        return this->pioche;
+    }
+
+
     inline int getNbJoueur() const{
         return this->nbJoueurs;
     }

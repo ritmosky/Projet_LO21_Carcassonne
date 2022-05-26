@@ -18,11 +18,15 @@ public:
     explicit VuePartie(Controller* c, QWidget *parent = nullptr);
     ~VuePartie();
     void setAffichageScore();
-    void setAffichageTuile(Tuile& tuilePlace);
+    void setAffichageTuile();
 
 private:
     Ui::VuePartie *ui;
     Controller* controller;
+
+
+//private slots:
+//    void ajout1Score();
 };
 
 #endif // VUEPARTIE_H

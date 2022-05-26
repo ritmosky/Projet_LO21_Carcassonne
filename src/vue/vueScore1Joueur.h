@@ -19,6 +19,10 @@ private:
     Ui::VueScore1Joueur *ui;
     std::string nom;
 
+private slots:
+
+    void on_ajouterPoints_clicked();
+    void on_retirerPoints_clicked();
 };
 
 #endif // VUESCORE1JOUEUR_H

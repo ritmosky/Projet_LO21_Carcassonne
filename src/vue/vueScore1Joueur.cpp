@@ -16,3 +16,18 @@ VueScore1Joueur::~VueScore1Joueur()
     delete ui;
 }
 
+
+
+
+
+void VueScore1Joueur::on_ajouterPoints_clicked()
+{
+    ui->affichageScore->display(ui->affichageScore->intValue()+1);
+}
+
+
+void VueScore1Joueur::on_retirerPoints_clicked()
+{
+    ui->affichageScore->display(ui->affichageScore->intValue()-1);
+}
+

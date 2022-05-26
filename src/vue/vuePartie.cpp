@@ -11,7 +11,7 @@ VuePartie::VuePartie(Controller* c, QWidget *parent) :
 
 
     setAffichageScore();
-//    setAffichageTuile(tuilePlace);
+    setAffichageTuile();
 
 }
 
@@ -33,7 +33,12 @@ void VuePartie::setAffichageScore() {
 
 }
 
-void VuePartie::setAffichageTuile(Tuile& tuilePlace){
+void VuePartie::setAffichageTuile(){
+    const Tuile tuilePlace= this->controller->getPioche()->piocher();
     VueTuile* vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
+
+//void VuePartie::ajout1Score(){
+//    this.
+//}

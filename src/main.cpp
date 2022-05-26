@@ -3,6 +3,7 @@
 #include "vue/vuePartie.h"
 #include "vue/vueContenuTuile.h"
 #include "vue/vueTuile.h"
+#include "vue/vueScore1Joueur.h"
 #include "modele/tuile.h"
 #include "modele/controller.h"
 #include <iostream>
@@ -32,6 +33,7 @@ int main(int argc, char* argv[]) {
    VuePartie* partie = new VuePartie(controllerPartie);
 //   VuePartie partie(controllerPartie);
    partie->show();
+
 
 
     return app.exec();
