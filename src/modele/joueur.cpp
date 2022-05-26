@@ -12,7 +12,9 @@ void Joueur::addMeeple(const Meeple& m) {
     meeples.push_back(&m);
 }
 
-
+void Joueur::addName(const string& str){
+    name = str;
+}
 
 
 ostream& operator<<(ostream& f, const Joueur& J){

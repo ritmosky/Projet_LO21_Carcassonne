@@ -8,6 +8,7 @@
 #include "plateau.h"
 #include "tuile.h"
 #include "meeple.h"
+#include "modeJeu.h"
 
 enum State {
     GAME_MENU, GAME_START, PLACING_TILE, PLACING_MEEPLE, GAME_OVER
@@ -29,7 +30,7 @@ class Controller{
 
         bool fini;
         vector<Joueur*> listeJoueurs;
-        //ModeJeu* modeJeu;
+        ModeJeu* modeJeu[5];
         Plateau *plateau;
         Pioche *pioche;
         State state;
@@ -67,6 +68,11 @@ class Controller{
                 cout << "Joueur " << i << " : " << listeJoueurs.at(i)->getNbrMeeples() << " meeples" << endl;
             }
         }
+
+        vector<Joueur*> getJoueurs(){
+            return listeJoueurs;
+        }
+
         
 
         //Getters

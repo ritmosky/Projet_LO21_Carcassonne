@@ -102,9 +102,7 @@
      bool Controller::estCompatible(Tuile newTuile,int x,int y){
         //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
-            if(newTuile.getContenu(0)!=plateau->existeTuile(x,y-1)->getContenu(6) 
-            || newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5) 
-            || newTuile.getContenu(2)!=plateau->existeTuile(x,y-1)->getContenu(4) ){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
         }
@@ -113,27 +111,21 @@
         //Voisin du bas
         
         if(plateau->existeTuile(x,y+1)){
-            if(newTuile.getContenu(6)!=plateau->existeTuile(x,y+1)->getContenu(0) 
-              || newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)
-              || newTuile.getContenu(4)!=plateau->existeTuile(x,y+1)->getContenu(2) ){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
         }
      
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
-            if(newTuile.getContenu(0)!=plateau->existeTuile(x-1,y)->getContenu(2) 
-            || newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)
-            || newTuile.getContenu(6)!=plateau->existeTuile(x-1,y)->getContenu(4)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
                 return false;
             }
         }
 
         //Voisin de droite
         if(plateau->existeTuile(x+1,y)){
-            if(newTuile.getContenu(2)!=plateau->existeTuile(x+1,y)->getContenu(0)
-            || newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)
-            || newTuile.getContenu(4)!=plateau->existeTuile(x+1,y)->getContenu(6)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
                 return false;
             }
         }
@@ -201,9 +193,7 @@
      //test compatible avec plateau 
      bool Controller::estCompatible(Tuile newTuile,int x,int y,Plateau *plateau){
         if(plateau->existeTuile(x,y-1)){
-            if(newTuile.getContenu(0)!=plateau->existeTuile(x,y-1)->getContenu(6) 
-            || newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5) 
-            || newTuile.getContenu(2)!=plateau->existeTuile(x,y-1)->getContenu(4) ){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
         }
@@ -212,27 +202,21 @@
         //Voisin du bas
         
         if(plateau->existeTuile(x,y+1)){
-            if(newTuile.getContenu(6)!=plateau->existeTuile(x,y+1)->getContenu(0) 
-              || newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)
-              || newTuile.getContenu(4)!=plateau->existeTuile(x,y+1)->getContenu(2) ){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
         }
      
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
-            if(newTuile.getContenu(0)!=plateau->existeTuile(x-1,y)->getContenu(2) 
-            || newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)
-            || newTuile.getContenu(6)!=plateau->existeTuile(x-1,y)->getContenu(4)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
                 return false;
             }
         }
 
         //Voisin de droite
         if(plateau->existeTuile(x+1,y)){
-            if(newTuile.getContenu(2)!=plateau->existeTuile(x+1,y)->getContenu(0)
-            || newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)
-            || newTuile.getContenu(4)!=plateau->existeTuile(x+1,y)->getContenu(6)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
                 return false;
             }
         }
@@ -264,15 +248,9 @@ void Controller::setState(State state){
 
     switch(state){
         case GAME_MENU:
-            //Initialisation du mode de jeu et des joueurs, on initialise les deux attributs mode de jeu et joueur
-            //modeJeu = new ModeJeu[5];
-           // modeJeu[0] = new Standard();
-           // modeJeu[1] = new Riviere();
-            //modeJeu[2] = new AubergesEtCathedrales();
-           // modeJeu[3] = new Paysan();
-            
+            //modeJeu[0] = new Standard();
             for(int i=0;i<nbJoueurs;i++){
-                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX));
+                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX,""));
             }
             setState(GAME_START);
             break;
@@ -283,7 +261,6 @@ void Controller::setState(State state){
             //La pioche doit être initialisée avec le mode de jeu
             vector<int> mode = {1,2};
             pioche = new Pioche(mode);
-            cout << pioche->getNbTuiles() << endl;
             setState(PLACING_TILE);
             break;
             }
@@ -291,7 +268,7 @@ void Controller::setState(State state){
 
         case PLACING_TILE:
             //on place une tuile sur le plateau, avec la vue Qt du plateau
-            if(!placementTuileAutorise(pioche->Piocher())){
+            if(!placementTuileAutorise(pioche->piocher())){
                 //On supprime la tuile de la pioche
             }
             setState(PLACING_MEEPLE);

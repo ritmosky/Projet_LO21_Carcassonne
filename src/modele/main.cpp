@@ -61,7 +61,7 @@ int main(){
     cout << t1 << endl;
     Meeple *m = new Meeple();
     TypeMeeple tm(paysan);
-    Joueur *j = new Joueur(1,6);
+    Joueur *j = new Joueur(1,6,"");
     c->placementMeeple(j,m,tm,1,72,72,p1);
     
 

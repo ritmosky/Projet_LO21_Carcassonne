@@ -1,10 +1,6 @@
 
 #include <iostream>
 #include "espace.h"
-#include "meeple.h"
-#include "tuile.h"
-#include <vector>
-#include <string>
 
 
 

@@ -16,11 +16,17 @@ class Joueur {
 		int id;
 		int score;
 		int nbrMeeples;
+		string name;
 		vector<const Meeple*> meeples;
 
 	public:
 
-		Joueur(int uid, int nb) : id(uid), nbrMeeples(nb), score(0){}
+		Joueur(int uid, int nb,string str) : id(uid), nbrMeeples(nb), score(0),name(str){
+			meeples.reserve(nbrMeeples);
+			for(auto a = meeples.begin() ; a != meeples.end() ; a++){
+				*a = NULL;
+			}
+		}
 		Joueur(int uid) : id(uid){}
 		//~Joueur();
 
@@ -29,9 +35,10 @@ class Joueur {
 		inline const size_t getNbrMeeplesUsed() const { return meeples.size(); }
         inline const int getNbrMeeples() const { return nbrMeeples; }
         inline const vector<const Meeple*> getMeeples() const { return meeples; }
-    
+		inline const string getName() const { return name; }	
 		inline void addScore(int pts) { score += pts; }
 		void addMeeple(const Meeple& m);
+		void addName(const string& str);
 		void removeMeeple(){
 			nbrMeeples--;
 		}

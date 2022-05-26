@@ -7,6 +7,16 @@
 #include "tuile.h"
 #include "Meeple.h"
 #include "espace.h"
+#include  "plateau.h"
+
+
+/* Pour le placement des tuiles 
+Auberges et cathédrales : pareil que standard
+Paysans : pareil que standard
+Abbe : pareil que standard
+riviere : Vous ne pouvez pas faire tourner une rivière deux fois de
+ suite dans la même direction (un demi-tour immédiat)
+ */
 
 using namespace std;
 
@@ -15,54 +25,239 @@ using namespace std;
 class ModeJeu{
 
     public:
-        ModeJeu(){
-            cout<<"ModeJeu"<<endl;
-        }
-        virtual bool validationPlacementT(Tuile t)=0;
-        virtual bool validationPlacementM(Meeple m,Espace e)=0;
+        virtual bool validationPlacementT(Tuile t ) = 0;
+        virtual bool validationPlacementM(Meeple m,Espace e) = 0;
+        virtual void affichage() = 0;
 
 };
 
+// ------------------------- EXTENSION STANDARD --------------------------------------
 
 class Standard : public ModeJeu{
     public:
-        Standard(){
+        bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
+        if(plateau->existeTuile(x,y-1)){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
+                return false;
+            }
+        }
+        
+
+        //Voisin du bas
+        
+        if(plateau->existeTuile(x,y+1)){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
+                return false;
+            }
+        }
+     
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
+                return false;
+            }
+        }
+
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
+                return false;
+            }
+        }
+        
+        return true;
+
+    }
+        bool validationPlacementM(Meeple m ,Espace e){
+            return true;
+        }
+        void affichage(){
             cout<<"Standard"<<endl;
         }
-        bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m ,Espace e);
 };
 
+
+
+// ------------------------- EXTENSION RIVIERE --------------------------------------
 
 class Riviere:public ModeJeu{
     public:
-        Riviere(){
-            cout<<"Riviere"<<endl;
+bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
+        if(plateau->existeTuile(x,y-1)){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
+                return false;
+            }
+        }  
+
+        //Voisin du bas
+        
+        if(plateau->existeTuile(x,y+1)){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
+                return false;
+            }
         }
-        bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m ,Espace e);
+     
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
+                return false;
+            }
+        }
+
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
+                return false;
+            }
+        }
+        
+        return true;
+
+    }
+        bool validationPlacementM(Meeple m ,Espace e){
+            return true;
+        }
+        void affichage(){
+            cout<<"AubergesEtCathedrales"<<endl;
+        }
 };
 
+//EXTENSION AUBERGES ET CATHEDRALES
 
 class AubergesEtCathedrales:public ModeJeu{
     public:
-        AubergesEtCathedrales(){
+        bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
+        if(plateau->existeTuile(x,y-1)){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
+                return false;
+            }
+        }
+        
+        //Voisin du bas
+        
+        if(plateau->existeTuile(x,y+1)){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
+                return false;
+            }
+        }
+     
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
+                return false;
+            }
+        }
+
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
+                return false;
+            }
+        }
+        
+        return true;
+
+    }
+        bool validationPlacementM(Meeple m ,Espace e){
+            return true;
+        }
+        void affichage(){
             cout<<"AubergesEtCathedrales"<<endl;
         }
-        bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m ,Espace e);
 };
+
+
+// ------------------------- EXTENSION PAYSAN --------------------------------------
 
 class Paysan: public ModeJeu{
     public:
-        Paysan(){
+        bool validationPlacement(Tuile newTuile,int x,int y,Plateau *plateau){
+        if(plateau->existeTuile(x,y-1)){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
+                return false;
+            }
+        }
+        
+
+        //Voisin du bas
+        
+        if(plateau->existeTuile(x,y+1)){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
+                return false;
+            }
+        }
+     
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
+                return false;
+            }
+        }
+
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
+                return false;
+            }
+        }
+        
+        return true;
+
+    }
+        bool validationPlacementM(Meeple m ,Espace e){
+            return true;
+        }
+        void affichage(){
             cout<<"Paysan"<<endl;
         }
-        bool validationPlacementT(Tuile t);
-        bool validationPlacementM(Meeple m ,Espace e);
 };
 
 
 
+// ------------------------- EXTENSION ABBE --------------------------------------
+
+
+class Abbe : public ModeJeu{
+    public:
+        bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
+        if(plateau->existeTuile(x,y-1)){
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
+                return false;
+            }
+        }
+        
+
+        //Voisin du bas
+        
+        if(plateau->existeTuile(x,y+1)){
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
+                return false;
+            }
+        }
+     
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
+                return false;
+            }
+        }
+
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
+                return false;
+            }
+        }
+        
+        return true;
+
+    }
+        bool validationPlacementM(Meeple m ,Espace e){
+            return true;
+        }
+        void affichage(){
+            cout<<"Abbe"<<endl;
+        }
+};
 
 #endif

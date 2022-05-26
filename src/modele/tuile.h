@@ -52,7 +52,9 @@ public:
     const bool getBouclier() const { return bouclier; }
     void setBouclier();
 
-    
+    inline bool operator==(const ContenanceTuile& c) const {return this->type == c.getType(); };
+    ContenanceTuile(const ContenanceTuile& c):numPlacement(c.numPlacement), type(c.type), bouclier(c.bouclier) {}
+    ContenanceTuile& operator=(const ContenanceTuile& c);
     
     
     
@@ -100,8 +102,11 @@ public :
     void setPosY(int y){
         posY = y;
     }
+
+    Tuile(const Tuile& T);
+    Tuile& operator=(const Tuile& T);
+    bool operator==(const Tuile& T) const {return this->contenance == T.getContenance(); };
     
-    Tuile& operator=(const Tuile&)= delete;
     //setter x et y
     void setX(int x){
         posX = x;

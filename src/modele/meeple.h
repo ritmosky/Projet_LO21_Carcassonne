@@ -11,8 +11,7 @@
 
 using namespace std;
 
-// Convertir Enum en String 
-static const char* NomMeeple_str[] = { "chevalier", "paysan", "abbe", "voleur" };
+
 
 // Definition enum NomMeeple
 enum NomMeeple {
@@ -22,6 +21,11 @@ enum NomMeeple {
 	voleur,
     rien
 };
+
+
+
+// Convertir Enum en String 
+static const char* NomMeeple_str[] = { "chevalier", "paysan", "abbe", "voleur" };
 
 
 
@@ -59,6 +63,7 @@ class Meeple {
 	public:
 
         Meeple(): contenanceTuile(nullptr) {}
+    
 		Meeple(const Meeple&) = delete;
 		Meeple& operator=(const Meeple&) = delete;
 
@@ -74,7 +79,7 @@ class Meeple {
 };
 
 
-ostream& operator<<(std::ostream& f, const Meeple& M);
+ostream& operator<<(ostream& f, const Meeple& M);
 
 
 #endif
