@@ -5,9 +5,9 @@
 //  Created by Massil on 07/05/2022.
 //
 
-#include "Tuiles.h"
+#include "tuile.h"
 
-
+using namespace std;
 
 // --------------------------------------------- Class ContenanceTuile ------------------------------------------------
 

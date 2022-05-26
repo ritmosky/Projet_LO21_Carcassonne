@@ -13,7 +13,12 @@ SOURCES += \
     modele/tuile.cpp \
     modele/plateau.cpp \
     modele/pioche.cpp \
-    modele/contenuTuile.cpp
+    modele/contenuTuile.cpp \
+    modele/controller.cpp \
+    modele/modeJeu.cpp \
+    modele/meeple.cpp \
+    modele/joueur.cpp \
+    modele/espace.cpp \
 
 
 
@@ -29,7 +34,13 @@ HEADERS += \
     modele/tuile.h \
     modele/plateau.h \
     modele/pioche.h \
-    modele/contenuTuile.h
+    modele/contenuTuile.h \
+    modele/controller.h \
+    modele/modeJeu.h \
+    modele/meeple.h \
+    modele/joueur.h \
+    modele/espace.h \
+
 
 FORMS += \
     vue/vueAccueil.ui \

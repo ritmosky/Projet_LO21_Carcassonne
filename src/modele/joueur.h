@@ -36,6 +36,7 @@ public:
     inline void addScore(int pts) { score += pts; }
     void addMeeple(const Meeple& m);
     void addName(const string& str);
+    void removeMeeple(){nbrMeeples--;}
 };
 
 

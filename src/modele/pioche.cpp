@@ -5,7 +5,7 @@
 //  Created by Massil on 13/05/2022.
 //
 
-#include "Pioche.h"
+#include "pioche.h"
 // Pour bien parcourir le Plateau :
 
 // Norme appliquée aux villes : Si c'est une tuile qui contient une muraille ( fin de tuile ), seul sa partie centrale est de TypesTuiles = ville, ses extrémités sont des champs. Cela permet de repérer avec plus de facilité la fin d'une ville puisque une ville qui elle peut être encore complétée aura les 3 TypesTuiles d'une même brodure de TypesTuiles = ville
