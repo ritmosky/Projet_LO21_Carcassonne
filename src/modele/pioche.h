@@ -9,7 +9,7 @@
 #define Pioche_h
 
 #include <stdio.h>
-#include "Tuiles.h"
+#include "tuile.h"
 
 #endif /* Pioche_h */
 

@@ -272,7 +272,7 @@ void Controller::setState(State state){
             // modeJeu[3] = new Paysan();
 
             for(int i=0;i<nbJoueurs;i++){
-                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX));
+                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX, "nomJoueur"));
             }
             setState(GAME_START);
             break;
@@ -291,7 +291,7 @@ void Controller::setState(State state){
 
         case PLACING_TILE:
             //on place une tuile sur le plateau, avec la vue Qt du plateau
-            if(!placementTuileAutorise(pioche->Piocher())){
+            if(!placementTuileAutorise(pioche->piocher())){
                 //On supprime la tuile de la pioche
             }
             setState(PLACING_MEEPLE);

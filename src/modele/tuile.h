@@ -97,6 +97,33 @@ public :
 
     bool operator==(const Tuile& T) const {return this->contenance == T.getContenance(); };
 
+    void setVoisinHaut(Tuile* t){
+            voisin_haut = t;
+        }
+        void setVoisinBas(Tuile* t){
+            voisin_bas = t;
+        }
+        void setVoisinGauche(Tuile* t){
+            voisin_gauche = t;
+        }
+        void setVoisinDroite(Tuile* t){
+            voisin_droite = t;
+        }
+        void setPosX(int x){
+            this->posX = x;
+        }
+        void setPosY(int y){
+            posY = y;
+        }
+
+        //setter x et y
+        void setX(int x){
+            posX = x;
+        }
+        void setY(int y){
+            posY = y;
+        }
+
 
 
 
