@@ -82,9 +82,20 @@ class Standard : public ModeJeu{
 
 class Riviere:public ModeJeu{
     public:
-bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
+bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau){
+
+        //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
-            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
+            cout << " JE PASSE ICI " << endl;
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5) 
+            || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5) 
+                && newTuile.getContenu(3)==plateau->existeTuile(x,y-1)->getContenu(3)
+                && newTuile.getContenu(3)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)
+            || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5)
+                && newTuile.getContenu(7)==plateau->existeTuile(x,y-1)->getContenu(7)
+                && newTuile.getContenu(7)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)){
                 return false;
             }
         }  
@@ -92,21 +103,47 @@ bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
         //Voisin du bas
         
         if(plateau->existeTuile(x,y+1)){
-            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
+            cout << " JE PASSE ICI " << endl;
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)
+            || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
+                && newTuile.getContenu(3)==plateau->existeTuile(x,y+1)->getContenu(3) 
+                && newTuile.getContenu(5)==TypesTuiles::rivière
+                && newTuile.getContenu(7)==TypesTuiles::rivière)
+            || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
+                && newTuile.getContenu(7)==plateau->existeTuile(x,y+1)->getContenu(7)
+                && newTuile.getContenu(5)==TypesTuiles::rivière
+                && newTuile.getContenu(3)==TypesTuiles::rivière)){
                 return false;
             }
         }
      
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
-            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)
+            || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
+                && newTuile.getContenu(1)==plateau->existeTuile(x-1,y)->getContenu(1)
+                && newTuile.getContenu(7)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)
+            || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
+                && newTuile.getContenu(5)==plateau->existeTuile(x-1,y)->getContenu(5)
+                && newTuile.getContenu(5)==TypesTuiles::rivière
+                && newTuile.getContenu(7)==TypesTuiles::rivière)){
                 return false;
             }
         }
 
         //Voisin de droite
         if(plateau->existeTuile(x+1,y)){
-            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
+            cout << " JE PASSE ICI " << endl;
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)
+            || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
+                && newTuile.getContenu(1)==plateau->existeTuile(x+1,y)->getContenu(1)
+                && newTuile.getContenu(3)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)
+            || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
+                && newTuile.getContenu(5)==plateau->existeTuile(x+1,y)->getContenu(5)
+                && newTuile.getContenu(3)==TypesTuiles::rivière
+                && newTuile.getContenu(5)==TypesTuiles::rivière)){
                 return false;
             }
         }
@@ -114,12 +151,6 @@ bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
         return true;
 
     }
-        bool validationPlacementM(Meeple m ,Espace e){
-            return true;
-        }
-        void affichage(){
-            cout<<"AubergesEtCathedrales"<<endl;
-        }
 };
 
 //EXTENSION AUBERGES ET CATHEDRALES
