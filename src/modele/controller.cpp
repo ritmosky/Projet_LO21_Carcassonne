@@ -272,7 +272,7 @@ void Controller::setState(State state){
             // modeJeu[3] = new Paysan();
 
             for(int i=0;i<nbJoueurs;i++){
-                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX, "nomJoueur"));
+                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX, "Ce nom doit s"));
             }
             setState(GAME_START);
             break;

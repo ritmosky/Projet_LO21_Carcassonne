@@ -78,6 +78,10 @@ public:
         return this->nbJoueurs;
     }
 
+    inline vector<Joueur*> getJoueurs() const{
+        return this->listeJoueurs;
+    }
+
     inline State getState() const{
         return this->state;
     }

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "vueTuile.h"
+#include "../modele/controller.h"
+
 
 namespace Ui {
 class VuePartie;
@@ -13,14 +15,14 @@ class VuePartie : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit VuePartie(Tuile& tuilePlace, QWidget *parent = nullptr);
+    explicit VuePartie(Controller* c, QWidget *parent = nullptr);
     ~VuePartie();
     void setAffichageScore();
     void setAffichageTuile(Tuile& tuilePlace);
 
 private:
     Ui::VuePartie *ui;
-    Tuile& tuilePlace;
+    Controller* controller;
 };
 
 #endif // VUEPARTIE_H
