@@ -22,7 +22,7 @@
      <height>171</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="m_vLayout">
+   <layout class="QVBoxLayout" name="nom_vLayout">
     <item>
      <widget class="QLineEdit" name="m_prenom">
       <property name="enabled">

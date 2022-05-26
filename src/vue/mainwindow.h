@@ -14,12 +14,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    inline int getResultat_()const {return this->resultat_;}
+
+    void IntNBjoueur();
 
 private:
     Ui::MainWindow *ui;
     int resultat_;
 
-    inline int IntNBjoueur();
+
+
 
 private slots:
         void on_pushButton_clicked();

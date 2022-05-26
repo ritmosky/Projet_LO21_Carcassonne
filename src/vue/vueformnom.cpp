@@ -1,15 +1,11 @@
 #include "vueformnom.h"
-#include "ui_VueFormNom.h"
+#include "ui_vueFormNom.h"
 #include "ui_mainwindow.h"
-#include "mainwindow.h"
+#include <iostream>
+using namespace std;
 
-int MainWindow::IntNBjoueur(){
+//#include "controller.h"
 
-    QString contenu = ui->lineEdit->text();
-    bool ok;
-    this->resultat_ = contenu.toInt(&ok,3);
-    return resultat_;
-}
 
 VueFormNom::VueFormNom(QWidget *parent)
     : QWidget(parent)
@@ -18,9 +14,14 @@ VueFormNom::VueFormNom(QWidget *parent)
 
     ui->setupUi(this);
 
-    ui->m_vLayout = new QVBoxLayout;
+    ui->nom_vLayout = new QVBoxLayout;
 
-    for (int i=1; i <= 6 ; i++){
+    MainWindow m;
+    m.IntNBjoueur();
+
+    /*
+    for (int i=1; i <= m.getResultat_(); i++){
+
 
         // création ds espaces de label et des LineEdit pour les noms dans la fenêtre en fonction du nombre de joueur "i"
         ui->L_prenom = new QLabel("Nom joueur n° ",this);
@@ -28,25 +29,23 @@ VueFormNom::VueFormNom(QWidget *parent)
         QString str ="";
         str = QString::number(i);
         ui->L_prenom->setText("Nom joueur n° "+str);
-        ui->m_vLayout->addWidget(ui->L_prenom);
+        ui->nom_vLayout->addWidget(ui->L_prenom);
         ui->L_prenom->move(50,i*30);
 
 
         ui->m_prenom = new QLineEdit("",this);
         this->m_listLineEdit.append(ui->m_prenom);
-        ui->m_vLayout->addWidget(ui->m_prenom);
+        ui->nom_vLayout->addWidget(ui->m_prenom);
         ui->m_prenom->move(200, i*30);
 
-        QFormLayout *formLayout1 = new QFormLayout;
+        QFormLayout *formLayout = new QFormLayout;
 
         QVBoxLayout *layout1 = new QVBoxLayout;
-        layout1->addLayout(formLayout1);
+        layout1->addLayout(formLayout);
 
 
     }
-
-
-
+*/
 }
 
 VueFormNom::~VueFormNom(){
@@ -55,5 +54,7 @@ VueFormNom::~VueFormNom(){
 
 void VueFormNom::on_pushButton_2_clicked()
 {
+    //Controller* ctr = new Controller(int ());
 
 }
+

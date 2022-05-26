@@ -33,8 +33,6 @@ private:
     QWidget* m_window;
     QList<QLineEdit*> m_listLineEdit;
     QList<QLabel*> m_listLabel;
-    QVBoxLayout* m_vLayout;
-    QVBoxLayout* m_vLayout2;
     QLabel* L_prenom;
     QLineEdit* m_prenom;
 
