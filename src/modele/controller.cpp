@@ -9,8 +9,17 @@
 
 
     Controller::Controller(int nj):nbJoueurs(nj){
-        setState(GAME_MENU);
         tour = 0;
+        setState(GAME_START);
+    }
+
+    Controller::Controller(int nj,vector<string> listeNomJoueur,vector<int> listeNumExtensions):nbJoueurs(nj),extensions(listeNumExtensions){
+        tour = 0;
+        for(int i=0;i<nbJoueurs;i++){
+            listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX,""));
+            listeJoueurs[i]->addName(listeNomJoueur[i]);
+            } 
+        setState(GAME_START);
     }
 
     void Controller::placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau){
@@ -134,6 +143,53 @@
 
     }
 
+        //Tour suivant
+    void Controller::nextTour(){
+        if(pioche->estVide()==true){
+            setState(GAME_OVER);
+        }
+        else{
+            tour++;
+            setState(PLACING_TILE);
+        }
+    }
+
+    void Controller::setState(State state){
+    
+    this->state = state;
+
+    switch(state){     
+        case GAME_START:{
+            plateau = new Plateau(0);
+            pioche = new Pioche(extensions);
+            //setState(PLACING_TILE);
+            break;
+            }
+
+        case PLACING_TILE:
+            if(!placementTuileAutorise(pioche->piocher())){
+                cout << "Tuile non compatible" << endl;
+            }
+            setState(PLACING_MEEPLE);
+            break;
+
+        case PLACING_MEEPLE:
+            //Si le joueur actuelle a 0 meeple on passe le tour
+            if(listeJoueurs.at(tour%nbJoueurs)->getNbrMeeples() == 0){
+               nextTour();
+            }
+            //placementMeeple();
+            nextTour();
+            break;
+
+        //Fin de la partie et comptage des scores des joueurs
+        case GAME_OVER:
+            //compteScore(getState());
+            break;
+    }
+}
+
+/* ************************************* TEST**************************************************** */
 
          // test placement tuile avec plateau
         bool Controller::placementTuileAutorise(Tuile newTuile,Plateau *plateau){
@@ -226,69 +282,6 @@
     }
 
 
-   
-    
-  
-    //Tour suivant
-    void Controller::nextTour(){
-        if(pioche->getNbTuiles() == 0){
-            setState(GAME_OVER);
-        }
-        else{
-            tour++;
-            setState(PLACING_TILE);
-        }
-    }
-
-    
-//ok
-void Controller::setState(State state){
-    
-    this->state = state;
-
-    switch(state){
-        case GAME_MENU:
-            //modeJeu[0] = new Standard();
-            for(int i=0;i<nbJoueurs;i++){
-                listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX,""));
-            }
-            setState(GAME_START);
-            break;
-            
-        case GAME_START:{
-            //initialisation le plateau,la pioche de tuile, et de lancer la partie, avec la vue Qt du plateau
-            plateau = new Plateau(0);
-            //La pioche doit être initialisée avec le mode de jeu
-            vector<int> mode = {1,2};
-            pioche = new Pioche(mode);
-            setState(PLACING_TILE);
-            break;
-            }
-
-
-        case PLACING_TILE:
-            //on place une tuile sur le plateau, avec la vue Qt du plateau
-            if(!placementTuileAutorise(pioche->piocher())){
-                //On supprime la tuile de la pioche
-            }
-            setState(PLACING_MEEPLE);
-            break;
-
-        case PLACING_MEEPLE:
-            //Si le joueur actuelle a 0 meeple on passe le tour
-            if(listeJoueurs.at(tour%nbJoueurs)->getNbrMeeples() == 0){
-               nextTour();
-            }
-            //placementMeeple();
-            //nextTour();
-            break;
-
-            //Fin de la partie et comptage des scores des joueurs
-        case GAME_OVER:
-            //compteScore(getState());
-            break;
-    }
-}
 
 
 /*
@@ -359,3 +352,73 @@ void Controller::Abbaye(State s) {
 		compteScoreAbbaye(state);
 	}
 */
+
+bool Controller::validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau){
+
+        //Voisin du haut
+        if(plateau->existeTuile(x,y-1)){
+            cout << " JE PASSE ICI " << endl;
+            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5) 
+            || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5) 
+                && newTuile.getContenu(3)==plateau->existeTuile(x,y-1)->getContenu(3)
+                && newTuile.getContenu(3)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)
+            || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5)
+                && newTuile.getContenu(7)==plateau->existeTuile(x,y-1)->getContenu(7)
+                && newTuile.getContenu(7)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)){
+                return false;
+            }
+        }  
+
+        //Voisin du bas
+        
+        if(plateau->existeTuile(x,y+1)){
+            cout << " JE PASSE ICI " << endl;
+            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)
+            || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
+                && newTuile.getContenu(3)==plateau->existeTuile(x,y+1)->getContenu(3) 
+                && newTuile.getContenu(5)==TypesTuiles::rivière
+                && newTuile.getContenu(7)==TypesTuiles::rivière)
+            || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
+                && newTuile.getContenu(7)==plateau->existeTuile(x,y+1)->getContenu(7)
+                && newTuile.getContenu(5)==TypesTuiles::rivière
+                && newTuile.getContenu(3)==TypesTuiles::rivière)){
+                return false;
+            }
+        }
+     
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)
+            || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
+                && newTuile.getContenu(1)==plateau->existeTuile(x-1,y)->getContenu(1)
+                && newTuile.getContenu(7)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)
+            || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
+                && newTuile.getContenu(5)==plateau->existeTuile(x-1,y)->getContenu(5)
+                && newTuile.getContenu(5)==TypesTuiles::rivière
+                && newTuile.getContenu(7)==TypesTuiles::rivière)){
+                return false;
+            }
+        }
+
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            cout << " JE PASSE ICI " << endl;
+            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)
+            || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
+                && newTuile.getContenu(1)==plateau->existeTuile(x+1,y)->getContenu(1)
+                && newTuile.getContenu(3)==TypesTuiles::rivière
+                && newTuile.getContenu(1)==TypesTuiles::rivière)
+            || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
+                && newTuile.getContenu(5)==plateau->existeTuile(x+1,y)->getContenu(5)
+                && newTuile.getContenu(3)==TypesTuiles::rivière
+                && newTuile.getContenu(5)==TypesTuiles::rivière)){
+                return false;
+            }
+        }
+        
+        return true;
+
+    }
