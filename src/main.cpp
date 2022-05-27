@@ -1,5 +1,6 @@
 #include <QApplication>
 #include "vue/vueAccueil.h"
+#include "vue/vueFormNom.h"
 #include "vue/vuePartie.h"
 #include "vue/vueContenuTuile.h"
 #include "vue/vueTuile.h"
@@ -12,8 +13,11 @@
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
-//    VueAccueil w;
-//    w.show();
+    VueAccueil w;
+    w.show();
+
+//    VueFormNom test;
+//    test.show();
     //    VueContenuTuile testContenuTuile(ville);
     //    testContenuTuile.show();
 
@@ -28,11 +32,11 @@ int main(int argc, char* argv[]) {
 
 //        testTuile.show();
 
-   Controller* controllerPartie = new Controller(1);
+//   Controller* controllerPartie = new Controller(1);
 
-   VuePartie* partie = new VuePartie(controllerPartie);
-//   VuePartie partie(controllerPartie);
-   partie->show();
+//   VuePartie* partie = new VuePartie(controllerPartie);
+////  VuePartie partie(controllerPartie);
+//   partie->show();
 
 
 

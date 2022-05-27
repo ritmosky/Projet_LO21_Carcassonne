@@ -45,6 +45,7 @@ HEADERS += \
 FORMS += \
     vue/vueAccueil.ui \
     vue/vueContenuTuile.ui \
+    vue/vueFormNom.ui \
     vue/vuePartie.ui \
     vue/vuePlateau.ui \
     vue/vueScore1Joueur.ui \

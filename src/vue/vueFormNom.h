@@ -1,46 +1,38 @@
 #ifndef VUEFORMNOM_H
 #define VUEFORMNOM_H
 
-#include "vueAccueil.h"
-
 #include <QMainWindow>
-#include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
-#include <QLCDNumber>
 #include <QFormLayout>
-#include <QGridLayout>
-#include <QGroupBox>
-#include <iostream>
 
-
+namespace Ui {
+class VueFormNom;
+}
 
 class VueFormNom : public QMainWindow
 {
     Q_OBJECT
+
 public:
-
-    VueFormNom();
+    explicit VueFormNom(int& nJoueur, QWidget *parent = nullptr);
     ~VueFormNom();
-
-    friend VueAccueil;
-
-private:
-
-
-    QList<QLabel*> m_listLabel;
-    QList<QLineEdit*> m_listLineEdit;
-    QVBoxLayout* m_vLayout;
-    QWidget* n_window;
-    QPushButton* m_commencer;
+    int getNbrJoueur()const{return this->nbrJoueur;}
 
 
 private slots:
+    void on_pushButton_2_clicked();
 
-     void commencer();
-
-
+private:
+    Ui::VueFormNom *ui;
+    QWidget* m_window;
+    int nbrJoueur;
+    QList<QLineEdit*> m_listLineEdit;
+    QList<QLabel*> m_listLabel;
+    QLabel* L_prenom;
+    QLineEdit* m_prenom;
 
 };
+
 
 #endif // VUEFORMNOM_H
