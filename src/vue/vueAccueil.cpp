@@ -2,6 +2,7 @@
 #include "ui_vueAccueil.h"
 #include "vueFormNom.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 
@@ -27,9 +28,44 @@ void VueAccueil::setNbrJoueur(){
 
 void VueAccueil::on_pushButton_clicked()
 {
+    vector<int> listNumExtension;
+    /*
+    1 correspond à mode de Jeu classique
+    2 correspond à mode de Jeu Paysans
+    3 correspond à mode de Jeu Abbe
+    4 correspond à mode de Jeu Riviere
+    5 correspond à mode de Jeu Auberge et cathédrales
+    */
+    int nbrExtension = 0;
+    if (ui->checkBClassique->isChecked()){
+        nbrExtension++;
+        listNumExtension.push_back(1);
+    }
+    if (ui->checkBPaysans->isChecked()){
+        nbrExtension++;
+        listNumExtension.push_back(2);
+    }
+    if (ui->checkBAbbe->isChecked()){
+        nbrExtension++;
+        listNumExtension.push_back(3);
+    }
+    if (ui->checkBRiviere->isChecked()){
+        nbrExtension++;
+        listNumExtension.push_back(4);
+    }
+    if (ui->checkBAuberge->isChecked()){
+        nbrExtension++;
+        listNumExtension.push_back(5);
+    }
+
+    for (int i = 0; i < nbrExtension; i++){
+        cout<<listNumExtension[i]<<endl;
+    }
+
+    // Donc listNUmExtension est un vector qui contient tous les numéros des extensions choisi par l'utilisateur
+
     setNbrJoueur();
     int nJoueur = getNbrJoueur();
-    cout<<"-------"<<nbJoueur<<endl;
     VueFormNom* fenetreFormNom = new VueFormNom(nJoueur);
     fenetreFormNom->show();
 }

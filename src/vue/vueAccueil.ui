@@ -42,35 +42,35 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_4">
+       <widget class="QCheckBox" name="checkBClassique">
         <property name="text">
          <string>Classique</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_2">
+       <widget class="QCheckBox" name="checkBPaysans">
         <property name="text">
          <string>Les paysans</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="checkBAbbe">
         <property name="text">
          <string>l'Abbé</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_5">
+       <widget class="QCheckBox" name="checkBRiviere">
         <property name="text">
          <string>La rivière</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_3">
+       <widget class="QCheckBox" name="checkBAuberge">
         <property name="text">
          <string>Auberges et cathédrales</string>
         </property>
