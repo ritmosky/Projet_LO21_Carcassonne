@@ -1,17 +1,22 @@
 #include "vuePartie.h"
 #include "ui_vuePartie.h"
 #include "vueScore1Joueur.h"
+#include <QString>
+#include <iostream>
 
-VuePartie::VuePartie(Tuile& tuile, QWidget *parent) :
+VuePartie::VuePartie(Controller* c, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::VuePartie),
-    tuilePlace(tuile)
+    controller(c)
 {
     ui->setupUi(this);
 
 
     setAffichageScore();
-    setAffichageTuile(tuilePlace);
+    setAffichageTuile();
+    setJoueurActu();
+
+
 
 }
 
@@ -22,18 +27,24 @@ VuePartie::~VuePartie()
 
 
 void VuePartie::setAffichageScore() {
-    VueScore1Joueur* vueScore1 = new VueScore1Joueur();
-    VueScore1Joueur* vueScore2 = new VueScore1Joueur();
-    VueScore1Joueur* vueScore3 = new VueScore1Joueur();
-    VueScore1Joueur* vueScore4 = new VueScore1Joueur();
-    ui->affichageScore->addWidget(vueScore1);
-    ui->affichageScore->addWidget(vueScore2);
-    ui->affichageScore->addWidget(vueScore3);
-    ui->affichageScore->addWidget(vueScore4);
+     int nbrJ = this->controller->getNbJoueur();
+     vector<Joueur*> vectJoueur = this->controller->getJoueurs();
+     vector<VueScore1Joueur*> vectVueScore;
+     for (int i = 0; i < nbrJ; i++){
+         VueScore1Joueur* vueScore = new VueScore1Joueur(vectJoueur[i]->getName());
+         ui->affichageScore->addWidget(vueScore);
+     }
+     ui->numTour->display(controller->getTour());
+
 }
 
-
-void VuePartie::setAffichageTuile(Tuile& tuilePlace){
+void VuePartie::setAffichageTuile(){
+    const Tuile tuilePlace= this->controller->getPioche()->piocher();
     VueTuile* vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
+}
+
+void VuePartie::setJoueurActu(){
+    ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs()[controller->getNumJoueurActu()]->getName()));
+    ui->nbrMeepleRestant->display(controller->getJoueurs()[controller->getNumJoueurActu()]->getNbrMeeples());
 }

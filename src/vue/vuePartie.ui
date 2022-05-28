@@ -17,11 +17,6 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="styleSheet">
-    <string notr="true">border-color: rgb(0, 0, 0);
-border-width : 1.2px;
-border-style:inset;</string>
-   </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -70,7 +65,7 @@ border-style:inset;</string>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="nomJoueurActu">
+      <widget class="QLabel" name="affCestAuTour">
        <property name="text">
         <string>C'est au tour de </string>
        </property>
@@ -80,14 +75,14 @@ border-style:inset;</string>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="labelNomJ">
        <property name="text">
         <string>NomJoueur</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="affNbrMeeple">
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -134,8 +129,38 @@ border-style:inset;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="bouttonQuitter">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>450</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Quitter</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>bouttonQuitter</sender>
+   <signal>clicked()</signal>
+   <receiver>VuePartie</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1099</x>
+     <y>465</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

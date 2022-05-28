@@ -1,63 +1,56 @@
 #include "vueFormNom.h"
+#include "vuePartie.h"
+#include "ui_vueFormNom.h"
+#include "../modele/controller.h"
+#include <vector>
+#include <iostream>
 
 
-VueFormNom::VueFormNom():QMainWindow()
-
+VueFormNom::VueFormNom(int& nJoueur, std::vector<int> listeNumExt, QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::VueFormNom),
+    nbrJoueur(nJoueur),
+    listeNumE(listeNumExt)
 {
-    // Création de la fenêtre de NOM des joueur
-    // Titre et taille de la fenêtre fixé.
-
-    setWindowTitle("CARCASSONNE");
-    setFixedSize(800,800);
-
-    n_window = new QWidget(this);
-
-    m_vLayout = new QVBoxLayout(this);
-    n_window->setLayout(m_vLayout);
-
-    //int nbJoueur = IntNBjoueur();
-    for (int i=1; i <= 6 ;i++)
-    {
-        //Création des espaces de label et des lineEdit pour les noms dans la fenêtre en fonction du nombre de joueur "i".
+    ui->setupUi(this);
 
 
-        QLabel *L_prenom = new QLabel("Nom joueur n° " ,n_window);
-        this->m_listLabel.append(L_prenom);
+    ui->nom_vLayout = new QVBoxLayout;
+
+    for (int i=1; i <= this->getNbrJoueur(); i++){
+        // création ds espaces de label et des LineEdit pour les noms dans la fenêtre en fonction du nombre de joueur "i"
+        ui->L_prenom = new QLabel("Nom joueur n° ",this);
+        this->m_listLabel.append(ui->L_prenom);
         QString str ="";
         str = QString::number(i);
-        L_prenom->setText("Nom joueur n° "+ str);
-        m_vLayout->addWidget(L_prenom);
-        L_prenom->move(50,i*30);
-
-        QLineEdit *m_prenom= new QLineEdit("",n_window);
-        this->m_listLineEdit.append(m_prenom);
-        m_vLayout->addWidget(m_prenom);
-        m_prenom->move(100,i*30);
-
-        QFormLayout *formLayout1 = new QFormLayout;
-
-        QVBoxLayout *layout1= new QVBoxLayout;
-        layout1->addLayout(formLayout1);
-
+        ui->L_prenom->setText("Nom joueur n° "+str);
+        ui->nom_vLayout->addWidget(ui->L_prenom);
+        ui->L_prenom->move(50,i*30);
+        ui->m_prenom = new QLineEdit("",this);
+        this->m_listLineEdit.append(ui->m_prenom);
+        ui->nom_vLayout->addWidget(ui->m_prenom);
+        ui->m_prenom->move(200, i*30);
+        QFormLayout *formLayout = new QFormLayout;
+        QVBoxLayout *layout1 = new QVBoxLayout;
+        layout1->addLayout(formLayout);
     }
-    // le boutton "COMMENCER" pour afficher la fenêtre de jeu.
-    this-> m_commencer = new QPushButton("Commencer",n_window);
-    QObject::connect(m_commencer, SIGNAL(clicked()), this, SLOT(commencer()));
-    m_commencer->move(0,0);
-
-
-    setCentralWidget(n_window);
 
 }
 
 VueFormNom::~VueFormNom()
 {
+    delete ui;
 }
 
-//action du button commencer.
-void VueFormNom::commencer(){
-    /*
-    VuePartie *window = new VuePartie();
-    window->show();
-    */
+void VueFormNom::on_pushButton_2_clicked()
+{
+    std::vector<std::string> listeNomJ(this->getNbrJoueur());
+    for (int i = 0; i < this->getNbrJoueur(); i++){
+        QString input = this->m_listLineEdit[i]->text(); // transformation de chaque input dans le QLineEdit en QString
+        listeNomJ[i] = input.toStdString(); // on ajoute dans listeNomJ input transformé en std::string
+    }
+
+    Controller* ctr = new Controller(getNbrJoueur(), listeNomJ, this->listeNumE);
+    VuePartie* partie = new VuePartie(ctr);
+    partie->show();
 }

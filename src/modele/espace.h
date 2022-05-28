@@ -34,6 +34,7 @@ public :
     void addMeeple(const Meeple& M);
 
     bool isComplete();
+    inline const bool isFree() const {return meeples.size() == 0;}
     void calculScore();
 };
 
