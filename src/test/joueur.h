@@ -29,13 +29,13 @@ class Joueur {
 		inline const int getId() const { return id; }
 		inline const int getScore() const { return score; }
 		inline const size_t getNbrMeeplesUsed() const { return meeples.size(); }
-        inline const int getNbrMeeples() const { return nbrMeeples; }
-        inline const string getName() const { return name; }
-        inline const vector<const Meeple*> getMeeples() const { return meeples; }
+       		inline const int getNbrMeeples() const { return nbrMeeples; }
+       		inline const string getName() const { return name; }
+       		inline const vector<const Meeple*> getMeeples() const { return meeples; }
     
 		inline void addScore(int pts) { score += pts; }
 		void addMeeple(const Meeple& m);
-        void addName(const string& str);
+        	void addName(const string& str);
 };
 
 
