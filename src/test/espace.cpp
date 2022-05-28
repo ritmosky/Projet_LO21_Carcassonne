@@ -26,6 +26,14 @@ ostream& operator<<(ostream& f, const Espace& E){
     f << "\n Espace de type : " << TypesTuiles_str[E.getType()];
     f << "\n Nombre de boucliers : " << E.getNbrBouclier();
     
+    if (E.isFree()){
+        f << "\n\n Disponibilité : libre";
+    }
+    
+    else{
+        f << "\n\n Disponibilité : occupé";
+    }
+    
     f << "\n Nombre de meeples placés dessus : " << E.getNbrMeeple();
     for(int i =0; i< E.getMeeples().size(); i++){
         cout << "\n\t - adresse du meeple " << i+1 << " : " << E.getMeeples()[i];
