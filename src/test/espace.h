@@ -41,5 +41,5 @@ public :
 
 ostream& operator<<(ostream& f, const Espace& E);
 
-
+ 
 #endif
