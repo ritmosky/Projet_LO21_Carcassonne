@@ -5,6 +5,9 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QFormLayout>
+#include <vector>
+using namespace std;
+
 
 namespace Ui {
 class VueFormNom;
@@ -15,7 +18,7 @@ class VueFormNom : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit VueFormNom(int& nJoueur, QWidget *parent = nullptr);
+    explicit VueFormNom(int& nJoueur, vector<int> listeNumExt,QWidget *parent = nullptr);
     ~VueFormNom();
     int getNbrJoueur()const{return this->nbrJoueur;}
 
@@ -31,6 +34,7 @@ private:
     QList<QLabel*> m_listLabel;
     QLabel* L_prenom;
     QLineEdit* m_prenom;
+    vector<int> listeNumE;
 
 };
 
