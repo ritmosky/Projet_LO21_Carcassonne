@@ -1,12 +1,7 @@
-//
-//  Tuiles.h
-//  Caracassonne
-//
-//  Created by Massil on 07/05/2022.
-//
 
-#ifndef Tuiles_h
-#define Tuiles_h
+#ifndef tuile_h
+#define tuile_h
+
 
 #include <stdio.h>
 #include <vector>
@@ -15,6 +10,7 @@
 
 
 using namespace std;
+
 
 // Definition enum TypesTuiles
 enum TypesTuiles {
@@ -35,9 +31,11 @@ enum TypesTuiles {
 static const char* TypesTuiles_str[] = { "Route", "Abbaye", "Ville", "Champs", "Rivière", "Auberge", "Cathédrale", "Jardin", "DoubleRoute" };
 
 
+
 class ContenanceTuile{
 
 private :
+
     friend class Pioche;
 
     int numPlacement;
@@ -45,27 +43,27 @@ private :
     bool bouclier;
 
 public:
-    ContenanceTuile(const TypesTuiles t, const int n): type(t), numPlacement(n), bouclier(false){;}
+
+    ContenanceTuile(const TypesTuiles t, const int n): type(t), numPlacement(n), bouclier(false) {}
     ContenanceTuile() = default;
+
     inline const TypesTuiles& getType() const {return type;}
     inline const int getNumPlacement() const {return numPlacement;}
     const bool getBouclier() const { return bouclier; }
     void setBouclier();
-    bool operator==(const ContenanceTuile& c) const {return this->type == c.getType(); };
 
-    ContenanceTuile(const ContenanceTuile& c);
+    inline bool operator==(const ContenanceTuile& c) const {return this->type == c.getType(); };
+    ContenanceTuile(const ContenanceTuile& c):numPlacement(c.numPlacement), type(c.type), bouclier(c.bouclier) {}
     ContenanceTuile& operator=(const ContenanceTuile& c);
 
-
-
-
-
-
 };
+
+
 
 class Tuile {
 
 private:
+
     Tuile* voisin_haut;
     Tuile* voisin_bas;
     Tuile* voisin_gauche;
@@ -76,8 +74,10 @@ private:
 
 
 public :
+
     Tuile(const vector<ContenanceTuile>& c);
     Tuile() = default;
+
     inline const size_t getSize() const {return contenance.size();}
     inline const int getX() const {return posX;}
     inline const int getY() const {return posY;}
@@ -86,7 +86,6 @@ public :
     inline const Tuile* getVoisinGauche() const {return voisin_gauche;}
     inline const Tuile* getVoisinDroite() const {return voisin_droite;}
 
-
     const vector<ContenanceTuile> getContenance() const {return contenance; }
     const ContenanceTuile getContenance(int i) const {return contenance[i]; }
     const TypesTuiles& getContenu(int i) const { return contenance[i].getType() ; }
@@ -94,44 +93,40 @@ public :
 
     Tuile(const Tuile& T);
     Tuile& operator=(const Tuile& T);
-
     bool operator==(const Tuile& T) const {return this->contenance == T.getContenance(); };
 
     void setVoisinHaut(Tuile* t){
-            voisin_haut = t;
-        }
-        void setVoisinBas(Tuile* t){
-            voisin_bas = t;
-        }
-        void setVoisinGauche(Tuile* t){
-            voisin_gauche = t;
-        }
-        void setVoisinDroite(Tuile* t){
-            voisin_droite = t;
-        }
-        void setPosX(int x){
-            this->posX = x;
-        }
-        void setPosY(int y){
-            posY = y;
-        }
+        voisin_haut = t;
+    }
+    void setVoisinBas(Tuile* t){
+        voisin_bas = t;
+    }
+    void setVoisinGauche(Tuile* t){
+        voisin_gauche = t;
+    }
+    void setVoisinDroite(Tuile* t){
+        voisin_droite = t;
+    }
+    void setPosX(int x){
+        this->posX = x;
+    }
+    void setPosY(int y){
+        posY = y;
+    }
 
         //setter x et y
-        void setX(int x){
-            posX = x;
-        }
-        void setY(int y){
-            posY = y;
-        }
-
-
-
-
+    void setX(int x){
+        posX = x;
+    }
+    void setY(int y){
+        posY = y;
+    }
 
 };
+
 
 ostream& operator<<(ostream& f, const Tuile& T);
 ostream& operator<<(ostream& f, const ContenanceTuile& T);
 
 
-#endif /* Tuiles_h */
+#endif /* tuile_h */
