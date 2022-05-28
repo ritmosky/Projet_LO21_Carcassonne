@@ -13,6 +13,7 @@ VueAccueil::VueAccueil(QWidget *parent) :
     ui->setupUi(this);
     ui->spinBox->setMaximum(4);
     ui->spinBox->setMinimum(2);
+    this->setWindowTitle("Bienvenue sur le Jeu Carcassonne");
 }
 
 
@@ -58,15 +59,11 @@ void VueAccueil::on_pushButton_clicked()
         listNumExtension.push_back(5);
     }
 
-    for (int i = 0; i < nbrExtension; i++){
-        cout<<listNumExtension[i]<<endl;
-    }
-
     // Donc listNUmExtension est un vector qui contient tous les numéros des extensions choisi par l'utilisateur
 
     setNbrJoueur();
     int nJoueur = getNbrJoueur();
-    VueFormNom* fenetreFormNom = new VueFormNom(nJoueur);
+    VueFormNom* fenetreFormNom = new VueFormNom(nJoueur, listNumExtension);
     fenetreFormNom->show();
 }
 

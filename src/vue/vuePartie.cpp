@@ -1,6 +1,8 @@
 #include "vuePartie.h"
 #include "ui_vuePartie.h"
 #include "vueScore1Joueur.h"
+#include <QString>
+#include <iostream>
 
 VuePartie::VuePartie(Controller* c, QWidget *parent) :
     QMainWindow(parent),
@@ -12,6 +14,9 @@ VuePartie::VuePartie(Controller* c, QWidget *parent) :
 
     setAffichageScore();
     setAffichageTuile();
+    setJoueurActu();
+
+
 
 }
 
@@ -25,11 +30,11 @@ void VuePartie::setAffichageScore() {
      int nbrJ = this->controller->getNbJoueur();
      vector<Joueur*> vectJoueur = this->controller->getJoueurs();
      vector<VueScore1Joueur*> vectVueScore;
-     std::cout<<nbrJ;
      for (int i = 0; i < nbrJ; i++){
          VueScore1Joueur* vueScore = new VueScore1Joueur(vectJoueur[i]->getName());
          ui->affichageScore->addWidget(vueScore);
      }
+     ui->numTour->display(controller->getTour());
 
 }
 
@@ -39,6 +44,7 @@ void VuePartie::setAffichageTuile(){
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
-//void VuePartie::ajout1Score(){
-//    this.
-//}
+void VuePartie::setJoueurActu(){
+    ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs()[controller->getNumJoueurActu()]->getName()));
+    ui->nbrMeepleRestant->display(controller->getJoueurs()[controller->getNumJoueurActu()]->getNbrMeeples());
+}

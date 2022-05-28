@@ -19,14 +19,13 @@ public:
     ~VuePartie();
     void setAffichageScore();
     void setAffichageTuile();
+    void setJoueurActu();
 
 private:
     Ui::VuePartie *ui;
     Controller* controller;
 
 
-//private slots:
-//    void ajout1Score();
 };
 
 #endif // VUEPARTIE_H

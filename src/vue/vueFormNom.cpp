@@ -1,10 +1,16 @@
 #include "vueFormNom.h"
+#include "vuePartie.h"
 #include "ui_vueFormNom.h"
+#include "../modele/controller.h"
+#include <vector>
+#include <iostream>
 
-VueFormNom::VueFormNom(int& nJoueur, QWidget *parent) :
+
+VueFormNom::VueFormNom(int& nJoueur, std::vector<int> listeNumExt, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::VueFormNom),
-    nbrJoueur(nJoueur)
+    nbrJoueur(nJoueur),
+    listeNumE(listeNumExt)
 {
     ui->setupUi(this);
 
@@ -38,8 +44,13 @@ VueFormNom::~VueFormNom()
 
 void VueFormNom::on_pushButton_2_clicked()
 {
+    std::vector<std::string> listeNomJ(this->getNbrJoueur());
+    for (int i = 0; i < this->getNbrJoueur(); i++){
+        QString input = this->m_listLineEdit[i]->text(); // transformation de chaque input dans le QLineEdit en QString
+        listeNomJ[i] = input.toStdString(); // on ajoute dans listeNomJ input transformé en std::string
+    }
 
-    //Controller* ctr = new Controller(int ());
-
-
+    Controller* ctr = new Controller(getNbrJoueur(), listeNomJ, this->listeNumE);
+    VuePartie* partie = new VuePartie(ctr);
+    partie->show();
 }
