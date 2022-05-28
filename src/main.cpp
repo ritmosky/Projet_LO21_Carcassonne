@@ -13,8 +13,8 @@
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
-    VueAccueil w;
-    w.show();
+//    VueAccueil w;
+//    w.show();
 
 //    VueFormNom test;
 //    test.show();
@@ -32,11 +32,11 @@ int main(int argc, char* argv[]) {
 
 //        testTuile.show();
 
-//   Controller* controllerPartie = new Controller(1);
+   Controller* controllerPartie = new Controller(3);
 
-//   VuePartie* partie = new VuePartie(controllerPartie);
-////  VuePartie partie(controllerPartie);
-//   partie->show();
+   VuePartie* partie = new VuePartie(controllerPartie);
+//  VuePartie partie(controllerPartie);
+   partie->show();
 
 
 
