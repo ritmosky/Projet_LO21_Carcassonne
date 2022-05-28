@@ -171,6 +171,6 @@ int main(){
 
     Tuile t(cc);
     cout << endl << endl << t << endl;
-
+    
     return 0;
 }
