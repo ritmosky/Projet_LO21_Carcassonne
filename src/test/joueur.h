@@ -18,7 +18,7 @@ class Joueur {
 		int id;
 		int score;
 		int nbrMeeples;
-        string name;
+       		string name;
 		vector<const Meeple*> meeples;
 
 	public:
