@@ -1,11 +1,6 @@
-//
-//  Pioche.cpp
-//  Caracassonne
-//
-//  Created by Massil on 13/05/2022.
-//
 
 #include "pioche.h"
+
 // Pour bien parcourir le Plateau :
 
 // Norme appliquée aux villes : Si c'est une tuile qui contient une muraille ( fin de tuile ), seul sa partie centrale est de TypesTuiles = ville, ses extrémités sont des champs. Cela permet de repérer avec plus de facilité la fin d'une ville puisque une ville qui elle peut être encore complétée aura les 3 TypesTuiles d'une même brodure de TypesTuiles = ville
@@ -15,40 +10,31 @@
 
 
 
-
 ostream& operator<<(ostream& f, const Pioche& P){
 
     for (int i = 0 ; i < P.getNbTuiles(); i++){
+
         f << "Tuile " << i << " : " << endl<< endl;
         f << P.getTuile(i) << endl << endl;
+
         f << " -----------------------" << endl<< endl;
     }
     return f;
 }
 
 
-const Tuile& Pioche::piocher() {
-    if (Pioche::estVide()) cout<<"Pioche vide";
+const Tuile& Pioche::piocher() const{
+
+    if (Pioche::estVide()) throw ("Pioche vide");
     // Génération d'un nb entre 0 et le nombre de carte qui reste dans la pioche
-    size_t i = rand()% tuiles.size();
+    size_t i = rand()% tuiles.size() ;
     // On la pioche
     const Tuile& T = tuiles[i];
 
-    // supprimer la tuile du vecteur
+// décrémenter le vecteur
 
-
-    for (auto it = tuiles.cbegin(); it != tuiles.cend(); it++){
-        if (*it == T){
-            tuiles.erase(it);
-            break;
-        }
-    }
     return T;
 }
-
-
-
-
 
 
 
@@ -60,7 +46,7 @@ const Tuile& Pioche::piocher() {
 // --------------------------------------- Constructeur de la Pioche ------------------------------------------------
 
 
-Pioche::Pioche(vector<int> mode): tuiles() {
+Pioche::Pioche(vector<int> mode) : tuiles() {
 
     // On va générer manuellement l'ensemble des tuiles existantes selon les extensions choisies
 
@@ -75,7 +61,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
 
     // Tests sur les Extensions activés par rapport à Abbé
 
-    for (int i = 0 ; i < size(mode) ; i++) {
+    for (int i = 0 ; i < mode.size() ; i++) {
         if (mode[i] == 2) riviereActive = true;
         if (mode[i] == 3) abbeActive = true;
         if (mode[i] == 5) aubergeActive = true;
@@ -84,24 +70,9 @@ Pioche::Pioche(vector<int> mode): tuiles() {
 
 
 
-    for (int i = 0 ; i < size(mode) ; i++) {
+    for (int i = 0 ; i < mode.size() ; i++) {
 
 
-        if (mode[i] == 8) {
-
-
-            //  x2 "Abbayes avec route" :
-
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-        }
 
 // ---------------------------------- Tuiles du mode de jeu Standard : 72 Tuiles --------------------------------------
 
@@ -111,7 +82,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
         if (mode[i] == 1 && not abbeActive) {
 
 
-            //  x2 "Abbayes avec route" :
+    //  x2 "Abbayes avec route" :
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -123,7 +94,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            //  x4 "Abbayes sans route" :
+    //  x4 "Abbayes sans route" :
 
             for (int i = 0 ; i < 4 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -133,26 +104,26 @@ Pioche::Pioche(vector<int> mode): tuiles() {
 
                 Tuile T(c);
                 tuiles.push_back(T);
-            }
+                    }
 
 
-            // x1  Ville pleine :
+    // x1  Ville pleine :
 
-            for (int i = 0 ; i < 1 ; i++){
+        for (int i = 0 ; i < 1 ; i++){
 
-                // -> On garde une boucle de 1 pour ne pas avoir de problèmes de variables globales redéfinies pour les                                 tuiles ne se trouvant qu'une seule fois
+            // -> On garde une boucle de 1 pour ne pas avoir de problèmes de variables globales redéfinies pour les                                 tuiles ne se trouvant qu'une seule fois
 
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);   c[8] = ContenanceTuile(ville, 8); c[3]= ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
+            vector<ContenanceTuile> c(9);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+            c[7] = ContenanceTuile(ville,7);   c[8] = ContenanceTuile(ville, 8); c[3]= ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
 
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+            Tuile T(c);
+            tuiles.push_back(T);
+        }
 
 
-            // x5 "Route horizontale avec Ville au dessus" :
+    // x5 "Route horizontale avec Ville au dessus" :
 
             for (int i = 0 ; i < 5 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -165,7 +136,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
             }
 
 
-            //  x5 "Villes au dessus avec Champs en dessous" :
+    //  x5 "Villes au dessus avec Champs en dessous" :
 
             for (int i = 0 ; i < 5 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -177,7 +148,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            //  x2 "Ville en X avec bouclier"
+    //  x2 "Ville en X avec bouclier"
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -190,7 +161,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
             }
 
 
-            // x1 "Ville en X sans bouclier"
+    // x1 "Ville en X sans bouclier"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -201,7 +172,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x3 " Villes séparées par champ au milieu"
+   // x3 " Villes séparées par champ au milieu"
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
@@ -211,7 +182,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x2 "Ville haut et droite"
+    // x2 "Ville haut et droite"
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -222,7 +193,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x3 "Ville au dessus et route en  'L' "
+    // x3 "Ville au dessus et route en  'L' "
 
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -233,7 +204,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x3 "Ville au dessus et route en  'L' inversé "
+    // x3 "Ville au dessus et route en  'L' inversé "
 
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -243,7 +214,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 Tuile T(c);
                 tuiles.push_back(T);
             }
-            // x3 " Ville au dessus et route en  'T'  "
+    // x3 " Ville au dessus et route en  'T'  "
 
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -255,7 +226,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
             }
 
 
-            // x2 " Ville dans l'angle avec bouclier  "
+    // x2 " Ville dans l'angle avec bouclier  "
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -267,7 +238,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x3 " Ville dans l'angle  sans bouclier  "
+    // x3 " Ville dans l'angle  sans bouclier  "
 
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -278,7 +249,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x2 " Ville dans l'angle avec bouclier et route en 'L'"
+    // x2 " Ville dans l'angle avec bouclier et route en 'L'"
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -290,7 +261,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x3 " Ville dans l'angle sans bouclier et route en 'L'"
+    // x3 " Ville dans l'angle sans bouclier et route en 'L'"
 
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -300,7 +271,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 Tuile T(c);
                 tuiles.push_back(T);
             }
-            // x1 " Ville pleine avec champs en dessous avec bouclier"
+    // x1 " Ville pleine avec champs en dessous avec bouclier"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -312,7 +283,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x3 " Ville pleine avec champs en dessous sans bouclier"
+    // x3 " Ville pleine avec champs en dessous sans bouclier"
 
             for (int i = 0 ; i < 3 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -323,7 +294,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x2 " Ville pleine avec route en dessous avec bouclier"
+    // x2 " Ville pleine avec route en dessous avec bouclier"
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
@@ -334,7 +305,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x1 " Ville pleine avec route en dessous sans bouclier"
+    // x1 " Ville pleine avec route en dessous sans bouclier"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -345,7 +316,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x8 " Route droite" :
+    // x8 " Route droite" :
 
             for (int i = 0 ; i < 8 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -356,7 +327,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x9 " Route en 'L' "
+    // x9 " Route en 'L' "
 
             for (int i = 0 ; i < 9 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -367,7 +338,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x4 " Route en T "
+    // x4 " Route en T "
 
             for (int i = 0 ; i < 4 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -378,7 +349,7 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x1 " Croisement de Route "
+    // x1 " Croisement de Route "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -403,19 +374,19 @@ Pioche::Pioche(vector<int> mode): tuiles() {
         if (mode[i] == 2 && not abbeActive) {
 
 
-            // Source
+    // Source
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
-            }
+                }
 
 
-            // x2 " Rivière droite "
+    // x2 " Rivière droite "
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -426,29 +397,29 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x1 " Rivière centre, ville gauche"
+    // x1 " Rivière centre, ville gauche"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Rivière avec pont par dessus"
+    // x1 " Rivière avec pont par dessus"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Rivière avec Abbaye "
+    // x1 " Rivière avec Abbaye "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
@@ -459,60 +430,60 @@ Pioche::Pioche(vector<int> mode): tuiles() {
                 tuiles.push_back(T);
             }
 
-            // x2 " Rivière en 'L' "
+    // x2 " Rivière en 'L' "
 
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Rivière en 'L' avec Route en 'L"'
+    // x1 " Rivière en 'L' avec Route en 'L"'
 
             // ->    l'information de la route au centre est plus importante que la rivière, la continuité de celle-ci              est assurée par les extrémités et aucun Meeple ne peut être posé dessus
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(rivière,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(rivière,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Rivière en 'L' avec Ville dans l'angle "
+    // x1 " Rivière en 'L' avec Ville dans l'angle "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Rivière entre deux Villes "
+    // x1 " Rivière entre deux Villes "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
 
-            // Embouchure
+    // Embouchure
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
@@ -530,172 +501,172 @@ Pioche::Pioche(vector<int> mode): tuiles() {
         if (mode[i] == 5 && not abbeActive ) {
 
 
-            // x1 " Route en 'L' avec Auberge"
+    // x1 " Route en 'L' avec Auberge"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(auberge,2);
-                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(auberge,2);
+            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(champs,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Route droite avec Auberge "   ABBE MODIF
+    // x1 " Route droite avec Auberge "   ABBE MODIF
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Route en 'T' avev Auberge "
+    // x1 " Route en 'T' avev Auberge "
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(auberge,2);
-                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(auberge,2);
+            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
-            // x1 "Route droite avec Abbaye"
+    // x1 "Route droite avec Abbaye"
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(abbaye, 8);c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-
-            // x1 " Double Route en 'L' "
-
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(droute, 8);c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(abbaye, 8);c[3] = ContenanceTuile(route,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 "Ville angle avec Route"
+    // x1 " Double Route en 'L' "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(droute, 8);c[3] = ContenanceTuile(route,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Ville en pointe" -> doit être une fin de champ en haut
+     // x1 "Ville angle avec Route"
+
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+            c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " 4 villes dos à dos "
-
+    // x1 " Ville en pointe" -> doit être une fin de champ en haut
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Villes séparées par Route les liant "
+    // x1 " 4 villes dos à dos "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(droute, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
-            // x2 " Cathédrale"
+
+     // x1 " Villes séparées par Route les liant "
+
+            for (int i = 0 ; i < 1 ; i++){
+                vector<ContenanceTuile> c(9);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(droute, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                Tuile T(c);
+                tuiles.push_back(T);
+            }
+    // x2 " Cathédrale"
             for (int i = 0 ; i < 2 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(cathédrale, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(cathédrale, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Ville angle avec bouclier, Route 'L' et Auberge "
+    // x1 " Ville angle avec bouclier, Route 'L' et Auberge "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(auberge, 8);c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(auberge, 8);c[3] = ContenanceTuile(route,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 c[0].setBouclier();
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Ville haut, Route en 'L' et Auberge"
+     // x1 " Ville haut, Route en 'L' et Auberge"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 "Ville angle avec Route et Auberge"
+    // x1 "Ville angle avec Route et Auberge"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " 3 villes dos à dos et champs"
+    // x1 " 3 villes dos à dos et champs"
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Ville angle + Ville côté avec Bouclier "
+    // x1 " Ville angle + Ville côté avec Bouclier "
 
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
                 c[0].setBouclier();
                 Tuile T(c);
                 tuiles.push_back(T);
             }
 
-            // x1 " Ville en X avec Route haut/bas et Bouclier"
+    // x1 " Ville en X avec Route haut/bas et Bouclier"
             for (int i = 0 ; i < 1 ; i++){
                 vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                 c[3].setBouclier();
                 Tuile T(c);
                 tuiles.push_back(T);
@@ -705,685 +676,683 @@ Pioche::Pioche(vector<int> mode): tuiles() {
         }
 // --------------------------------- Tuiles de Abbé : 72 - 101 Tuiles -----------------------------------
 
-        if (mode[i] == 3 && abbeActive) {
+                if (mode[i] == 3 && abbeActive) {
 
 
-            // -> Tuile de départ :   Route horizontale avec Ville au dessus
+                    // -> Tuile de départ :   Route horizontale avec Ville au dessus
 
 
 
-            //  x2 "Abbayes avec route" :
+                //  x2 "Abbayes avec route" :
 
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
 
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            //  x4 "Abbayes sans route" :
+                //  x4 "Abbayes sans route" :
 
-            for (int i = 0 ; i < 4 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                        for (int i = 0 ; i < 4 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
 
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-
-
-            // x1  Ville pleine :
-
-            for (int i = 0 ; i < 1 ; i++){
-
-                // -> On garde une boucle de 1 pour ne pas avoir de problèmes de variables globales redéfinies pour les                                 tuiles ne se trouvant qu'une seule fois
-
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);   c[8] = ContenanceTuile(ville, 8); c[3]= ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
-
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                                }
 
 
-            // x5 "Route horizontale avec Ville au dessus" :
+                // x1  Ville pleine :
 
-            for (int i = 0 ; i < 5 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                    for (int i = 0 ; i < 1 ; i++){
 
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        // -> On garde une boucle de 1 pour ne pas avoir de problèmes de variables globales redéfinies pour les                                 tuiles ne se trouvant qu'une seule fois
+
+                        vector<ContenanceTuile> c(9);
+                        c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+                        c[7] = ContenanceTuile(ville,7);   c[8] = ContenanceTuile(ville, 8); c[3]= ContenanceTuile(ville,3);
+                        c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
+
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
+
+
+                // x5 "Route horizontale avec Ville au dessus" :
+
+                        for (int i = 0 ; i < 5 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
 
             //  x4 "Villes au dessus avec Champs en dessous" :
 
-            for (int i = 0 ; i < 4 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 4 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0); c[1] = ContenanceTuile(ville,1); c[2] = ContenanceTuile(champs,2);
                 c[7] = ContenanceTuile(champs,7); c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
 
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x 1 "Ville au dessus avec Champs en dessous et Jardin"
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                // x 1 "Ville au dessus avec Champs en dessous et Jardin"
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                 c[7] = ContenanceTuile(jardin,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
 
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            //  x2 "Ville en X avec bouclier"
+                //  x2 "Ville en X avec bouclier"
 
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
-                c[2].setBouclier();
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
+                            c[2].setBouclier();
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
 
-            // x1 "Ville en X sans bouclier"
+                // x1 "Ville en X sans bouclier"
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x2 " Villes séparées par champ au milieu"
+               // x2 " Villes séparées par champ au milieu"
 
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
             // x1 " Villes séparées par champ et jardin au milieu"
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                 c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(jardin, 8); c[3] = ContenanceTuile(champs,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-            // x1 "Ville haut et droite"
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
+                // x1 "Ville haut et droite"
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x1 " Ville haut et droite avec jardin"
+                // x1 " Ville haut et droite avec jardin"
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                 c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(jardin, 8); c[3] = ContenanceTuile(ville,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x3 "Ville au dessus et route en  'L' "
+                // x3 "Ville au dessus et route en  'L' "
 
-            for (int i = 0 ; i < 3 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 3 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x3 "Ville au dessus et route en  'L' inversé "
+                // x3 "Ville au dessus et route en  'L' inversé "
 
-            for (int i = 0 ; i < 3 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-            // x3 " Ville au dessus et route en  'T'  "
+                        for (int i = 0 ; i < 3 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
+                // x3 " Ville au dessus et route en  'T'  "
 
-            for (int i = 0 ; i < 3 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 3 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
 
-            // x1 " Ville dans l'angle avec bouclier  "
+                // x1 " Ville dans l'angle avec bouclier  "
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                c[0].setBouclier();
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-            // x1 " Ville dans l'angle avec bouclier et jardin"
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                            c[0].setBouclier();
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
+                // x1 " Ville dans l'angle avec bouclier et jardin"
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(jardin,4);
-                c[0].setBouclier();
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-
-            // x2 " Ville dans l'angle  sans bouclier  "
-
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-
-            // x1 "Ville dans l'angle sans bouclier avec jardin"
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                 c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(jardin,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            c[0].setBouclier();
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x2 " Ville dans l'angle avec bouclier et route en 'L'"
+                // x2 " Ville dans l'angle  sans bouclier  "
 
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
+
+                // x1 "Ville dans l'angle sans bouclier avec jardin"
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                c[0].setBouclier();
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8); c[3] = ContenanceTuile(champs,3);
+                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(jardin,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x3 " Ville dans l'angle sans bouclier et route en 'L'"
+                // x2 " Ville dans l'angle avec bouclier et route en 'L'"
 
-            for (int i = 0 ; i < 3 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-            // x1 " Ville pleine avec champs en dessous avec bouclier"
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            c[0].setBouclier();
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
-                c[0].setBouclier();
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                // x3 " Ville dans l'angle sans bouclier et route en 'L'"
 
-            // x2 " Ville pleine avec champs en dessous sans bouclier"
+                        for (int i = 0 ; i < 3 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
+                // x1 " Ville pleine avec champs en dessous avec bouclier"
 
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
+                            c[0].setBouclier();
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            //x2 " Ville pleine avec champs en dessous sans bouclier avec jardin"
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                // x2 " Ville pleine avec champs en dessous sans bouclier"
+
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(ville,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
+
+                //x2 " Ville pleine avec champs en dessous sans bouclier avec jardin"
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
                 c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
                 c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(jardin,5);  c[4] = ContenanceTuile(ville,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x2 " Ville pleine avec route en dessous avec bouclier"
-            for (int i = 0 ; i < 2 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                c[0].setBouclier();
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                // x2 " Ville pleine avec route en dessous avec bouclier"
+                        for (int i = 0 ; i < 2 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            c[0].setBouclier();
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x1 " Ville pleine avec route en dessous sans bouclier"
+                // x1 " Ville pleine avec route en dessous sans bouclier"
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
-                c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
+                            c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x7 " Route droite" :
+                // x7 " Route droite" :
 
-            for (int i = 0 ; i < 7 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 7 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x1 " Route droite avec jardin"
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                // x1 " Route droite avec jardin"
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(jardin,2);
                 c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x8 " Route en 'L' "
+                // x8 " Route en 'L' "
 
-            for (int i = 0 ; i < 8 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 8 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
                 c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(champs,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
             // x1 " Route en 'L' avec jardin "
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
                 c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(jardin,2);
                 c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(champs,3);
                 c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x4 " Route en T "
+                // x4 " Route en T "
 
-            for (int i = 0 ; i < 4 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
+                        for (int i = 0 ; i < 4 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
-            // x1 " Croisement de Route "
+                // x1 " Croisement de Route "
 
-            for (int i = 0 ; i < 1 ; i++){
-                vector<ContenanceTuile> c(9);
-                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
-                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                Tuile T(c);
-                tuiles.push_back(T);
-            }
-
-
+                        for (int i = 0 ; i < 1 ; i++){
+                            vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);   c[8] = ContenanceTuile(route, 8);  c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                            Tuile T(c);
+                            tuiles.push_back(T);
+                        }
 
 
 
 
 
-            if (riviereActive)
-            {
-                // Source
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
+
+                if (riviereActive)
+                {
+                    // Source
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                                }
+
+
+                    // x2 " Rivière droite "
+
+                            for (int i = 0 ; i < 2 ; i++){
+                                vector<ContenanceTuile> c(9);
+                                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+                                c[7] = ContenanceTuile(rivière,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
+                                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x1 " Rivière centre, ville gauche"
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x1 " Rivière avec pont par dessus avec jardin"
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+            c[0] = ContenanceTuile(jardin,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+                c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
+                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x1 " Rivière avec Abbaye "
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(abbaye,1);  c[2] = ContenanceTuile(champs,2);
+                                c[7] = ContenanceTuile(rivière,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(rivière,3);
+                                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x2 " Rivière en 'L' "
+
+                            for (int i = 0 ; i < 2 ; i++){
+                                vector<ContenanceTuile> c(9);
+            c[0] = ContenanceTuile(jardin,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x1 " Rivière en 'L' avec Route en 'L"'
+
+                            // ->    l'information de la route au centre est plus importante que la rivière, la continuité de celle-ci              est assurée par les extrémités et aucun Meeple ne peut être posé dessus
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(rivière,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x1 " Rivière en 'L' avec Ville dans l'angle "
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+                    // x1 " Rivière entre deux Villes "
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(ville,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
+
+
+                    // Embouchure
+
+                            for (int i = 0 ; i < 1 ; i++){
+                                vector<ContenanceTuile> c(9);
+                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
+                            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
+                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
+                                Tuile T(c);
+                                tuiles.push_back(T);
+                            }
                 }
 
 
-                // x2 " Rivière droite "
+                if (aubergeActive)
 
-                for (int i = 0 ; i < 2 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(rivière,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                {
+                    // x1 " Route en 'L' avec Auberge"
 
-                // x1 " Rivière centre, ville gauche"
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-                // x1 " Rivière avec pont par dessus avec jardin"
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(jardin,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-                // x1 " Rivière avec Abbaye "
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(abbaye,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(rivière,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(rivière,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-                // x2 " Rivière en 'L' "
-
-                for (int i = 0 ; i < 2 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(jardin,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-                // x1 " Rivière en 'L' avec Route en 'L"'
-
-                // ->    l'information de la route au centre est plus importante que la rivière, la continuité de celle-ci              est assurée par les extrémités et aucun Meeple ne peut être posé dessus
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(rivière,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-                // x1 " Rivière en 'L' avec Ville dans l'angle "
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-                // x1 " Rivière entre deux Villes "
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(ville,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(ville,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-
-
-                // Embouchure
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(rivière,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(champs,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-            }
-
-
-            if (aubergeActive)
-
-            {
-                // x1 " Route en 'L' avec Auberge"
-
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(auberge,2);
                     c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(champs,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Route droite avec Auberge et Jardin "
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(jardin,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+            // x1 " Route droite avec Auberge et Jardin "
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
+                c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
+                c[7] = ContenanceTuile(jardin,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
+                c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Route en 'T' avev Auberge "
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+            // x1 " Route en 'T' avev Auberge "
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(auberge,2);
                     c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(route,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-                // x1 "Route droite avec Abbaye"
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
+            // x1 "Route droite avec Abbaye"
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(abbaye, 8);c[3] = ContenanceTuile(route,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Double Route en 'L' "
+            // x1 " Double Route en 'L' "
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(route,7);c[8] = ContenanceTuile(droute, 8);c[3] = ContenanceTuile(route,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 "Ville angle avec Route"
+             // x1 "Ville angle avec Route"
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
                     c[7] = ContenanceTuile(champs,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Ville en pointe" -> doit être une fin de champ en haut
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+            // x1 " Ville en pointe" -> doit être une fin de champ en haut
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " 4 villes dos à dos avec jardin "
+            // x1 " 4 villes dos à dos avec jardin "
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(jardin, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Villes séparées par Route les liant "
+             // x1 " Villes séparées par Route les liant "
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(droute, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
-                // x2 " Cathédrale"
-                for (int i = 0 ; i < 2 ; i++){
-                    vector<ContenanceTuile> c(9);
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
+            // x2 " Cathédrale"
+                    for (int i = 0 ; i < 2 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(cathédrale, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(ville,6);  c[5] = ContenanceTuile(ville,5);  c[4] = ContenanceTuile(ville,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Ville angle avec bouclier, Route 'L' et Auberge "
+            // x1 " Ville angle avec bouclier, Route 'L' et Auberge "
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(auberge, 8);c[3] = ContenanceTuile(route,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    c[0].setBouclier();
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        c[0].setBouclier();
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Ville haut, Route en 'L' et Auberge"
+             // x1 " Ville haut, Route en 'L' et Auberge"
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(route,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 "Ville angle avec Route et Auberge"
+            // x1 "Ville angle avec Route et Auberge"
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8);c[3] = ContenanceTuile(auberge,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " 3 villes dos à dos et champs"
+            // x1 " 3 villes dos à dos et champs"
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Ville angle + Ville côté avec Bouclier "
+            // x1 " Ville angle + Ville côté avec Bouclier "
 
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(ville,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(champs, 8);c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(champs,5);  c[4] = ContenanceTuile(champs,4);
-                    c[0].setBouclier();
-                    Tuile T(c);
-                    tuiles.push_back(T);
-                }
+                        c[0].setBouclier();
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
 
-                // x1 " Ville en X avec Route haut/bas et Bouclier"
-                for (int i = 0 ; i < 1 ; i++){
-                    vector<ContenanceTuile> c(9);
+            // x1 " Ville en X avec Route haut/bas et Bouclier"
+                    for (int i = 0 ; i < 1 ; i++){
+                        vector<ContenanceTuile> c(9);
                     c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(route,1);  c[2] = ContenanceTuile(champs,2);
                     c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(ville, 8); c[3] = ContenanceTuile(ville,3);
                     c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
-                    c[3].setBouclier();
-                    Tuile T(c);
-                    tuiles.push_back(T);
+                        c[3].setBouclier();
+                        Tuile T(c);
+                        tuiles.push_back(T);
+                    }
+
+
+
+
                 }
 
-
-
-
-            }
-
-        }
+                    }
 
 
     }
 
 
 }
-
-
