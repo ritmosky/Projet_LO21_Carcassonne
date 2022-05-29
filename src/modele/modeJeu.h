@@ -10,12 +10,23 @@
 #include  "plateau.h"
 
 
-/* Pour le placement des tuiles 
-Auberges et cathédrales : pareil que standard
-Paysans : pareil que standard
-Abbe : pareil que standard
-riviere : Vous ne pouvez pas faire tourner une rivière deux fois de
- suite dans la même direction (un demi-tour immédiat)
+/* Pour le placement des tuiles, seul l'extension rivière est différente
+
+Pour le placement des meeples:
+-Standard: on peut placer partout sauf sur dans les champs (faite)
+
+-Auberge et cathédrales : on ne peut pas placer sur une auberge ou une cathédrale (faite)
+
+-Riviere : On ne peut pas placer de meeple sur une tuile de type rivière (faite)
+
+-Paysan : couche (récuperer que à la fin de la partie) ou pas couche
+
+-Abbe :L’abbé ne peut être posé que sur une abbaye ou un jardin, 
+-tandis que le meeple selon les règles habituelles peut être posé sur  
+n’importe quelle section de tuile (mais pas sur le jardin).
+
+
+
  */
 
 using namespace std;
@@ -25,8 +36,8 @@ using namespace std;
 class ModeJeu{
 
     public:
-        virtual bool validationPlacementT(Tuile t ) = 0;
-        virtual bool validationPlacementM(Meeple m,Espace e) = 0;
+        virtual bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau) = 0;
+        virtual bool validationPlacementM(TypesTuiles& tp,Meeple *m,Espace *e) = 0;
         virtual void affichage() = 0;
 
 };
@@ -68,9 +79,13 @@ class Standard : public ModeJeu{
         return true;
 
     }
-        bool validationPlacementM(Meeple m ,Espace e){
+        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+            if(!e->isFree() || tp==TypesTuiles::champs){
+                return false;
+            }   
             return true;
         }
+
         void affichage(){
             cout<<"Standard"<<endl;
         }
@@ -81,6 +96,7 @@ class Standard : public ModeJeu{
 // ------------------------- EXTENSION RIVIERE --------------------------------------
 
 class Riviere:public ModeJeu{
+
     public:
 bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau){
 
@@ -151,6 +167,13 @@ bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau){
         return true;
 
     }
+
+    bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+        if(!e->isFree() || tp==TypesTuiles::rivière){
+            return false;
+        }
+        return true;
+    }
 };
 
 //EXTENSION AUBERGES ET CATHEDRALES
@@ -189,9 +212,14 @@ class AubergesEtCathedrales:public ModeJeu{
         return true;
 
     }
-        bool validationPlacementM(Meeple m ,Espace e){
+        // un meeple ne peut pas occuper une auberge ou une cathédrale
+        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+            if(!e->isFree() || tp==TypesTuiles::auberge || tp==TypesTuiles::cathédrale){
+                return false;
+            }
             return true;
         }
+
         void affichage(){
             cout<<"AubergesEtCathedrales"<<endl;
         }
@@ -235,9 +263,13 @@ class Paysan: public ModeJeu{
         return true;
 
     }
-        bool validationPlacementM(Meeple m ,Espace e){
+        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+            if(!e->isFree()) {
+                return false;
+            }
             return true;
         }
+
         void affichage(){
             cout<<"Paysan"<<endl;
         }
@@ -283,7 +315,31 @@ class Abbe : public ModeJeu{
         return true;
 
     }
-        bool validationPlacementM(Meeple m ,Espace e){
+ 
+       bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+            //Si un meeple est déjà présent sur l'espace
+            if(!e->isFree()){
+                return false;
+            }
+
+            //L’abbé ne peut être posé que sur une abbaye ou un jardin
+            if(m->getType().getNom()==NomMeeple::abbe){
+                if(tp==TypesTuiles::abbaye || tp==TypesTuiles::jardin){
+                    return true;
+                }
+                else{   
+                    return false;
+                }
+            }
+            //le meeple peut être posé sur n'importe ou sauf sur le jardin
+            else{
+                if(tp==TypesTuiles::jardin){
+                    return false;
+                }
+                else{   
+                    return true;
+                }
+            }
             return true;
         }
         void affichage(){

@@ -28,7 +28,7 @@
         m->setContenance(contenance);
         m->setIdJoueur(j->getId());
         m->setType(tm);
-        cout << *m;
+        cout << *m << endl;
         j->removeMeeple();
     }
 

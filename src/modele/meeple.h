@@ -71,11 +71,14 @@ class Meeple {
 		inline const TypeMeeple& getType() const { return type; }
 		inline const int getIdJoueur() const { return id_joueur; }
 		inline const ContenanceTuile* getContenanceTuile() const { return contenanceTuile; }
-
 		inline void setType(const TypeMeeple& ty) { type = ty; };
         inline void setType(const NomMeeple& name) { type.setNom(name); };
 		inline void setIdJoueur(int i) { id_joueur = i; }
 		inline void setContenance(ContenanceTuile& ct) { contenanceTuile = &ct; }
+
+
+
+		
 };
 
 

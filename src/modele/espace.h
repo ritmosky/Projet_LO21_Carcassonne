@@ -32,7 +32,7 @@ public :
     inline void addBouclier() { nbrBouclier += 1; }
     void addContenance(const ContenanceTuile& C);
     void addMeeple(const Meeple& M);
-    
+     inline const bool isFree() const {return meeples.size() == 0;}
     bool isComplete();
     void calculScore();
 };

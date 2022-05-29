@@ -38,27 +38,23 @@ class Controller{
         int nbJoueurs;
 
     public:
-
         //Constructeur
         Controller(int nj);
-         Controller(int nj,vector<string> listeNomJoueur,vector<int> listeNumExtensions);
+        Controller(int nj,vector<string> listeNomJoueur,vector<int> listeNumExtensions);
         //Destructeur
         ~Controller();
-
-        //On interdit l'opérateur d'affectation et le constructeur de recopie
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
+
+
         //permet de placer la tuile sur le plateau
         void placementTuile(Tuile *newTuile,int x,int y,Plateau *plateau);
         //permet de placer un meeple sur un contenu de tuile
         void placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau);
         // Vérifie si la tuile donnée serait autorisée n'importe où sur le plateau adjacent aux autres tuiles
         bool placementTuileAutorise(Tuile newTuile);
-        bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
         //Vérifie si la tuile donnée peut être placée à la position x, y sur le plateau
-        bool estCompatible(Tuile newTuile,int x,int y,Plateau *plateau);
         bool estCompatible(Tuile newTuile,int x,int y);
-        bool placementMeeple(Meeple m);
         void setState(State s); 
        // void compteScore(State s);
        // void compteScore(TypesTuiles t, State s);
@@ -73,8 +69,6 @@ class Controller{
         vector<Joueur*> getJoueurs(){
             return listeJoueurs;
         }
-
-        bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau);
 
         //Getters
         inline bool getFini() const{
@@ -93,7 +87,10 @@ class Controller{
             return this->tour;
         }
     
-
+    //Fonction test
+    bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
+    bool estCompatible(Tuile newTuile,int x,int y,Plateau *plateau);
+    bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau);
 };
 
 #endif
