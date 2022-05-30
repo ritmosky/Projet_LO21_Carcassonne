@@ -2,6 +2,7 @@
 #include "vue/vueAccueil.h"
 #include "vue/vueFormNom.h"
 #include "vue/vuePartie.h"
+#include "vue/vuePlateau.h"
 #include "vue/vueContenuTuile.h"
 #include "vue/vueTuile.h"
 #include "vue/vueScore1Joueur.h"
@@ -37,8 +38,6 @@ int main(int argc, char* argv[]) {
 //   VuePartie* partie = new VuePartie(controllerPartie);
 ////  VuePartie partie(controllerPartie);
 //   partie->show();
-
-
 
     return app.exec();
 
