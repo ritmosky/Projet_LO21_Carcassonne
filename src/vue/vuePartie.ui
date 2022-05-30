@@ -23,7 +23,7 @@
       <x>920</x>
       <y>10</y>
       <width>351</width>
-      <height>351</height>
+      <height>411</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="affichageScore">
@@ -36,7 +36,7 @@
     <property name="geometry">
      <rect>
       <x>920</x>
-      <y>360</y>
+      <y>420</y>
       <width>351</width>
       <height>71</height>
      </rect>
@@ -117,7 +117,7 @@
     <property name="geometry">
      <rect>
       <x>920</x>
-      <y>500</y>
+      <y>510</y>
       <width>351</width>
       <height>31</height>
      </rect>
@@ -133,7 +133,7 @@
     <property name="geometry">
      <rect>
       <x>1050</x>
-      <y>450</y>
+      <y>480</y>
       <width>100</width>
       <height>32</height>
      </rect>
