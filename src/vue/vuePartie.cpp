@@ -57,7 +57,7 @@ void VuePartie::setPlateau(){
 //    ui->plateau->horizontalHeader()->setVisible(false);
 //    ui->plateau->verticalHeader()->setVisible(false);
     const Tuile tuilePlace= this->controller->getPioche()->piocher();
-    placerTuile(0,0, tuilePlace);
+    placerTuile(72,72, tuilePlace);
 
 }
 
@@ -65,7 +65,7 @@ void VuePartie::setPlateau(){
 // Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
 void VuePartie::placerTuile(const int Nligne, const int NCol, const Tuile& tuile){
     VueTuile* vueTuilePlace = new VueTuile(tuile);
-    ui->plateau->setCellWidget(Nligne + 74,NCol + 74, vueTuilePlace);
+    ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
 }
 
 
@@ -94,6 +94,9 @@ void VuePartie::on_zoomOut_clicked()
 
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
+    cout<<ui->plateau->currentColumn();
+    cout<<ui->plateau->currentRow();// renvoie x
+
     // Action à faire quand on appuie sur le boutton valider placement tuile
 }
 
