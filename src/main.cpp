@@ -39,6 +39,9 @@ int main(int argc, char* argv[]) {
 ////  VuePartie partie(controllerPartie);
 //   partie->show();
 
+//    VuePlateau test;
+//    test.show();
+
     return app.exec();
 
 }
