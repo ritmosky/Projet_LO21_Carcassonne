@@ -36,7 +36,8 @@ class Controller{
         State state;
         int tour;
         int nbJoueurs;
-
+        int numJoueurActu; // Va de 0 à nbrJoueur - 1
+    
     public:
         //Constructeur
         Controller(int nj);
@@ -86,6 +87,10 @@ class Controller{
         inline int getTour() const{
             return this->tour;
         }
+    
+         inline Pioche* getPioche() const{return this->pioche;}
+
+        inline int getNumJoueurActu() const{return this->numJoueurActu;}
     
     //Fonction test
     bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
