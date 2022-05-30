@@ -13,6 +13,7 @@ class VuePlateau : public QWidget
 
 public:
     explicit VuePlateau(QWidget *parent = nullptr);
+    void setTable();
     ~VuePlateau();
 
 

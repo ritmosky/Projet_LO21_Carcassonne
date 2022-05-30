@@ -371,7 +371,7 @@ Pioche::Pioche(vector<int> mode) : tuiles() {
 
 
 
-        if (mode[i] == 2 && not abbeActive) {
+        if (mode[i] == 4 && not abbeActive) {
 
 
     // Source
