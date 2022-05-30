@@ -15,7 +15,7 @@ VuePartie::VuePartie(Controller* c, QWidget *parent) :
     setAffichageScore();
     setAffichageTuile();
     setJoueurActu();
-
+    setPlateau();
 
 
 }
@@ -48,3 +48,52 @@ void VuePartie::setJoueurActu(){
     ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs()[controller->getNumJoueurActu()]->getName()));
     ui->nbrMeepleRestant->display(controller->getJoueurs()[controller->getNumJoueurActu()]->getNbrMeeples());
 }
+
+void VuePartie::setPlateau(){
+    ui->plateau->setCurrentCell(76,77);
+    ui->plateau->horizontalHeader()->setDefaultSectionSize(100);
+    ui->plateau->verticalHeader()->setDefaultSectionSize(100);
+    // A decommenter pour ne pas voir les numeros de ligne du dessus
+//    ui->plateau->horizontalHeader()->setVisible(false);
+//    ui->plateau->verticalHeader()->setVisible(false);
+    const Tuile tuilePlace= this->controller->getPioche()->piocher();
+    placerTuile(0,0, tuilePlace);
+
+}
+
+
+// Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
+void VuePartie::placerTuile(const int Nligne, const int NCol, const Tuile& tuile){
+    VueTuile* vueTuilePlace = new VueTuile(tuile);
+    ui->plateau->setCellWidget(Nligne + 74,NCol + 74, vueTuilePlace);
+}
+
+
+
+
+
+
+void VuePartie::on_zoomIn_clicked()
+{
+    int tailleHori = ui->plateau->horizontalHeader()->defaultSectionSize();
+    int tailleVert = ui->plateau->verticalHeader()->defaultSectionSize();
+    ui->plateau->horizontalHeader()->setDefaultSectionSize(tailleHori + 20);
+    ui->plateau->verticalHeader()->setDefaultSectionSize(tailleVert + 20);
+
+}
+
+
+void VuePartie::on_zoomOut_clicked()
+{
+    int tailleHori = ui->plateau->horizontalHeader()->defaultSectionSize();
+    int tailleVert = ui->plateau->verticalHeader()->defaultSectionSize();
+    ui->plateau->horizontalHeader()->setDefaultSectionSize(tailleHori - 20);
+    ui->plateau->verticalHeader()->setDefaultSectionSize(tailleVert - 20);
+}
+
+
+void VuePartie::on_bouttonValiderTuile_clicked()
+{
+    // Action à faire quand on appuie sur le boutton valider placement tuile
+}
+

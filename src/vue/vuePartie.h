@@ -20,6 +20,15 @@ public:
     void setAffichageScore();
     void setAffichageTuile();
     void setJoueurActu();
+    void setPlateau();
+    void placerTuile(const int Nligne,const int NCol, const Tuile& tuile);
+
+private slots:
+    void on_zoomIn_clicked();
+
+    void on_zoomOut_clicked();
+
+    void on_bouttonValiderTuile_clicked();
 
 private:
     Ui::VuePartie *ui;
