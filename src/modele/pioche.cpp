@@ -13,26 +13,41 @@
 ostream& operator<<(ostream& f, const Pioche& P){
 
     for (int i = 0 ; i < P.getNbTuiles(); i++){
-
+        if (P.estVide()) {f << "Pioche vide"<< endl;}
+        else {
         f << "Tuile " << i << " : " << endl<< endl;
         f << P.getTuile(i) << endl << endl;
 
         f << " -----------------------" << endl<< endl;
     }
+    }
     return f;
 }
 
 
-const Tuile& Pioche::piocher() const{
+const Tuile* Pioche::piocher() {
 
     if (Pioche::estVide()) throw ("Pioche vide");
+    
+    if (this->tuiles.size() == 1) {
+        const Tuile* T = new Tuile(tuiles[0]);
+        auto it = tuiles.cbegin();
+        tuiles.erase(it);
+        return T;}
+    
     // Génération d'un nb entre 0 et le nombre de carte qui reste dans la pioche
-    size_t i = rand()% tuiles.size() ;
+    size_t i = rand()% tuiles.size()-1 ;
     // On la pioche
-    const Tuile& T = tuiles[i];
+    const Tuile* T = new Tuile(tuiles[i]);
 
-// décrémenter le vecteur
-
+     // On la retire de la pioche
+    for (auto it = tuiles.cbegin(); it != tuiles.cend(); it++){
+        if( *it == tuiles[i]){
+            tuiles.erase(it);
+            break;
+        }
+    }
+    
     return T;
 }
 
@@ -43,7 +58,7 @@ const Tuile& Pioche::piocher() const{
 
 
 
-// --------------------------------------- Constructeur de la Pioche ------------------------------------------------
+// --------------------------------------- Constructeur de la Pioche ----------------------------------------------
 
 
 Pioche::Pioche(vector<int> mode) : tuiles() {
@@ -71,8 +86,7 @@ Pioche::Pioche(vector<int> mode) : tuiles() {
 
 
     for (int i = 0 ; i < mode.size() ; i++) {
-
-
+        
 
 // ---------------------------------- Tuiles du mode de jeu Standard : 72 Tuiles --------------------------------------
 
