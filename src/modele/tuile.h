@@ -91,9 +91,9 @@ public :
     const TypesTuiles& getContenu(int i) const { return contenance[i].getType() ; }
     void changerOrientation();
 
-    Tuile(const Tuile& T);
+    Tuile(const Tuile* T);
     Tuile& operator=(const Tuile& T);
-    bool operator==(const Tuile& T) const {return this->contenance == T.getContenance(); };
+    bool operator==(const Tuile& T) const{return this->getContenance() == T.getContenance();}
 
     void setVoisinHaut(Tuile* t){
         voisin_haut = t;
