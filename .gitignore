@@ -17,6 +17,7 @@ cmake-build-debug/
 
 #Exclu les dossiers inutiles liés à Qt
 build-carcassone-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
+build-carcassone-Qt_6_3_0_for_macOS-Debug/
 carcassone.pro.user
 
 # ------------------
