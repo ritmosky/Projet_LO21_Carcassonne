@@ -24,6 +24,7 @@ public:
 
     void setNomCouleur();
     TypesTuiles getTypeTuile() const {return this->typeTuile;}
+    bool getBouclier()const {return this->bouclier;}
 
 
 
