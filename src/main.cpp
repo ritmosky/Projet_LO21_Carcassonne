@@ -22,16 +22,24 @@ int main(int argc, char* argv[]) {
 //        VueContenuTuile testContenuTuile(ville, true);
 //        testContenuTuile.show();
 
-//         Test pour un objet tuile
+//         Test pour< un objet tuile
 //        vector<ContenanceTuile> c(9);
 //        c[0] = ContenanceTuile(auberge,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(ville,2);
 //        c[7] = ContenanceTuile(rivière,7);   c[8] = ContenanceTuile(abbaye, 8); c[3]= ContenanceTuile(champs,3);
 //        c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(auberge,4);
 
 //        Tuile T(c);
-//        VueTuile testTuile(T);
+//        std::cout<<"premiere tuile avant \n";
+//        std::cout<<T;
+////        VueTuile testTuile(T);
+//        T.changerOrientation();
+//        std::cout<<"seconde tuile apres \n";
+//        std::cout<<T;
+//        VueTuile testTuile2(T);
 
-//        testTuile.show();
+////        testTuile.show();
+//        testTuile2.show();
+
 
 //   Controller* controllerPartie = new Controller(3);
 
