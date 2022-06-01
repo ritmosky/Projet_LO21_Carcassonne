@@ -39,7 +39,7 @@ void VuePartie::setAffichageScore() {
 }
 
 void VuePartie::setAffichageTuile(){
-    const Tuile tuilePlace= this->controller->getPioche()->piocher();
+    const Tuile* tuilePlace= this->controller->getPioche()->piocher();
     VueTuile* vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
@@ -56,14 +56,14 @@ void VuePartie::setPlateau(){
     // A decommenter pour ne pas voir les numeros de ligne du dessus
 //    ui->plateau->horizontalHeader()->setVisible(false);
 //    ui->plateau->verticalHeader()->setVisible(false);
-    const Tuile tuilePlace= this->controller->getPioche()->piocher();
+    const Tuile* tuilePlace= this->controller->getPioche()->piocher();
     placerTuile(72,72, tuilePlace);
 
 }
 
 
 // Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
-void VuePartie::placerTuile(const int Nligne, const int NCol, const Tuile& tuile){
+void VuePartie::placerTuile(const int Nligne, const int NCol, const Tuile* tuile){
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
 }
