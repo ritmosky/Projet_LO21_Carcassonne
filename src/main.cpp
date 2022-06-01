@@ -14,13 +14,13 @@
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
-//    VueAccueil w;
-//    w.show();
+    VueAccueil w;
+    w.show();
 
 //    VueFormNom test;
 //    test.show();
-        VueContenuTuile testContenuTuile(ville, true);
-        testContenuTuile.show();
+//        VueContenuTuile testContenuTuile(ville, true);
+//        testContenuTuile.show();
 
 //         Test pour un objet tuile
 //        vector<ContenanceTuile> c(9);
