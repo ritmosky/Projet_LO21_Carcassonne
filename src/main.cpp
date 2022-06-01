@@ -42,6 +42,8 @@ int main(int argc, char* argv[]) {
 //    VuePlateau test;
 //    test.show();
 
+    // ceci est unt est
+
     return app.exec();
 
 }
