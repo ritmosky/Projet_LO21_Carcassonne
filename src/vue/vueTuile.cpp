@@ -1,5 +1,6 @@
 #include "vueTuile.h"
 #include "vueContenuTuile.h"
+#include "../modele/tuile.h"
 #include "ui_vueTuile.h"
 
 VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
@@ -27,7 +28,8 @@ void VueTuile::setContenuTuile(Tuile& tuile){
     for (auto itContenance = contenance.cbegin(); itContenance < contenance.cend(); itContenance++){
            placement = itContenance->getNumPlacement();
            typeTuile = itContenance->getType();
-           tabTest[i] = new VueContenuTuile(typeTuile);
+           bool bouclier = itContenance->getBouclier();
+           tabTest[i] = new VueContenuTuile(typeTuile, bouclier);
            switch (placement) {
            case 0:
                ui->grilleContenuTuile->addWidget(tabTest[i], 0,0);

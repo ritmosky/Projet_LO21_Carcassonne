@@ -13,9 +13,9 @@ VuePartie::VuePartie(Controller* c, QWidget *parent) :
 
 
     setAffichageScore();
-    setAffichageTuile();
     setJoueurActu();
     setPlateau();
+    setAffichageTuile();
 
 
 }
@@ -35,16 +35,16 @@ void VuePartie::setAffichageScore() {
          ui->affichageScore->addWidget(vueScore);
      }
      ui->numTour->display(controller->getTour());
-
 }
 
 void VuePartie::setAffichageTuile(){
     const Tuile tuilePlace= this->controller->getPioche()->piocher();
-    VueTuile* vueTuilePlace = new VueTuile(tuilePlace);
+    VueTuile* vueTuilePlace = new VueTuile(tuilePlace); // vueTuilePlace est un Widget
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
 void VuePartie::setJoueurActu(){
+
     ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs()[controller->getNumJoueurActu()]->getName()));
     ui->nbrMeepleRestant->display(controller->getJoueurs()[controller->getNumJoueurActu()]->getNbrMeeples());
 }
@@ -58,11 +58,10 @@ void VuePartie::setPlateau(){
 //    ui->plateau->verticalHeader()->setVisible(false);
     const Tuile tuilePlace= this->controller->getPioche()->piocher();
     placerTuile(72,72, tuilePlace);
-
 }
 
 
-// Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
+
 void VuePartie::placerTuile(const int Nligne, const int NCol, const Tuile& tuile){
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
@@ -99,4 +98,17 @@ void VuePartie::on_bouttonValiderTuile_clicked()
 
     // Action à faire quand on appuie sur le boutton valider placement tuile
 }
+
+
+void VuePartie::on_bouttonRotation_clicked()
+{
+
+   // Appel modele pour rotationner tuile
+   // recup la nouvelle tuile rotationner
+    // appeler la fonction  affichage tuile avec la nouvelle tuile rotationner
+
+}
+
+
+
 

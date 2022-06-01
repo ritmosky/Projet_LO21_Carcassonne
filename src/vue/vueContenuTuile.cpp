@@ -1,10 +1,11 @@
 #include "vueContenuTuile.h"
 #include "ui_vueContenuTuile.h"
 
-VueContenuTuile::VueContenuTuile(TypesTuiles type,QWidget *parent) :
+VueContenuTuile::VueContenuTuile(TypesTuiles type, bool bouc, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VueContenuTuile),
-    typeTuile(type)
+    typeTuile(type),
+    bouclier(bouc)
 {
     ui->setupUi(this);
 //    this->resize(75,75);

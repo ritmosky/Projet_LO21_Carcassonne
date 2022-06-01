@@ -30,6 +30,10 @@ private slots:
 
     void on_bouttonValiderTuile_clicked();
 
+    void on_bouttonRotation_clicked();
+
+
+
 private:
     Ui::VuePartie *ui;
     Controller* controller;
