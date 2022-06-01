@@ -37,6 +37,8 @@ class ContenanceTuile{
 private :
 
     friend class Pioche;
+    friend class Tuile;
+
 
     int numPlacement;
     TypesTuiles type;

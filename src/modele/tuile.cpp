@@ -38,12 +38,18 @@ void Tuile::changerOrientation(){
     ContenanceTuile c0 = contenance[0];
     ContenanceTuile c1 = contenance[1];
 
-    for (size_t i = 0 ; i < 6 ; i++){
+    for (int i = 0 ; i < 6 ; i++){
         contenance[i] = contenance[i+2];
+        contenance[i].numPlacement = i ;
+
     }
 
     contenance[6] = c0;
+    contenance[6].numPlacement = 6;
+
     contenance[7] = c1;
+    contenance[7].numPlacement = 7 ;
+
 }
 
 
@@ -144,7 +150,7 @@ ostream& operator<<(ostream& f, const Tuile& T){
 
 ostream& operator<<(ostream& f, const ContenanceTuile& c){
 
-    f << " Contenance Tuile(adresse) : " << &c << endl;
+    f << " Contenance Tuile" << endl;
     f << " Type : "<< TypesTuiles_str[c.getType()] << endl;  // Taoufiq add this
     f << " Position : " << c.getNumPlacement() << endl;
 
