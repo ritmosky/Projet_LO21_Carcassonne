@@ -39,14 +39,21 @@ void VuePartie::setAffichageScore() {
 }
 
 void VuePartie::setAffichageTuile(){
-    const Tuile* tuilePlace= this->controller->getPioche()->piocher();
-    VueTuile* vueTuilePlace = new VueTuile(tuilePlace);
+    tuilePlace= this->controller->getPioche()->piocher();
+    vueTuilePlace = new VueTuile(*tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
 void VuePartie::setJoueurActu(){
     ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs()[controller->getNumJoueurActu()]->getName()));
     ui->nbrMeepleRestant->display(controller->getJoueurs()[controller->getNumJoueurActu()]->getNbrMeeples());
+}
+
+void VuePartie::piocherCarte(){
+    vueTuilePlace->hide();
+    tuilePlace= this->controller->getPioche()->piocher();
+    vueTuilePlace = new VueTuile(*tuilePlace);
+    ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
 void VuePartie::setPlateau(){
@@ -56,16 +63,23 @@ void VuePartie::setPlateau(){
     // A decommenter pour ne pas voir les numeros de ligne du dessus
 //    ui->plateau->horizontalHeader()->setVisible(false);
 //    ui->plateau->verticalHeader()->setVisible(false);
-    const Tuile* tuilePlace= this->controller->getPioche()->piocher();
-    placerTuile(72,72, tuilePlace);
-
+    Tuile *premiereTuile= this->controller->getPioche()->piocher();
+    placerTuile(72,72, *premiereTuile);
 }
 
 
 // Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
-void VuePartie::placerTuile(const int Nligne, const int NCol, const Tuile* tuile){
+void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile& tuile){
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
+    this->controller->placementTuile(&tuile,NCol,Nligne);
+    cout << " --------------------------  Affichage des tuiles présentes sur le plateau ------------------------------------- " << endl;
+    std::vector<Tuile*> tuiles =controller->getPlateau()->getTuiles();
+     for(Tuile* t : tuiles){
+         cout << *t << endl << endl;
+         cout << t->getX() << " " << t->getY() << endl;
+     }
+
 }
 
 
@@ -94,9 +108,23 @@ void VuePartie::on_zoomOut_clicked()
 
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
-    cout<<ui->plateau->currentColumn();
-    cout<<ui->plateau->currentRow();// renvoie x
+    if(this->controller->estCompatible(*tuilePlace,ui->plateau->currentColumn(),ui->plateau->currentRow())==true){
+         placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),*tuilePlace);
+         controller->nextTour();
+         piocherCarte();
 
-    // Action à faire quand on appuie sur le boutton valider placement tuile
+    }
+    else{
+        cout << " INCOMPATIBLEEEEEEEEEEEE "<< endl;
+    }
+}
+
+
+void VuePartie::on_rotationTuile_clicked(){
+
+    vueTuilePlace->hide();
+    tuilePlace->changerOrientation();
+    vueTuilePlace = new VueTuile(*tuilePlace);
+    ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
