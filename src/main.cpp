@@ -9,6 +9,7 @@
 #include "modele/tuile.h"
 #include "modele/controller.h"
 #include <iostream>
+#include <string>
 
 
 int main(int argc, char* argv[]) {
@@ -41,7 +42,6 @@ int main(int argc, char* argv[]) {
 
 //    VuePlateau test;
 //    test.show();
-
     return app.exec();
 
 }

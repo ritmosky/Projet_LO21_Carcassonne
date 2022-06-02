@@ -13,6 +13,8 @@ VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
     setContenuTuile(tuile);
 }
 
+
+
 VueTuile::~VueTuile()
 {
     delete ui;
@@ -63,5 +65,4 @@ void VueTuile::setContenuTuile(Tuile& tuile){
            }
            i++;
     }
-
 }
