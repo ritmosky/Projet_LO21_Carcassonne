@@ -15,14 +15,16 @@ class VueContenuTuile : public QWidget
 private:
     Ui::VueContenuTuile *ui;
     TypesTuiles typeTuile;
+    bool bouclier;
 
 
 public:
-    explicit VueContenuTuile(TypesTuiles type, QWidget *parent = nullptr);
+    explicit VueContenuTuile(TypesTuiles type, bool bouc, QWidget *parent = nullptr);
     ~VueContenuTuile();
 
     void setNomCouleur();
     TypesTuiles getTypeTuile() const {return this->typeTuile;}
+    bool getBouclier()const {return this->bouclier;}
 
 
 
