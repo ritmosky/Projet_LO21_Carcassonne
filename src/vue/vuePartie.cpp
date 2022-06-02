@@ -51,7 +51,7 @@ void VuePartie::setJoueurActu(){
 }
 
 void VuePartie::piocherCarte(){
-    vueTuilePlace->hide();s
+    vueTuilePlace->hide();
     tuilePlace= this->controller->getPioche()->piocher();
     vueTuilePlace = new VueTuile(*tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
