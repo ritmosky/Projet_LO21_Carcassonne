@@ -21,7 +21,11 @@ public:
     void setAffichageTuile();
     void setJoueurActu();
     void setPlateau();
-    void placerTuile(const int Nligne,const int NCol, const Tuile& tuile);
+    void piocherCarte();
+    void placerTuile(const int Nligne,const int NCol,Tuile& tuile);
+    Tuile *tuilePlace;
+    VueTuile* vueTuilePlace ;
+
 
 private slots:
     void on_zoomIn_clicked();
@@ -30,9 +34,9 @@ private slots:
 
     void on_bouttonValiderTuile_clicked();
 
-    void on_bouttonRotation_clicked();
+    void on_rotationTuile_clicked();
 
-
+    void on_pushButton_clicked();
 
 private:
     Ui::VuePartie *ui;

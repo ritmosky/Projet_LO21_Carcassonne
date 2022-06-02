@@ -38,21 +38,27 @@ void Tuile::changerOrientation(){
     ContenanceTuile c0 = contenance[0];
     ContenanceTuile c1 = contenance[1];
 
-    for (size_t i = 0 ; i < 6 ; i++){
+    for (int i = 0 ; i < 6 ; i++){
         contenance[i] = contenance[i+2];
+        contenance[i].numPlacement = i ;
+
     }
 
     contenance[6] = c0;
+    contenance[6].numPlacement = 6;
+
     contenance[7] = c1;
+    contenance[7].numPlacement = 7 ;
+
 }
 
 
-Tuile::Tuile(const Tuile& T): voisin_haut(T.voisin_haut),voisin_bas(T.voisin_bas),voisin_gauche(T.voisin_gauche),voisin_droite(T.voisin_droite), posX(T.posX),posY(T.posY),
-contenance(T.contenance.size()) {
+Tuile::Tuile(const Tuile* T): voisin_haut(T->voisin_haut),voisin_bas(T->voisin_bas),voisin_gauche(T->voisin_gauche),voisin_droite(T->voisin_droite), posX(T->posX),posY(T->posY),
+contenance(9) {
 
     // Impossible d'initialiser contenance avec T.getSize()
     for (int i = 0 ; i < 9; i++){
-        contenance[i] = T.contenance[i];
+        contenance[i] = T->contenance[i];
     }
 
 }
@@ -70,6 +76,8 @@ Tuile& Tuile::operator=(const Tuile& T){
 
     return *this;
 }
+
+
 //
 //
 //ostream& operator<<(ostream& f, const Tuile& T){
@@ -142,7 +150,7 @@ ostream& operator<<(ostream& f, const Tuile& T){
 
 ostream& operator<<(ostream& f, const ContenanceTuile& c){
 
-    f << " Contenance Tuile(adresse) : " << &c << endl;
+    f << " Contenance Tuile" << endl;
     f << " Type : "<< TypesTuiles_str[c.getType()] << endl;  // Taoufiq add this
     f << " Position : " << c.getNumPlacement() << endl;
 

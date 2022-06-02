@@ -10,15 +10,6 @@
 #include "meeple.h"
 #include "modeJeu.h"
 
-enum State {
-    GAME_MENU,GAME_START, PLACING_TILE, PLACING_MEEPLE, GAME_OVER
-};
-
-/*  GAME_START -> permet d'initialiser le plateau,la pioche de tuile, et de lancer la partie, avec la vue Qt du plateau
-    PLACING_TILE -> permet de placer une tuile sur le plateau
-    PLACING_MEEPLE -> permet de placer un meeple sur le plateau
-    GAME_OVER -> permet de terminer la partie et de compter les scores finaux
-*/
 
 
 using namespace std;
@@ -33,34 +24,28 @@ class Controller{
         ModeJeu* modeJeu[5];
         Plateau *plateau;
         Pioche *pioche;
-        State state;
         int tour;
         int nbJoueurs;
         int numJoueurActu; // Va de 0 à nbrJoueur - 1
 
     public:
-
         //Constructeur
         Controller(int nj);
         Controller(int nj,vector<string> listeNomJoueur,vector<int> listeNumExtensions);
         //Destructeur
         ~Controller();
-
-        //On interdit l'opérateur d'affectation et le constructeur de recopie
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
+
+
         //permet de placer la tuile sur le plateau
-        void placementTuile(Tuile *newTuile,int x,int y,Plateau *plateau);
+        void placementTuile(Tuile *newTuile,int x,int y);
         //permet de placer un meeple sur un contenu de tuile
-        void placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau);
+        void placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y);
         // Vérifie si la tuile donnée serait autorisée n'importe où sur le plateau adjacent aux autres tuiles
         bool placementTuileAutorise(Tuile newTuile);
-        bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
         //Vérifie si la tuile donnée peut être placée à la position x, y sur le plateau
-        bool estCompatible(Tuile newTuile,int x,int y,Plateau *plateau);
         bool estCompatible(Tuile newTuile,int x,int y);
-        bool placementMeeple(Meeple m);
-        void setState(State s);
        // void compteScore(State s);
        // void compteScore(TypesTuiles t, State s);
         void nextTour();
@@ -71,23 +56,38 @@ class Controller{
             }
         }
 
-        vector<Joueur*> getJoueurs() const{return listeJoueurs;}
-
-        bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau);
+        vector<Joueur*> getJoueurs(){
+            return listeJoueurs;
+        }
 
         //Getters
-        inline bool getFini() const{return this->fini;}
+        inline bool getFini() const{
+            return this->fini;
+        }
 
-        inline int getNbJoueur() const{return this->nbJoueurs;}
-
-        inline State getState() const{return this->state;}
-
-        inline int getTour() const{return this->tour;}
-        inline Pioche* getPioche() const{return this->pioche;}
-
-        inline int getNumJoueurActu() const{return this->numJoueurActu;}
+        inline int getNbJoueur() const{
+            return this->nbJoueurs;
+        }
 
 
+        inline int getTour() const{
+            return this->tour;
+        }
+
+         inline Pioche* getPioche() const{return this->pioche;}
+
+
+         inline int getNumJoueurActu() const{return this->numJoueurActu;}
+        inline Plateau* getPlateau() const{
+            return this->plateau;
+        }
+
+    //Fonction test
+    bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
+    bool estCompatible(Tuile newTuile,int x,int y,Plateau *plateau);
+    bool validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *plateau);
+    void placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau);
+    void placementTuile(Tuile *newTuile,int x,int y,Plateau *plateau);
 };
 
 #endif

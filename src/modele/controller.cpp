@@ -3,37 +3,35 @@
 #define NBRE_MEEPLE_MAX 7
 
 
-//Il faut rajouter les setter pour les vosins et les posX et posY
-// Rajouter getTuiles() permettant de récupérer la liste des tuiles présentes sur le plateau
-//tableau modedeJeu (template method)
 
 
     Controller::Controller(int nj):nbJoueurs(nj){
         tour = 0;
-        setState(GAME_START);
+        plateau = new Plateau(0);
+        pioche = new Pioche(extensions);
     }
 
     Controller::Controller(int nj,vector<string> listeNomJoueur,vector<int> listeNumExtensions):nbJoueurs(nj),extensions(listeNumExtensions){
-        tour = 1;
-        numJoueurActu = 0;
+        tour = 0;
         for(int i=0;i<nbJoueurs;i++){
             listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX,""));
             listeJoueurs[i]->addName(listeNomJoueur[i]);
             }
-        setState(GAME_START);
+        plateau = new Plateau(0);
+        pioche = new Pioche(extensions);
     }
 
-    void Controller::placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau){
+    void Controller::placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y){
         Tuile *t = plateau->existeTuile(x,y);
         ContenanceTuile contenance = t->getContenance(i);
         m->setContenance(contenance);
         m->setIdJoueur(j->getId());
         m->setType(tm);
-        cout << *m;
+        cout << *m << endl;
         j->removeMeeple();
     }
 
-    void Controller::placementTuile(Tuile *newTuile,int x,int y,Plateau *plateau){
+    void Controller::placementTuile(Tuile *newTuile,int x,int y){
         newTuile->setPosX(x);
         newTuile->setPosY(y);
         plateau->ajouterTuiles(newTuile);
@@ -110,8 +108,17 @@
     }
 
      bool Controller::estCompatible(Tuile newTuile,int x,int y){
+
+         //s'il aucun voisin
+
+         if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
+             return false;
+         }
+
+         cout << "****************************" << endl;
         //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
+            cout << " voisin haut "<< endl;
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
@@ -119,8 +126,8 @@
 
 
         //Voisin du bas
-
         if(plateau->existeTuile(x,y+1)){
+                        cout << " voisin bas" << endl;
             if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
@@ -128,6 +135,7 @@
 
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
+                        cout << " voisin gauche "<< endl;
             if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
                 return false;
             }
@@ -135,6 +143,7 @@
 
         //Voisin de droite
         if(plateau->existeTuile(x+1,y)){
+                        cout << " voisin droite "<< endl;
             if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
                 return false;
             }
@@ -144,51 +153,17 @@
 
     }
 
-        //Tour suivant
+     //Tour suivant
     void Controller::nextTour(){
         if(pioche->estVide()==true){
-            setState(GAME_OVER);
+            cout << " FINISHED ";
+           return ;
         }
         else{
             tour++;
-            setState(PLACING_TILE);
         }
     }
 
-    void Controller::setState(State state){
-
-    this->state = state;
-
-    switch(state){
-        case GAME_START:{
-            plateau = new Plateau(0);
-            pioche = new Pioche(extensions);
-            //setState(PLACING_TILE);
-            break;
-            }
-
-        case PLACING_TILE:
-            if(!placementTuileAutorise(pioche->piocher())){
-                cout << "Tuile non compatible" << endl;
-            }
-            setState(PLACING_MEEPLE);
-            break;
-
-        case PLACING_MEEPLE:
-            //Si le joueur actuelle a 0 meeple on passe le tour
-            if(listeJoueurs.at(tour%nbJoueurs)->getNbrMeeples() == 0){
-               nextTour();
-            }
-            //placementMeeple();
-            nextTour();
-            break;
-
-        //Fin de la partie et comptage des scores des joueurs
-        case GAME_OVER:
-            //compteScore(getState());
-            break;
-    }
-}
 
 /* ************************************* TEST**************************************************** */
 
@@ -422,4 +397,40 @@ bool Controller::validationPlacementRiviere(Tuile newTuile,int x,int y,Plateau *
 
         return true;
 
+    }
+
+     void Controller::placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y,Plateau *plateau){
+        Tuile *t = plateau->existeTuile(x,y);
+        ContenanceTuile contenance = t->getContenance(i);
+        m->setContenance(contenance);
+        m->setIdJoueur(j->getId());
+        m->setType(tm);
+        cout << *m << endl;
+        j->removeMeeple();
+    }
+
+    void Controller::placementTuile(Tuile *newTuile,int x,int y,Plateau *plateau){
+        newTuile->setPosX(x);
+        newTuile->setPosY(y);
+        plateau->ajouterTuiles(newTuile);
+        //Voisin du haut
+        if(plateau->existeTuile(x,y-1)){
+            newTuile->setVoisinHaut(plateau->existeTuile(x,y-1));
+            plateau->existeTuile(x,y-1)->setVoisinBas(newTuile);
+        }
+        //Voisin du bas
+        if(plateau->existeTuile(x,y+1)){
+            newTuile->setVoisinBas(plateau->existeTuile(x,y+1));
+            plateau->existeTuile(x,y+1)->setVoisinHaut(newTuile);
+        }
+        //Voisin de gauche
+        if(plateau->existeTuile(x-1,y)){
+            newTuile->setVoisinGauche(plateau->existeTuile(x-1,y));
+            plateau->existeTuile(x-1,y)->setVoisinDroite(newTuile);
+        }
+        //Voisin de droite
+        if(plateau->existeTuile(x+1,y)){
+            newTuile->setVoisinDroite(plateau->existeTuile(x+1,y));
+            plateau->existeTuile(x+1,y)->setVoisinGauche(newTuile);
+        }
     }
