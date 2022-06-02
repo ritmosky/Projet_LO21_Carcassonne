@@ -25,12 +25,12 @@ ostream& operator<<(ostream& f, const Pioche& P){
 }
 
 
-const Tuile* Pioche::piocher() {
+Tuile* Pioche::piocher() {
 
     if (Pioche::estVide()) throw ("Pioche vide");
     
     if (this->tuiles.size() == 1) {
-        const Tuile* T = new Tuile(tuiles[0]);
+        Tuile* T = new Tuile(tuiles[0]);
         auto it = tuiles.cbegin();
         tuiles.erase(it);
         return T;}
@@ -38,7 +38,7 @@ const Tuile* Pioche::piocher() {
     // Génération d'un nb entre 0 et le nombre de carte qui reste dans la pioche
     size_t i = rand()% tuiles.size()-1 ;
     // On la pioche
-    const Tuile* T = new Tuile(tuiles[i]);
+   Tuile* T = new Tuile(tuiles[i]);
 
      // On la retire de la pioche
     for (auto it = tuiles.cbegin(); it != tuiles.cend(); it++){

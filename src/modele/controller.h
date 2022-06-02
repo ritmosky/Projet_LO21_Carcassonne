@@ -10,15 +10,6 @@
 #include "meeple.h"
 #include "modeJeu.h"
 
-enum State {
-    GAME_MENU,GAME_START, PLACING_TILE, PLACING_MEEPLE, GAME_OVER
-};
-
-/*  GAME_START -> permet d'initialiser le plateau,la pioche de tuile, et de lancer la partie, avec la vue Qt du plateau
-    PLACING_TILE -> permet de placer une tuile sur le plateau
-    PLACING_MEEPLE -> permet de placer un meeple sur le plateau
-    GAME_OVER -> permet de terminer la partie et de compter les scores finaux
-*/
 
 
 using namespace std;
@@ -33,11 +24,10 @@ class Controller{
         ModeJeu* modeJeu[5];
         Plateau *plateau;
         Pioche *pioche;
-        State state;
         int tour;
         int nbJoueurs;
         int numJoueurActu; // Va de 0 à nbrJoueur - 1
-    
+
     public:
         //Constructeur
         Controller(int nj);
@@ -56,7 +46,6 @@ class Controller{
         bool placementTuileAutorise(Tuile newTuile);
         //Vérifie si la tuile donnée peut être placée à la position x, y sur le plateau
         bool estCompatible(Tuile newTuile,int x,int y);
-        void setState(State s); 
        // void compteScore(State s);
        // void compteScore(TypesTuiles t, State s);
         void nextTour();
@@ -80,18 +69,19 @@ class Controller{
             return this->nbJoueurs;
         }
 
-        inline State getState() const{
-            return this->state;
-        }
 
         inline int getTour() const{
             return this->tour;
         }
-    
+
          inline Pioche* getPioche() const{return this->pioche;}
 
-        inline int getNumJoueurActu() const{return this->numJoueurActu;}
-    
+
+         inline int getNumJoueurActu() const{return this->numJoueurActu;}
+        inline Plateau* getPlateau() const{
+            return this->plateau;
+        }
+
     //Fonction test
     bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
     bool estCompatible(Tuile newTuile,int x,int y,Plateau *plateau);
