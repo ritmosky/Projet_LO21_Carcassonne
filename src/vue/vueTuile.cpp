@@ -13,6 +13,8 @@ VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
     setContenuTuile(tuile);
 }
 
+
+
 VueTuile::~VueTuile()
 {
     delete ui;
@@ -29,7 +31,7 @@ void VueTuile::setContenuTuile(Tuile& tuile){
            placement = itContenance->getNumPlacement();
            typeTuile = itContenance->getType();
            bool bouclier = itContenance->getBouclier();
-           tabTest[i] = new VueContenuTuile(typeTuile, bouclier, 3, true);
+           tabTest[i] = new VueContenuTuile(typeTuile, bouclier);
            switch (placement) {
            case 0:
                ui->grilleContenuTuile->addWidget(tabTest[i], 0,0);
@@ -63,5 +65,4 @@ void VueTuile::setContenuTuile(Tuile& tuile){
            }
            i++;
     }
-
 }
