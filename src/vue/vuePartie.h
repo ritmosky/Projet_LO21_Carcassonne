@@ -36,7 +36,7 @@ private slots:
 
     void on_rotationTuile_clicked();
 
-//    void on_pushButton_clicked();
+
 
 private:
     Ui::VuePartie *ui;
