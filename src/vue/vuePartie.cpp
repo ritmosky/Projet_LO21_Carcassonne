@@ -31,7 +31,7 @@ void VuePartie::setAffichageScore() {
      vector<Joueur*> vectJoueur = this->controller->getJoueurs();
      vector<VueScore1Joueur*> vectVueScore;
      for (int i = 0; i < nbrJ; i++){
-         VueScore1Joueur* vueScore = new VueScore1Joueur(vectJoueur[i]->getName());
+         VueScore1Joueur* vueScore = new VueScore1Joueur(vectJoueur[i]->getName(), vectJoueur[i]->getId());
          ui->affichageScore->addWidget(vueScore);
      }
      ui->numTour->display(controller->getTour());

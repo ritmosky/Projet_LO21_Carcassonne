@@ -12,12 +12,13 @@ class VueScore1Joueur : public QWidget
     Q_OBJECT
 
 public:
-    explicit VueScore1Joueur(std::string nomJ, QWidget *parent = nullptr);
+    explicit VueScore1Joueur(std::string nomJ,int id, QWidget *parent = nullptr);
     ~VueScore1Joueur();
 
 private:
     Ui::VueScore1Joueur *ui;
     std::string nom;
+    int id;
 
 private slots:
 

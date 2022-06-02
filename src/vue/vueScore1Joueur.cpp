@@ -2,12 +2,15 @@
 #include "ui_vueScore1Joueur.h"
 #include <QString>
 
-VueScore1Joueur::VueScore1Joueur(std::string nomJ, QWidget *parent) :
+VueScore1Joueur::VueScore1Joueur(std::string nomJ,int id, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VueScore1Joueur),
-    nom(nomJ)
+    nom(nomJ),
+    id(id)
 {
     ui->setupUi(this);
+    std::string idStr = std::to_string(this->id);
+    nomJ += " id : " + idStr;
     ui->nom->setText(QString::fromStdString(nomJ));
 }
 
