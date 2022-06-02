@@ -29,7 +29,7 @@ void VueTuile::setContenuTuile(Tuile& tuile){
            placement = itContenance->getNumPlacement();
            typeTuile = itContenance->getType();
            bool bouclier = itContenance->getBouclier();
-           tabTest[i] = new VueContenuTuile(typeTuile, bouclier);
+           tabTest[i] = new VueContenuTuile(typeTuile, bouclier, 3, true);
            switch (placement) {
            case 0:
                ui->grilleContenuTuile->addWidget(tabTest[i], 0,0);
