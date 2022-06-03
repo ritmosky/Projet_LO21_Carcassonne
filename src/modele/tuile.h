@@ -53,6 +53,9 @@ public:
     inline const int getNumPlacement() const {return numPlacement;}
     const bool getBouclier() const { return bouclier; }
     void setBouclier();
+        void setType(const TypesTuiles t){
+        type = t;
+    }
 
     inline bool operator==(const ContenanceTuile& c) const {return this->type == c.getType(); };
     ContenanceTuile(const ContenanceTuile& c):numPlacement(c.numPlacement), type(c.type), bouclier(c.bouclier) {}
@@ -96,6 +99,14 @@ public :
     Tuile(const Tuile& T);
     Tuile& operator=(const Tuile& T);
     bool operator==(const Tuile& T) const{return this->getContenance() == T.getContenance();}
+    
+        void ReplaceParChamps(){
+        for (int i = 0; i < 9; i++){
+            if((getContenu(i) == TypesTuiles::auberge) || (getContenu(i)==TypesTuiles::jardin)){
+                setContenu(i, TypesTuiles::champs);
+            }
+        }
+    }
 
     void setVoisinHaut(Tuile* t){
         voisin_haut = t;
