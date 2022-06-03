@@ -21,8 +21,8 @@ Pour le placement des meeples:
 
 -Paysan : couche (récuperer que à la fin de la partie) ou pas couche
 
--Abbe :L’abbé ne peut être posé que sur une abbaye ou un jardin, 
--tandis que le meeple selon les règles habituelles peut être posé sur  
+-Abbe :L’abbé ne peut être posé que sur une abbaye ou un jardin,
+-tandis que le meeple selon les règles habituelles peut être posé sur
 n’importe quelle section de tuile (mais pas sur le jardin).
 
 
@@ -47,26 +47,29 @@ class ModeJeu{
 class Standard : public ModeJeu{
     public:
         bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
-            
+
          if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
              return false;
          }
+
+         newTuile.ReplaceParChamps();
+
 
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
         }
-        
+
 
         //Voisin du bas
-        
+
         if(plateau->existeTuile(x,y+1)){
             if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
         }
-     
+
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
             if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
@@ -80,14 +83,14 @@ class Standard : public ModeJeu{
                 return false;
             }
         }
-        
+
         return true;
 
     }
         bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
             if(!e->isFree() || tp==TypesTuiles::champs){
                 return false;
-            }   
+            }
             return true;
         }
 
@@ -105,74 +108,94 @@ class Riviere : public ModeJeu{
     public:
 bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
 
+                if((newTuile.getContenu(0)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(1)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(2)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(3)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(4)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(5)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(6)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(7)!=TypesTuiles::rivière) &&
+                 (newTuile.getContenu(8)!=TypesTuiles::rivière)){ return true; }
+
+
          if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
              return false;
          }
 
         //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
-            cout << " JE PASSE ICI " << endl;
-            if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5) 
-            || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5) 
-                && newTuile.getContenu(3)==plateau->existeTuile(x,y-1)->getContenu(3)
-                && newTuile.getContenu(3)==TypesTuiles::rivière
-                && newTuile.getContenu(1)==TypesTuiles::rivière)
-            || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5)
-                && newTuile.getContenu(7)==plateau->existeTuile(x,y-1)->getContenu(7)
-                && newTuile.getContenu(7)==TypesTuiles::rivière
-                && newTuile.getContenu(1)==TypesTuiles::rivière)){
-                return false;
-            }
-        }  
+                if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)
+                || (newTuile.getContenu(1)!=TypesTuiles::rivière)
+                || (plateau->existeTuile(x,y-1)->getContenu(5)!=TypesTuiles::rivière)
+                || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5)
+                    && newTuile.getContenu(3)==plateau->existeTuile(x,y-1)->getContenu(3)
+                    && newTuile.getContenu(3)==TypesTuiles::rivière
+                    && newTuile.getContenu(1)==TypesTuiles::rivière)
+                || (newTuile.getContenu(1)==plateau->existeTuile(x,y-1)->getContenu(5)
+                    && newTuile.getContenu(7)==plateau->existeTuile(x,y-1)->getContenu(7)
+                    && newTuile.getContenu(7)==TypesTuiles::rivière
+                    && newTuile.getContenu(1)==TypesTuiles::rivière)){
+                    return false;
+                }
+
+        }
 
         //Voisin du bas
-        
+
         if(plateau->existeTuile(x,y+1)){
-            cout << " JE PASSE ICI " << endl;
-            if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)
-            || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
-                && newTuile.getContenu(3)==plateau->existeTuile(x,y+1)->getContenu(3) 
-                && newTuile.getContenu(5)==TypesTuiles::rivière
-                && newTuile.getContenu(7)==TypesTuiles::rivière)
-            || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
-                && newTuile.getContenu(7)==plateau->existeTuile(x,y+1)->getContenu(7)
-                && newTuile.getContenu(5)==TypesTuiles::rivière
-                && newTuile.getContenu(3)==TypesTuiles::rivière)){
-                return false;
+                if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)
+                || (newTuile.getContenu(5)!=TypesTuiles::rivière)
+                || (plateau->existeTuile(x,y+1)->getContenu(1)!=TypesTuiles::rivière)
+                || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
+                    && newTuile.getContenu(3)==plateau->existeTuile(x,y+1)->getContenu(3)
+                    && newTuile.getContenu(5)==TypesTuiles::rivière
+                    && newTuile.getContenu(7)==TypesTuiles::rivière)
+                || (newTuile.getContenu(5)==plateau->existeTuile(x,y+1)->getContenu(1)
+                    && newTuile.getContenu(7)==plateau->existeTuile(x,y+1)->getContenu(7)
+                    && newTuile.getContenu(5)==TypesTuiles::rivière
+                    && newTuile.getContenu(3)==TypesTuiles::rivière)){
+                    return false;
+
             }
         }
-     
+
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
-            if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)
-            || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
-                && newTuile.getContenu(1)==plateau->existeTuile(x-1,y)->getContenu(1)
-                && newTuile.getContenu(7)==TypesTuiles::rivière
-                && newTuile.getContenu(1)==TypesTuiles::rivière)
-            || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
-                && newTuile.getContenu(5)==plateau->existeTuile(x-1,y)->getContenu(5)
-                && newTuile.getContenu(5)==TypesTuiles::rivière
-                && newTuile.getContenu(7)==TypesTuiles::rivière)){
-                return false;
+                if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)
+                || (newTuile.getContenu(7)!=TypesTuiles::rivière)
+                || (plateau->existeTuile(x-1,y)->getContenu(3)!=TypesTuiles::rivière)
+                || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
+                    && newTuile.getContenu(1)==plateau->existeTuile(x-1,y)->getContenu(1)
+                    && newTuile.getContenu(7)==TypesTuiles::rivière
+                    && newTuile.getContenu(1)==TypesTuiles::rivière)
+                || (newTuile.getContenu(7)==plateau->existeTuile(x-1,y)->getContenu(3)
+                    && newTuile.getContenu(5)==plateau->existeTuile(x-1,y)->getContenu(5)
+                    && newTuile.getContenu(5)==TypesTuiles::rivière
+                    && newTuile.getContenu(7)==TypesTuiles::rivière)){
+                    return false;
+
             }
         }
 
         //Voisin de droite
         if(plateau->existeTuile(x+1,y)){
-            cout << " JE PASSE ICI " << endl;
-            if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)
-            || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
-                && newTuile.getContenu(1)==plateau->existeTuile(x+1,y)->getContenu(1)
-                && newTuile.getContenu(3)==TypesTuiles::rivière
-                && newTuile.getContenu(1)==TypesTuiles::rivière)
-            || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
-                && newTuile.getContenu(5)==plateau->existeTuile(x+1,y)->getContenu(5)
-                && newTuile.getContenu(3)==TypesTuiles::rivière
-                && newTuile.getContenu(5)==TypesTuiles::rivière)){
-                return false;
-            }
+                if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)
+                || (newTuile.getContenu(3)!=TypesTuiles::rivière)
+                || (plateau->existeTuile(x+1,y)->getContenu(7)!=TypesTuiles::rivière)
+                || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
+                    && newTuile.getContenu(1)==plateau->existeTuile(x+1,y)->getContenu(1)
+                    && newTuile.getContenu(3)==TypesTuiles::rivière
+                    && newTuile.getContenu(1)==TypesTuiles::rivière)
+                || (newTuile.getContenu(3)==plateau->existeTuile(x+1,y)->getContenu(7)
+                    && newTuile.getContenu(5)==plateau->existeTuile(x+1,y)->getContenu(5)
+                    && newTuile.getContenu(3)==TypesTuiles::rivière
+                    && newTuile.getContenu(5)==TypesTuiles::rivière)){
+                    return false;
+                }
+
         }
-        
+
         return true;
 
     }
@@ -195,25 +218,28 @@ class AubergesEtCathedrales:public ModeJeu{
     public:
         bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
 
-            
+
+
          if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
              return false;
          }
+
+         newTuile.ReplaceParChamps();
 
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
         }
-        
+
         //Voisin du bas
-        
+
         if(plateau->existeTuile(x,y+1)){
             if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
         }
-     
+
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
             if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
@@ -227,7 +253,7 @@ class AubergesEtCathedrales:public ModeJeu{
                 return false;
             }
         }
-        
+
         return true;
 
     }
@@ -251,26 +277,28 @@ class Paysan: public ModeJeu{
     public:
         bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
 
-            
+
          if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
              return false;
          }
+
+         newTuile.ReplaceParChamps();
 
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
         }
-        
+
 
         //Voisin du bas
-        
+
         if(plateau->existeTuile(x,y+1)){
             if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
         }
-     
+
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
             if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
@@ -284,7 +312,7 @@ class Paysan: public ModeJeu{
                 return false;
             }
         }
-        
+
         return true;
 
     }
@@ -308,26 +336,28 @@ class Paysan: public ModeJeu{
 class Abbe : public ModeJeu{
     public:
         bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
-            
+
          if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
              return false;
          }
+
+         newTuile.ReplaceParChamps();
 
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
         }
-        
+
 
         //Voisin du bas
-        
+
         if(plateau->existeTuile(x,y+1)){
             if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
         }
-     
+
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
             if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
@@ -341,11 +371,11 @@ class Abbe : public ModeJeu{
                 return false;
             }
         }
-        
+
         return true;
 
     }
- 
+
        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
             //Si un meeple est déjà présent sur l'espace
             if(!e->isFree()){
@@ -357,7 +387,7 @@ class Abbe : public ModeJeu{
                 if(tp==TypesTuiles::abbaye || tp==TypesTuiles::jardin){
                     return true;
                 }
-                else{   
+                else{
                     return false;
                 }
             }
@@ -366,7 +396,7 @@ class Abbe : public ModeJeu{
                 if(tp==TypesTuiles::jardin){
                     return false;
                 }
-                else{   
+                else{
                     return true;
                 }
             }
