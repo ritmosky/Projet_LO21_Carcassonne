@@ -100,6 +100,10 @@ public :
     Tuile& operator=(const Tuile& T);
     bool operator==(const Tuile& T) const{return this->getContenance() == T.getContenance();}
     
+        void setContenu(int i, TypesTuiles c){
+        contenance[i].setType(c);
+    }
+    
         void ReplaceParChamps(){
         for (int i = 0; i < 9; i++){
             if((getContenu(i) == TypesTuiles::auberge) || (getContenu(i)==TypesTuiles::jardin)){
