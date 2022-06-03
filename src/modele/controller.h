@@ -81,6 +81,15 @@ class Controller{
         inline Plateau* getPlateau() const{
             return this->plateau;
         }
+    
+            inline vector<int> getExtensions() const{
+            return this->extensions;
+        }
+
+        //retourner le modedejeu
+        inline ModeJeu* getModeJeu(int i) const{
+            return this->modeJeu[i];
+        }
 
     //Fonction test
     bool placementTuileAutorise(Tuile newTuile,Plateau* plateau);
