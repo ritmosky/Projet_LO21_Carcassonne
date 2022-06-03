@@ -114,6 +114,14 @@
          if(!plateau->existeTuile(x,y-1) && !plateau->existeTuile(x,y+1) && !plateau->existeTuile(x-1,y) && !plateau->existeTuile(x+1,y)){
              return false;
          }
+         
+          //Si on clique sur la meme tuile
+         std::vector<Tuile*> tuiles = plateau->getTuiles();
+         for(Tuile* t : tuiles){
+            if(t->getX()==x && t->getY()==y){
+                return false;
+            }
+         }
 
          cout << "****************************" << endl;
         //Voisin du haut
