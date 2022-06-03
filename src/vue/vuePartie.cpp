@@ -46,6 +46,9 @@ void VuePartie::setAffichageTuile(){
     tuilePlace= this->controller->getPioche()->piocher();
     vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
+    if(controller->placementTuileAutorise(*tuilePlace)){
+        this->piocherCarte();
+    }
 }
 
 void VuePartie::setJoueurActu(){
@@ -61,6 +64,10 @@ void VuePartie::piocherCarte(){
     cout<< *tuilePlace <<endl;
     vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
+    if(controller->placementTuileAutorise(*tuilePlace)==false){
+        this->piocherCarte();
+        cout << "Tuile incompatible partout, on l'enlève de la pioche et on repioche " << endl;
+    }
 }
 
 void VuePartie::setPlateau(){
@@ -75,10 +82,12 @@ void VuePartie::setPlateau(){
 }
 
 
+
 // Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
 void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile* tuile){
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
+    tuile->ReplaceParChamps();
     this->controller->placementTuile(tuile,NCol,Nligne);
     cout << " --------------------------  Affichage des tuiles présentes sur le plateau ------------------------------------- " << endl;
     std::vector<Tuile*> tuiles =controller->getPlateau()->getTuiles();
@@ -115,13 +124,19 @@ void VuePartie::on_zoomOut_clicked()
 
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
-    if(this->controller->estCompatible(*tuilePlace,ui->plateau->currentColumn(),ui->plateau->currentRow())==true){
+    bool insere = true;
+    vector<int> extensions = controller->getExtensions();
+    for(size_t i=0; i<extensions.size();i++){
+        ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
+        if(modeJeu->validationPlacementT(*tuilePlace,ui->plateau->currentColumn(),ui->plateau->currentRow(),controller->getPlateau())==false){
+            insere = false;
+        }
+    }
+
+    if(insere==true){
          placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
          controller->nextTour();
          piocherCarte();
-         cout<<"Nb tuile restantes : "<< controller->getPioche()->getNbTuiles()<<endl;
-
-
     }
     else{
         cout << " INCOMPATIBLEEEEEEEEEEEE "<< endl;
