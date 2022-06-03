@@ -19,6 +19,11 @@
             }
         plateau = new Plateau(0);
         pioche = new Pioche(extensions);
+        modeJeu[0] = new Standard();
+        modeJeu[1] = new Paysan();
+        modeJeu[2] = new Abbe();
+        modeJeu[3] = new Riviere();
+        modeJeu[4] = new AubergesEtCathedrales();
     }
 
     void Controller::placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y){
