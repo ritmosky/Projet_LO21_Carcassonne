@@ -53,12 +53,12 @@ void Tuile::changerOrientation(){
 }
 
 
-Tuile::Tuile(const Tuile* T): voisin_haut(T->voisin_haut),voisin_bas(T->voisin_bas),voisin_gauche(T->voisin_gauche),voisin_droite(T->voisin_droite), posX(T->posX),posY(T->posY),
+Tuile::Tuile(const Tuile& T): voisin_haut(T.voisin_haut),voisin_bas(T.voisin_bas),voisin_gauche(T.voisin_gauche),voisin_droite(T.voisin_droite), posX(T.posX),posY(T.posY),
 contenance(9) {
 
     // Impossible d'initialiser contenance avec T.getSize()
     for (int i = 0 ; i < 9; i++){
-        contenance[i] = T->contenance[i];
+        contenance[i] = T.contenance[i];
     }
 
 }

@@ -1,6 +1,7 @@
 
 #include "pioche.h"
-
+#include <algorithm>
+#include <random>
 // Pour bien parcourir le Plateau :
 
 // Norme appliquée aux villes : Si c'est une tuile qui contient une muraille ( fin de tuile ), seul sa partie centrale est de TypesTuiles = ville, ses extrémités sont des champs. Cela permet de repérer avec plus de facilité la fin d'une ville puisque une ville qui elle peut être encore complétée aura les 3 TypesTuiles d'une même brodure de TypesTuiles = ville
@@ -27,22 +28,24 @@ ostream& operator<<(ostream& f, const Pioche& P){
 
 Tuile* Pioche::piocher() {
 
-    if (Pioche::estVide()) throw ("Pioche vide");
+    if (Pioche::estVide()) cout<<"Pioche vide";
     
-    if (this->tuiles.size() == 1) {
-        Tuile* T = new Tuile(tuiles[0]);
-        auto it = tuiles.cbegin();
-        tuiles.erase(it);
-        return T;}
-    
+    //if (this->tuiles.size() == 1) {
+        //auto it = tuiles.cbegin();
+       // tuiles.erase(it);
+        // return T;}
+
     // Génération d'un nb entre 0 et le nombre de carte qui reste dans la pioche
-    size_t i = rand()% tuiles.size()-1 ;
-    // On la pioche
-   Tuile* T = new Tuile(tuiles[i]);
+    auto rng = std::default_random_engine{};
+    std::shuffle(std::begin(tuiles), std::end(tuiles), rng);
+    Tuile* T = new Tuile(tuiles[0]);
+
+   // On la pioche
+   //Tuile* T = new Tuile(tuiles[i]);
 
      // On la retire de la pioche
     for (auto it = tuiles.cbegin(); it != tuiles.cend(); it++){
-        if( *it == tuiles[i]){
+        if( *it == *T){
             tuiles.erase(it);
             break;
         }

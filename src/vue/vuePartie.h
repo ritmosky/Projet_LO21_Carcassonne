@@ -22,7 +22,7 @@ public:
     void setJoueurActu();
     void setPlateau();
     void piocherCarte();
-    void placerTuile(const int Nligne,const int NCol,Tuile& tuile);
+    void placerTuile(const int Nligne,const int NCol,Tuile* tuile);
     Tuile *tuilePlace;
     VueTuile* vueTuilePlace ;
 

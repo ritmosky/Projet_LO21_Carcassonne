@@ -3,14 +3,14 @@
 #include "../modele/tuile.h"
 #include "ui_vueTuile.h"
 
-VueTuile::VueTuile(Tuile tuile ,QWidget *parent) :
+VueTuile::VueTuile(Tuile* tuile ,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VueTuile)
 {
     ui->setupUi(this);
 //    this->resize(225,225);
 //    ui->gridLayoutWidget->resize(225,225);
-    setContenuTuile(tuile);
+    setContenuTuile(*tuile);
 }
 
 

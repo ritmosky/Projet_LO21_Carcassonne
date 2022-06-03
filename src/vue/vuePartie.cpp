@@ -39,8 +39,12 @@ void VuePartie::setAffichageScore() {
 }
 
 void VuePartie::setAffichageTuile(){
+    cout<<"Nb tuile restantes : "<< controller->getPioche()->getNbTuiles()<<endl;
+     for(size_t i = 0; i < controller->getPioche()->getNbTuiles(); i++){
+         cout << controller->getPioche()->getTuile(i) << endl << endl;
+     }
     tuilePlace= this->controller->getPioche()->piocher();
-    vueTuilePlace = new VueTuile(*tuilePlace);
+    vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
@@ -50,9 +54,12 @@ void VuePartie::setJoueurActu(){
 }
 
 void VuePartie::piocherCarte(){
+    cout<<"On pioche "<<endl;
     vueTuilePlace->hide();
     tuilePlace= this->controller->getPioche()->piocher();
-    vueTuilePlace = new VueTuile(*tuilePlace);
+    cout<<"On a pioche "<<endl;
+    cout<< *tuilePlace <<endl;
+    vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
@@ -64,15 +71,15 @@ void VuePartie::setPlateau(){
 //    ui->plateau->horizontalHeader()->setVisible(false);
 //    ui->plateau->verticalHeader()->setVisible(false);
     Tuile *premiereTuile= this->controller->getPioche()->piocher();
-    placerTuile(72,72, *premiereTuile);
+    placerTuile(72,72, premiereTuile);
 }
 
 
 // Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
-void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile& tuile){
+void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile* tuile){
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
-    this->controller->placementTuile(&tuile,NCol,Nligne);
+    this->controller->placementTuile(tuile,NCol,Nligne);
     cout << " --------------------------  Affichage des tuiles présentes sur le plateau ------------------------------------- " << endl;
     std::vector<Tuile*> tuiles =controller->getPlateau()->getTuiles();
      for(Tuile* t : tuiles){
@@ -109,9 +116,11 @@ void VuePartie::on_zoomOut_clicked()
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
     if(this->controller->estCompatible(*tuilePlace,ui->plateau->currentColumn(),ui->plateau->currentRow())==true){
-         placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),*tuilePlace);
+         placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
          controller->nextTour();
          piocherCarte();
+         cout<<"Nb tuile restantes : "<< controller->getPioche()->getNbTuiles()<<endl;
+
 
     }
     else{
@@ -124,7 +133,7 @@ void VuePartie::on_rotationTuile_clicked(){
 
     vueTuilePlace->hide();
     tuilePlace->changerOrientation();
-    vueTuilePlace = new VueTuile(*tuilePlace);
+    vueTuilePlace = new VueTuile(tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
