@@ -27,6 +27,7 @@ public:
     VueTuile* vueTuilePlace ;
 
 
+
 private slots:
     void on_zoomIn_clicked();
 
@@ -35,6 +36,10 @@ private slots:
     void on_bouttonValiderTuile_clicked();
 
     void on_rotationTuile_clicked();
+
+    void on_pushButton_clicked();
+    void affichageFinPartie();
+
 
 
 

@@ -83,6 +83,13 @@ void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile& tuile){
 }
 
 
+void VuePartie::affichageFinPartie(){
+    // TO DO
+        // Update le score de chaque joueur
+
+}
+
+
 
 
 
@@ -127,4 +134,25 @@ void VuePartie::on_rotationTuile_clicked(){
     vueTuilePlace = new VueTuile(*tuilePlace);
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
+
+
+void VuePartie::on_pushButton_clicked()
+{
+    delete ui->affNbrMeeple;
+    delete ui->labelNomJ;
+    delete ui->nbrMeepleRestant;
+    ui->affCestAuTour->setText("Il n'y a plus aucune carte à piocher, la partie est désormais terminée.\n Les joueurs doivent désormais ajouter leurs points de fin de partie en suivant les règles du jeu via les boutons + et - habituels!");
+    delete vueTuilePlace;
+    delete ui->bouttonValiderTuile;
+    delete ui->label_2;
+    delete ui->rotationTuile;
+    QPushButton* bouttonAfficherRes = new QPushButton("Afficher les résultats !");
+    ui->espaceTuilePlace->addWidget(bouttonAfficherRes);
+    connect(bouttonAfficherRes, SIGNAL(clicked()),this,SLOT(affichageFinPartie()));
+}
+
+
+
+
+
 

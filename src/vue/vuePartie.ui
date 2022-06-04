@@ -464,6 +464,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Test</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="bouttonValiderTuile">
        <property name="text">
         <string>Valider Placement Tuile</string>
