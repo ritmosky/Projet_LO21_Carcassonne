@@ -24,6 +24,10 @@ class Controller{
         ModeJeu* modeJeu[5];
         Plateau *plateau;
         Pioche *pioche;
+        bool riviereActive =false;
+        bool paysansActive = false;
+        bool aubergeActive = false;
+        bool abbeActive = false;
         int tour;
         int nbJoueurs;
         int numJoueurActu; // Va de 0 à nbrJoueur - 1
@@ -36,6 +40,12 @@ class Controller{
         ~Controller();
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
+
+        inline bool getPaysansActive() const {return paysansActive;}
+        inline bool getAbbeActive() const {return abbeActive;}
+        inline bool getRiviereActive() const {return riviereActive;}
+        inline bool getAubergeActive() const {return aubergeActive;}
+
 
 
         //permet de placer la tuile sur le plateau

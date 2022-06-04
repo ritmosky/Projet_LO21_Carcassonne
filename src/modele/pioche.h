@@ -21,7 +21,7 @@ public :
     inline const Tuile& getTuile(int i) const {return tuiles[i];}
     inline size_t getNbTuiles() const {return tuiles.size();}
 
-    Tuile* piocher();
+    Tuile* piocher(int nbTour, bool riviereActive);
     bool estVide() const {return tuiles.size() == 0;}
 
     Pioche(const Pioche&)= delete;

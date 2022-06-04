@@ -6,6 +6,7 @@ SOURCES += \
     vue/vueContenuTuile.cpp \
     vue/vueFormNom.cpp \
     vue/vuePartie.cpp \
+    vue/vuePlacementMeeple.cpp \
     vue/vuePlateau.cpp \
     vue/vueScore1Joueur.cpp \
     vue/vueTuile.cpp \
@@ -18,7 +19,7 @@ SOURCES += \
     modele/modeJeu.cpp \
     modele/meeple.cpp \
     modele/joueur.cpp \
-    modele/espace.cpp \
+    modele/espace.cpp
 
 
 
@@ -27,6 +28,7 @@ HEADERS += \
     vue/vueContenuTuile.h \
     vue/vueFormNom.h \
     vue/vuePartie.h \
+    vue/vuePlacementMeeple.h \
     vue/vuePlateau.h \
     vue/vueScore1Joueur.h \
     vue/vueTuile.h \
@@ -39,7 +41,7 @@ HEADERS += \
     modele/modeJeu.h \
     modele/meeple.h \
     modele/joueur.h \
-    modele/espace.h \
+    modele/espace.h
 
 
 FORMS += \
@@ -47,6 +49,7 @@ FORMS += \
     vue/vueContenuTuile.ui \
     vue/vueFormNom.ui \
     vue/vuePartie.ui \
+    vue/vuePlacementMeeple.ui \
     vue/vuePlateau.ui \
     vue/vueScore1Joueur.ui \
     vue/vueTuile.ui \

@@ -17,6 +17,13 @@
             listeJoueurs.push_back(new Joueur(i,NBRE_MEEPLE_MAX,""));
             listeJoueurs[i]->addName(listeNomJoueur[i]);
             }
+        for (size_t i = 0 ; i < listeNumExtensions.size() ; i++) {
+            if (listeNumExtensions[i] == 2) paysansActive = true;
+            if (listeNumExtensions[i] == 3) abbeActive = true;
+            if (listeNumExtensions[i] == 4) riviereActive = true;
+            if (listeNumExtensions[i] == 5) aubergeActive = true;
+
+        }
         plateau = new Plateau(0);
         pioche = new Pioche(extensions);
         modeJeu[0] = new Standard();

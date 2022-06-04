@@ -22,6 +22,8 @@ public:
     void setJoueurActu();
     void setPlateau();
     void piocherCarte();
+    void placerMeeple(const int Nligne, const int NCol,Tuile* tuile);
+    void setAffichageDemandeMeeple(VuePartie* ui,const int Nligne, const int NCol,Tuile* tuile);
     void placerTuile(const int Nligne,const int NCol,Tuile* tuile);
     Tuile *tuilePlace;
     VueTuile* vueTuilePlace ;
