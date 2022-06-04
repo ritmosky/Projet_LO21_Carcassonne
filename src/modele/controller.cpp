@@ -19,7 +19,15 @@
             }
         for (size_t i = 0 ; i < listeNumExtensions.size() ; i++) {
             if (listeNumExtensions[i] == 2) paysansActive = true;
-            if (listeNumExtensions[i] == 3) abbeActive = true;
+            if (listeNumExtensions[i] == 3){
+                abbeActive = true;
+                for(int i=0;i<nbJoueurs;i++){
+                    Meeple* meepleabbe = new Meeple();
+                    meepleabbe->setType(NomMeeple::abbe);
+                    listeJoueurs[i]->setNbMeeple(listeJoueurs[i]->getNbrMeeples()+1);
+                    listeJoueurs[i]->addMeeple(*meepleabbe);
+                    }
+            }
             if (listeNumExtensions[i] == 4) riviereActive = true;
             if (listeNumExtensions[i] == 5) aubergeActive = true;
 
