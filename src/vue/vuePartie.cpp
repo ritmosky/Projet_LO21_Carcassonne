@@ -148,7 +148,6 @@ void VuePartie::on_zoomOut_clicked()
 
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
-<<<<<<< HEAD
     bool insere = true;
     vector<int> extensions = controller->getExtensions();
     for(size_t i=0; i<extensions.size();i++){
@@ -160,10 +159,7 @@ void VuePartie::on_bouttonValiderTuile_clicked()
 
     if(insere==true){
          placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
-=======
-    if(this->controller->estCompatible(*tuilePlace,ui->plateau->currentColumn(),ui->plateau->currentRow())==true){
          placerMeeple(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace); // placerMeeple appellera placerTuile
->>>>>>> 1508ce7 (Rivière jouable + Début vuePlacementMeeple)
          controller->nextTour();
          piocherCarte();
     }
