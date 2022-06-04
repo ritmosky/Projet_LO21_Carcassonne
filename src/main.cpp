@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 
     VueAccueil w;
     w.show();
-
+    // encore 1
 //    VueFormNom test;
 //    test.show();
     //    VueContenuTuile testContenuTuile(ville);
