@@ -13,7 +13,6 @@ VuePartie::VuePartie(Controller* c, QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     setAffichageScore();
     setAffichageTuile();
     setJoueurActu();
@@ -82,6 +81,7 @@ void VuePartie::setPlateau(){
 //    ui->plateau->verticalHeader()->setVisible(false);
     Tuile *premiereTuile= this->controller->getPioche()->piocher(this->controller->getTour(), this->controller->getRiviereActive());
     placerTuile(72,72, premiereTuile);
+    premiereTuile->ReplaceParChamps();
 }
 
 void VuePartie::setAffichageDemandeMeeple(VuePartie* ui,const int Nligne, const int NCol,Tuile* tuile){
@@ -102,10 +102,8 @@ void VuePartie::placerMeeple(const int Nligne, const int NCol,Tuile* tuile){
 
 // Cette fonction prends en parametre la position X et Y (centré en 0, 0 donc selon constructeur)
 void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile* tuile){
-
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
-    tuile->ReplaceParChamps();
     this->controller->placementTuile(tuile,NCol,Nligne);
 
     cout << " --------------------------  Affichage des tuiles présentes sur le plateau ------------------------------------- " << endl;
@@ -148,6 +146,26 @@ void VuePartie::on_zoomOut_clicked()
 
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
+    //Changement du jardin et de l'auberge en jardin dans l'extension Paysan et AubergesEtCathédrales
+    bool hasJardin = false;
+    bool hasAuberge = false;
+    int placementChamps = 0;
+    for (int i = 0; i < 9; i++){
+        if(tuilePlace->getContenu(i) == TypesTuiles::auberge){
+            tuilePlace->setContenu(i, TypesTuiles::champs);
+            placementChamps = i;
+            hasAuberge = true;
+            break;
+        }
+        if(tuilePlace->getContenu(i)==TypesTuiles::jardin){
+            tuilePlace->setContenu(i, TypesTuiles::champs);
+            placementChamps = i;
+            hasJardin = true;
+            break;
+        }
+    }
+
+
     bool insere = true;
     vector<int> extensions = controller->getExtensions();
     for(size_t i=0; i<extensions.size();i++){
@@ -158,9 +176,21 @@ void VuePartie::on_bouttonValiderTuile_clicked()
     }
 
     if(insere==true){
+
+        //Remettre le champs en jardin et le champ en auberge pour le placement des meeples
+        if(hasAuberge==true){
+            tuilePlace->setContenu(placementChamps, TypesTuiles::auberge);
+        }
+        if(hasJardin==true){
+            tuilePlace->setContenu(placementChamps, TypesTuiles::jardin);
+        }
+
          placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
          placerMeeple(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace); // placerMeeple appellera placerTuile
          controller->nextTour();
+         ui->numTour->display(controller->getTour());
+         ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getName()));
+         ui->nbrMeepleRestant->display(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getNbrMeeples());
          piocherCarte();
     }
     else{
