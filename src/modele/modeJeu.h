@@ -52,9 +52,6 @@ class Standard : public ModeJeu{
              return false;
          }
 
-         newTuile.ReplaceParChamps();
-
-
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
@@ -224,8 +221,6 @@ class AubergesEtCathedrales:public ModeJeu{
              return false;
          }
 
-         newTuile.ReplaceParChamps();
-
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
@@ -282,7 +277,6 @@ class Paysan: public ModeJeu{
              return false;
          }
 
-         newTuile.ReplaceParChamps();
 
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
@@ -341,8 +335,7 @@ class Abbe : public ModeJeu{
              return false;
          }
 
-         newTuile.ReplaceParChamps();
-
+ 
         if(plateau->existeTuile(x,y-1)){
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
