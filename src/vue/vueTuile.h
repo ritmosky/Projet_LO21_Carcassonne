@@ -5,6 +5,11 @@
 #include "../modele/tuile.h"
 #include <vector>
 #include "vueContenuTuile.h"
+
+
+#include "vueContenuTuile.h"
+#include "../modele/tuile.h"
+#include "ui_vueTuile.h"
 namespace Ui {
 class VueTuile;
 }
@@ -21,6 +26,11 @@ public:
 private:
     Ui::VueTuile *ui;
     vector<VueContenuTuile*> tabContenuTuile;
+
+
+//    delete tabContenuTuile[indideCase];
+    // Créer ton ContenuTuile avec le nouveau constructeur
+//    add ce nouveau contenuTuile dans tabContenuTuile[indiceCase]
 };
 
 #endif // VUETUILE_H
