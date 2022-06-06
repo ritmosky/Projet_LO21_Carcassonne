@@ -5,11 +5,6 @@
 #include "../modele/tuile.h"
 #include <vector>
 #include "vueContenuTuile.h"
-
-
-#include "vueContenuTuile.h"
-#include "../modele/tuile.h"
-#include "ui_vueTuile.h"
 namespace Ui {
 class VueTuile;
 }
