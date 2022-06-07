@@ -18,8 +18,9 @@ class VueOuRetirerMeeple : public QDialog
     Q_OBJECT
 
 public:
-    explicit VueOuRetirerMeeple(QWidget *parent=nullptr,VuePartie* partie=nullptr,const int l=0,const int c=0,Tuile* T=nullptr,VueTuile* vt=nullptr);
+    explicit VueOuRetirerMeeple(QWidget *parent=nullptr,VuePartie* partie=nullpt);
     ~VueOuRetirerMeeple();
+
     void retirerM(VueTuile& vt);
     void printTuile(Tuile& tuile);
 
@@ -29,11 +30,6 @@ private slots:
 private:
     Ui::VueOuRetirerMeeple *ui;
     VuePartie* partie;
-    Tuile* tuile;
-    VueTuile* vTuile;
-    int Nligne;
-    int NCol;
-
 };
 
 #endif // VUEOURETIRERMEEPLE_H
