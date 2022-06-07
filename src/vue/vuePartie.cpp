@@ -146,7 +146,7 @@ void VuePartie::on_zoomOut_clicked()
 
 void VuePartie::on_bouttonValiderTuile_clicked()
 {
-    //Changement du jardin et de l'auberge en jardin dans l'extension Paysan et AubergesEtCathédrales
+    //Changement du jardin et de l'auberge en jardin dans l'extension Paysan et AubergesEtCathédrales test
     bool hasJardin = false;
     bool hasAuberge = false;
     int placementChamps = 0;
