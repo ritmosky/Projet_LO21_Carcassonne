@@ -82,7 +82,7 @@ void vueOuPlacerMeeple::on_c1_clicked(){
 }
 
 void vueOuPlacerMeeple::on_c2_clicked(){
-    cout<<"\nPlacer le Meeple sur c2 : "<< tuile->getContenance()[1];
+    cout<<"\nPlacer le Meeple sur c2 : "<< tuile->getContenance()[2];
     partie->updateVueTuileM(this->Nligne, this->Ncol, 1, tuile);
 }
 
