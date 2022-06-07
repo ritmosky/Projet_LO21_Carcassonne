@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>vueOuPlacerMeeple</class>
+ <widget class="QDialog" name="vueOuPlacerMeeple">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>418</width>
+    <height>370</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPlainTextEdit" name="text">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>160</y>
+     <width>301</width>
+     <height>74</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Sur quelle partie voulez poser le Meeple ?</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>10</y>
+     <width>191</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="affichageTuile">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="c0">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>250</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c0</string>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c1">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>250</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c1</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c2">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>250</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c2</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c3">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>280</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c3</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c7">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>280</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c7</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c8">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>280</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c8</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c5">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>310</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c5</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c6">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>310</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c6</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="c4">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>310</y>
+     <width>61</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>c4</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>c0</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>150</x>
+     <y>270</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c1</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>270</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c2</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>270</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c3</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c4</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c5</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c6</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>150</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c7</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>150</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>c8</sender>
+   <signal>clicked()</signal>
+   <receiver>vueOuPlacerMeeple</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>208</x>
+     <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
