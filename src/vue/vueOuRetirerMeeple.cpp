@@ -92,7 +92,7 @@ void VueOuRetirerMeeple::retirerM(VueTuile& vt){
     else{
         // le booléen false indique qu'on retire le meeple
         // pour l'ajout de meeple on met true à la place
-        partie->updateVueTuileM(72,72,p,tuile,false);
+        partie->updateVueTuileM(Nligne,NCol,p,tuile,false);
     }
 }
 
