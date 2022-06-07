@@ -73,45 +73,45 @@ void vueOuPlacerMeeple::setTuile(Tuile& tuile){
 
 void vueOuPlacerMeeple::on_c0_clicked(){
     cout<<"\nPlacer le Meeple sur c0 : "<< tuile->getContenance()[0];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 0, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 0, tuile);
 }
 
 void vueOuPlacerMeeple::on_c1_clicked(){
     cout<<"\nPlacer le Meeple sur c1 : "<< tuile->getContenance()[1];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 1, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 1, tuile);
 }
 
 void vueOuPlacerMeeple::on_c2_clicked(){
     cout<<"\nPlacer le Meeple sur c2 : "<< tuile->getContenance()[2];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 1, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 1, tuile);
 }
 
 void vueOuPlacerMeeple::on_c3_clicked(){
     cout<<"\nPlacer le Meeple sur c3 : "<< tuile->getContenance()[3];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 3, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 3, tuile);
 }
 
 void vueOuPlacerMeeple::on_c4_clicked(){
     cout<<"\nPlacer le Meeple sur c4 : "<< tuile->getContenance()[4];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 4, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 4, tuile);
 }
 
 void vueOuPlacerMeeple::on_c5_clicked(){
     cout<<"\nPlacer le Meeple sur c5 : "<< tuile->getContenance()[5];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 5, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 5, tuile);
 }
 
 void vueOuPlacerMeeple::on_c6_clicked(){
     cout<<"\nPlacer le Meeple sur c6 : "<< tuile->getContenance()[6];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 6, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 6, tuile);
 }
 
 void vueOuPlacerMeeple::on_c7_clicked(){
     cout<<"\nPlacer le Meeple sur c7 : "<< tuile->getContenance()[7];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 7, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 7, tuile);
 }
 
 void vueOuPlacerMeeple::on_c8_clicked(){
     cout<<"\nPlacer le Meeple sur c8 : "<< tuile->getContenance()[8];
-    partie->updateVueTuileM(this->Nligne, this->Ncol, 8, tuile);
+    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 8, tuile);
 }
