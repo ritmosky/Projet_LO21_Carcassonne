@@ -8,8 +8,6 @@ VueContenuTuile::VueContenuTuile(TypesTuiles type, bool bouc, QWidget *parent) :
     bouclier(bouc)
 {
     ui->setupUi(this);
-//    this->resize(75,75);
-//    ui->nomTypeTuile->resize(75,75);
     setNomCouleurSansM();
 }
 
@@ -165,8 +163,4 @@ void VueContenuTuile::setNomCouleurSansM(){
     }
     ui->nomTypeTuile->setAlignment(Qt::AlignCenter);
 }
-
-
-
-
 
