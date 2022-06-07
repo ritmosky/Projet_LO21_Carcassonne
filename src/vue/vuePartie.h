@@ -28,7 +28,8 @@ public:
     void retirerMeeple(const int Nligne,const int NCol,Tuile* tuile);
 
     void placerTuile(const int Nligne,const int NCol,Tuile* tuile);
-    void updateVueTuileM(int l, int c, int p, Tuile* T, bool add = true);
+    void updateVueTuileAddM(int l, int c, int p, Tuile* T);
+    void updateVueTuileRemoveM();
 
     Tuile *tuilePlace;
     VueTuile* vueTuilePlace ;
