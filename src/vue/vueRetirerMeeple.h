@@ -18,7 +18,7 @@ class VueRetirerMeeple : public QDialog
     Q_OBJECT
 
 public:
-    explicit VueRetirerMeeple(QWidget *parent = nullptr, VuePartie* partie = nullptr, const int l = 0, const int c = 0, Tuile* t = nullptr);
+    explicit VueRetirerMeeple(QWidget *parent = nullptr, VuePartie* partie = nullptr);
     ~VueRetirerMeeple();
 
 private slots:
@@ -29,9 +29,6 @@ private slots:
 private:
     Ui::VueRetirerMeeple *ui;
     VuePartie* partie;
-    int Nligne;
-    int NCol;
-    Tuile* tuile;
 };
 
 #endif // VUERETIRERMEEPLE_H
