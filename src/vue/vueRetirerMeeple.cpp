@@ -6,7 +6,7 @@
 
 
 
-VueRetirerMeeple::VueRetirerMeeple(QWidget *parent, VuePartie* part):
+VueRetirerMeeple::VueRetirerMeeple(VuePartie* part, QWidget *parent):
     QDialog(parent),
     ui(new Ui::VueRetirerMeeple),
     partie(part)
@@ -22,14 +22,13 @@ VueRetirerMeeple::~VueRetirerMeeple(){
 
 
 void VueRetirerMeeple::on_oui_clicked(){
-    cout << "\n Il y a un Espace complet";
+    cout << "\n##### Il y a un Espace complet\n";
     // ---------- Retrait du MEEPLE // ---------- //
-    VueOuRetirerMeeple* affichage = new VueOuRetirerMeeple(nullptr,partie);
+    VueOuRetirerMeeple* affichage = new VueOuRetirerMeeple(partie,nullptr);
     affichage->show();
 }
 
 
 void VueRetirerMeeple::on_non_clicked(){
-    cout << "\n Il n\'y a aucun Espace complet";
+    cout << "\n##### Il n\'y a aucun Espace complet -> aucun meeple à retirer\n";
 }
-
