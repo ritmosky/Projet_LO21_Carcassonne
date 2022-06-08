@@ -25,11 +25,12 @@ public:
 
     void placerMeeple(const int Nligne, const int NCol,Tuile* tuile);
 
-    void retirerMeeple(const int Nligne,const int NCol,Tuile* tuile);
+    void retirerMeeple();
 
     void placerTuile(const int Nligne,const int NCol,Tuile* tuile);
+
     void updateVueTuileAddM(int l, int c, int p, Tuile* T);
-    void updateVueTuileRemoveM();
+    void updateVueTuileRemoveM(int l, int c);
 
     Tuile *tuilePlace;
     VueTuile* vueTuilePlace ;
