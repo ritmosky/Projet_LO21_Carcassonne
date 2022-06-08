@@ -18,7 +18,7 @@ class VueRetirerMeeple : public QDialog
     Q_OBJECT
 
 public:
-    explicit VueRetirerMeeple(QWidget *parent = nullptr, VuePartie* partie = nullptr);
+    explicit VueRetirerMeeple(VuePartie* partie=nullptr,QWidget *parent=nullptr);
     ~VueRetirerMeeple();
 
 private slots:
