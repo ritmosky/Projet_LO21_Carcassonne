@@ -1,4 +1,5 @@
 #include "vuePartie.h"
+#include "QtWidgets/qlineedit.h"
 #include "ui_vuePartie.h"
 #include "vueScore1Joueur.h"
 #include "vuePlacementMeeple.h"
@@ -91,9 +92,9 @@ void VuePartie::setPlateau(){
 // PLACER MEEPLE
 void VuePartie::placerMeeple(const int Nligne, const int NCol,Tuile* tuile){
     // Appel à la fenêtre qui demande placement si le joueur possède encore des Meeples
-    Joueur joueur = controller->getNumJoueurActu();
-    if ( joueur.getNbrMeeples() > 0){
-        cout<<"Demande ajouter Meeple"<<endl;
+    int nbM = controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getNbrMeeples();
+    if ( nbM > 0){
+        cout<<"\n---------- Demande à ajouter un Meeple ----------\n";
         vuePlacementMeeple* affichage = new vuePlacementMeeple(nullptr,this,Nligne,NCol,tuile);
         affichage->show();
     }
@@ -102,13 +103,12 @@ void VuePartie::placerMeeple(const int Nligne, const int NCol,Tuile* tuile){
 
 
 // RETIRER MEEPLE
-void VuePartie::retirerMeeple(const int Nligne,const int NCol,Tuile* tuile){
+void VuePartie::retirerMeeple(){
     // Appel à la fenêtre qui demande placement si le joueur n'a pas plus de Meeples fixés
-    Joueur joueur = controller->getNumJoueurActu();
-    //joueur.getId()
-    if ( joueur.getNbrMeeples() > 0){  // changer le nombre de meeple max
-        cout<<"Demande retirer Meeple"<<endl;
-        VueRetirerMeeple* affichage = new VueRetirerMeeple(nullptr,this,Nligne,NCol,tuile);
+    int nbM = controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getNbrMeeples();
+    if ( nbM > 0){  // changer le nombre de meeple max
+        cout<<"\n---------- Demande à retirer un Meeple ----------\n";
+        VueRetirerMeeple* affichage = new VueRetirerMeeple(this,nullptr);
         affichage->show();
     }
 }
@@ -146,17 +146,13 @@ void VuePartie::updateVueTuileAddM(int l, int c, int p, Tuile* T){
 
 
 // la fonction permet de changer l'affichage d'une tuile en retirant un MEEPLE
-void VuePartie::updateVueTuileRemoveM(){
-
-        //VueTuile* vueTuilePlace = new VueTuile(T);
-        int line(ui->plateau->currentRow());
-        int col(ui->plateau->currentColumn());
-        //vueTuilePlace = ui->plateau->take(line,col);
-        cout<<"\n aaaaa";
-        ui->plateau->setCellWidget(line,col,vueTuilePlace);
-        cout<<"\n bbbb";
-        //placerTuile(l,c,T);
-        //ui->plateau->
+void VuePartie::updateVueTuileRemoveM(int l, int c){
+    // regarder dans meeple si une adresse de ContenaceTuile de la tuile s'y trouve
+    cout << "\n##### Je retire le meeple sur la tuile en ligne = "<< l << " et col = "<< c;
+    cout << "\ntuile = "<< controller->getPlateau()->existeTuile(c-1,l-1); //col,line
+    Tuile* T = controller->getPlateau()->existeTuile(c-1,l-1);
+    VueTuile* vT = new VueTuile(T);
+    ui->plateau->setCellWidget(l-1,c-1,vT);
 }
 
 
@@ -216,10 +212,10 @@ void VuePartie::on_bouttonValiderTuile_clicked(){
          }
 
          placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
+
          placerMeeple(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace); // placerMeeple appellera placerTuile
-
-
-         retirerMeeple(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
+         cout << "\n";
+         retirerMeeple();
 
          controller->nextTour();
          ui->numTour->display(controller->getTour());
