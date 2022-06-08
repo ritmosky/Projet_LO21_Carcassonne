@@ -18,14 +18,14 @@ class VueOuRetirerMeeple : public QDialog
     Q_OBJECT
 
 public:
-    explicit VueOuRetirerMeeple(QWidget *parent=nullptr,VuePartie* partie=nullpt);
+    explicit VueOuRetirerMeeple(VuePartie* partie=nullptr,QWidget *parent=nullptr);
     ~VueOuRetirerMeeple();
 
-    void retirerM(VueTuile& vt);
-    void printTuile(Tuile& tuile);
+    int containMeeple(VueTuile& vt);
+    void setTuile(Tuile& tuile,VueTuile& vt);
 
 private slots:
-    void on_OUI_clicked();
+    void on_OK_clicked();
 
 private:
     Ui::VueOuRetirerMeeple *ui;
