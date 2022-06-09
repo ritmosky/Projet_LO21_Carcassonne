@@ -12,10 +12,12 @@
 
 
 
+
 using namespace std;
 
 class Controller{
 
+    
     private:
 
         bool fini;
@@ -34,10 +36,11 @@ class Controller{
 
     public:
         //Constructeur
+    Controller() = default;
         Controller(int nj);
         Controller(int nj,vector<string> listeNomJoueur,vector<int> listeNumExtensions);
         //Destructeur
-        ~Controller();
+        ~Controller() = default;
         Controller(const Controller&) = delete;
         Controller& operator=(const Controller&) = delete ;
 
@@ -46,6 +49,10 @@ class Controller{
         inline bool getRiviereActive() const {return riviereActive;}
         inline bool getAubergeActive() const {return aubergeActive;}
 
+     Espace* getEspace(const ContenanceTuile& c);
+    Espace* getEspaceTuile(const ContenanceTuile& c,const vector<Espace*> e);
+    void creerEspace(const Tuile* T);
+    vector<Espace*> fusionVoisin(const Tuile* tuile);
 
 
         //permet de placer la tuile sur le plateau

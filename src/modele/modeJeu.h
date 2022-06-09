@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include "tuile.h"
-#include "Meeple.h"
+#include "meeple.h"
 #include "espace.h"
 #include  "plateau.h"
 

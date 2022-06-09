@@ -92,7 +92,7 @@ public :
     inline const Tuile* getVoisinDroite() const {return voisin_droite;}
 
     const vector<ContenanceTuile> getContenance() const {return contenance; }
-    const ContenanceTuile getContenance(int i) const {return contenance[i]; }
+    const ContenanceTuile& getContenance(int i) const {return contenance[i]; }
     const TypesTuiles& getContenu(int i) const { return contenance[i].getType() ; }
     void changerOrientation();
 
@@ -147,3 +147,4 @@ ostream& operator<<(ostream& f, const ContenanceTuile& T);
 
 
 #endif /* tuile_h */
+

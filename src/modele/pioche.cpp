@@ -1062,10 +1062,10 @@ Pioche::Pioche(vector<int> mode) : tuiles() {
             // x1 " Ville angle avec bouclier, Route 'L' et Auberge "
 
                     for (int i = 0 ; i < 1 ; i++){
-                        vector<ContenanceTuile> c(9);
-                    c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(champs,2);
-                    c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(auberge, 8);c[3] = ContenanceTuile(route,3);
-                    c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
+        vector<ContenanceTuile> c(9);
+        c[0] = ContenanceTuile(ville,0);  c[1] = ContenanceTuile(ville,1);  c[2] = ContenanceTuile(auberge,2);
+        c[7] = ContenanceTuile(ville,7);  c[8] = ContenanceTuile(route, 8); c[3] = ContenanceTuile(route,3);
+        c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(route,5);  c[4] = ContenanceTuile(champs,4);
                         c[0].setBouclier();
                         Tuile T(c);
                         tuiles.push_back(T);
@@ -1325,9 +1325,9 @@ Pioche::Pioche(vector<int> mode) : tuiles() {
 
                             for (int i = 0 ; i < 2 ; i++){
                                 vector<ContenanceTuile> c(9);
-                            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
-                            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
-                            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
+            c[0] = ContenanceTuile(champs,0);  c[1] = ContenanceTuile(champs,1);  c[2] = ContenanceTuile(champs,2);
+            c[7] = ContenanceTuile(champs,7);c[8] = ContenanceTuile(rivière, 8);c[3] = ContenanceTuile(rivière,3);
+            c[6] = ContenanceTuile(champs,6);  c[5] = ContenanceTuile(rivière,5);  c[4] = ContenanceTuile(champs,4);
                                 Tuile T(c);
                                 tuiles.insert(tuiles.begin(), T);
                             }

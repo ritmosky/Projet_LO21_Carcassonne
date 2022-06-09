@@ -4,18 +4,38 @@
 
 
 
-void Espace::addContenance(const ContenanceTuile& C){
-    if (C.getType() == type){
-        contenus.push_back(&C);
+void Espace::addContenance(const ContenanceTuile* C){
+    if ( C->getType() == this->getType() )
+    {
+        for (int i = 0 ; i < contenus.size() ; i++ )
+        {
+            if (C == contenus[i]){ return; }
+        }
+    contenus.push_back(C);
+
     }
 }
-
+ 
 
 
 void Espace::addMeeple(const Meeple& M){
     meeples.push_back(&M);
     nbrMeeple += 1;
 }
+
+Espace* Espace::fusionEspace(Espace* e){
+    if (type == e->type)
+    {
+    nbrMeeple += e->nbrMeeple;
+    nbrBouclier += e->nbrBouclier;
+    contenus.insert( contenus.end(), contenus.begin(), e->contenus.end() );
+    meeples.insert( meeples.end(), meeples.begin(), e->meeples.end() );
+    }
+    return this;
+}
+
+
+
 
 
 
