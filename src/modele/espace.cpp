@@ -12,24 +12,42 @@ void Espace::addContenance(const ContenanceTuile* C){
             if (C == contenus[i]){ return; }
         }
     contenus.push_back(C);
-
+        
     }
 }
  
 
 
-void Espace::addMeeple(const Meeple& M){
-    meeples.push_back(&M);
+void Espace::addMeeple(const Meeple* M){
+    meeples.push_back(M);
     nbrMeeple += 1;
 }
 
 Espace* Espace::fusionEspace(Espace* e){
     if (type == e->type)
     {
+        
     nbrMeeple += e->nbrMeeple;
     nbrBouclier += e->nbrBouclier;
-    contenus.insert( contenus.end(), contenus.begin(), e->contenus.end() );
-    meeples.insert( meeples.end(), meeples.begin(), e->meeples.end() );
+        
+        cout<< " ------- Espace initiaux : --------- " << endl;
+        for ( auto esp : contenus){cout<<*esp<<endl;}
+        cout<< " ------- Espace qu'on va ajouter : --------- " << endl;
+        for ( auto esp : e->contenus){cout<<*esp<<endl;}
+
+        for ( int i = 0 ; i < e->getNbrContenanceTuile() ; i++){
+            addContenance(e->getContenus(i) );
+            //contenus.insert( contenus.end(), e->contenus.begin(), e->contenus.end() );
+        }
+        cout<< " ------- Fusion des Espaces : --------- " << endl;
+        for ( auto esp : contenus){cout<<*esp<<endl;}
+        
+        for ( int i = 0 ; i < e->getNbrMeeple() ; i++){
+            addMeeple(e->getMeeples(i));
+            //contenus.insert( contenus.end(), e->contenus.begin(), e->contenus.end() );
+        }
+    meeples.insert( meeples.end(), e->meeples.begin(), e->meeples.end() );
+    
     }
     return this;
 }

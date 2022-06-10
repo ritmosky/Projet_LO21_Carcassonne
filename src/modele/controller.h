@@ -49,10 +49,10 @@ class Controller{
         inline bool getRiviereActive() const {return riviereActive;}
         inline bool getAubergeActive() const {return aubergeActive;}
 
-     Espace* getEspace(const ContenanceTuile& c);
+     Espace* getEspace(const ContenanceTuile* c);
     Espace* getEspaceTuile(const ContenanceTuile& c,const vector<Espace*> e);
     void creerEspace(const Tuile* T);
-    vector<Espace*> fusionVoisin(const Tuile* tuile);
+    void fusionVoisin(const Tuile* tuile);
 
 
         //permet de placer la tuile sur le plateau

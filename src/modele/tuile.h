@@ -93,6 +93,7 @@ public :
 
     const vector<ContenanceTuile> getContenance() const {return contenance; }
     const ContenanceTuile& getContenance(int i) const {return contenance[i]; }
+    const ContenanceTuile* getContenancePointeur(int i) const {return &contenance[i]; }
     const TypesTuiles& getContenu(int i) const { return contenance[i].getType() ; }
     void changerOrientation();
 

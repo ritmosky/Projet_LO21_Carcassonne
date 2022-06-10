@@ -213,10 +213,11 @@
     }
 
 
-Espace* Controller::getEspace(const ContenanceTuile& c) {
+
+Espace* Controller::getEspace(const ContenanceTuile* c) {
     for (Espace* esp : plateau->getEspaces() ){
         for (int i = 0; i < esp->getNbrContenanceTuile() ; i++){
-            if (c == *(esp->getContenus(i)) )
+            if (c == (esp->getContenus(i)) )
                 { return esp; }
         }
     }
@@ -308,7 +309,18 @@ void Controller::creerEspace(const Tuile* T){
     // Cas champ séparé par ville
     else if (T->getContenu(0) == champs && T->getContenu(1) == ville && T->getContenu(2) == champs )
     {
+        Espace* e = new Espace(T->getContenu(0));
+        e->addContenance(&(T->getContenance(0)));
+        Espaces_créées.push_back(e);
         getEspaceTuile(T->getContenance(0), Espaces_créées)->addContenance(&(T->getContenance(2)));
+
+    }
+    else if (T->getContenu(0) == champs && T->getContenu(7) == ville && T->getContenu(6) == champs )
+    {
+        Espace* e = new Espace(T->getContenu(0));
+        e->addContenance(&(T->getContenance(0)));
+        Espaces_créées.push_back(e);
+        getEspaceTuile(T->getContenance(0), Espaces_créées)->addContenance(&(T->getContenance(6)));
 
     }
         // Voisin arrière
@@ -347,7 +359,12 @@ void Controller::creerEspace(const Tuile* T){
               getEspaceTuile(T->getContenance(i-1), Espaces_créées)->addContenance(&(T->getContenance(i+1)));
 
           }
-        else if (getEspaceTuile(T->getContenance(i+1), Espaces_créées) == nullptr &&T->getContenu(i) == jardin && T->getContenu(i-1) == champs && T->getContenu(i+1) == champs  )
+        else if (getEspaceTuile(T->getContenance(i+2), Espaces_créées) != nullptr && (T->getContenu(i+1) == jardin || T->getContenu(i+1) == abbaye || T->getContenu(i+1) == auberge)&& T->getContenu(i) == champs && T->getContenu(i+2) == champs  )
+          {
+              getEspaceTuile(T->getContenance(i+2), Espaces_créées)->addContenance(&(T->getContenance(i)));
+
+          }
+        else if (getEspaceTuile(T->getContenance(i+1), Espaces_créées) == nullptr && (T->getContenu(i) == jardin || T->getContenu(i) == abbaye || T->getContenu(i) == auberge)&& T->getContenu(i-1) == champs && T->getContenu(i+1) == champs  )
           {
               getEspaceTuile(T->getContenance(i-1), Espaces_créées)->addContenance(&(T->getContenance(i+1)));
 
@@ -363,7 +380,13 @@ void Controller::creerEspace(const Tuile* T){
         }
         
         
-                  
+        // Cas champ séparé par ville
+                  else  if (i % 2 == 0 && T->getContenu(i) == champs && T->getContenu(i+1) == ville && T->getContenu(i+2) == champs )
+                    {
+                        getEspaceTuile(T->getContenance(i), Espaces_créées)->addContenance(&(T->getContenance(i+2)));
+
+                    }
+                    
             
             else {
 // Cas champs coins opposés
@@ -379,13 +402,7 @@ void Controller::creerEspace(const Tuile* T){
                             getEspaceTuile(T->getContenance(2), Espaces_créées)->addContenance(&(T->getContenance(6)));
 
                         }
-    // Cas champ séparé par ville
-                if (i % 2 == 0 && T->getContenu(i) == champs && T->getContenu(i+1) == ville && T->getContenu(i+2) == champs )
-                {
-                    getEspaceTuile(T->getContenance(i), Espaces_créées)->addContenance(&(T->getContenance(i+2)));
-
-                }
-                
+    
             
 // Voisin arrière
 
@@ -393,7 +410,12 @@ void Controller::creerEspace(const Tuile* T){
                 //cout << "On ajoute " << T->getContenance(i-1) << " à " << T->getContenance(i)<<endl;
                 getEspaceTuile(T->getContenance(i), Espaces_créées)->addContenance(&(T->getContenance(i-1)));
             }
-            else if (getEspaceTuile(T->getContenance(i-1), Espaces_créées) == nullptr) {
+            else if (getEspaceTuile(T->getContenance(i), Espaces_créées) == nullptr && T->getContenu(i) == T->getContenu(i+1) && getEspaceTuile(T->getContenance(i+1), Espaces_créées) != nullptr) {
+                getEspaceTuile(T->getContenance(i+1), Espaces_créées)->addContenance(&(T->getContenance(i)));
+
+            }
+                
+            else if (getEspaceTuile(T->getContenance(i-1), Espaces_créées) == nullptr ) {
                 //cout << "On crée un espace à " << T->getContenance(i-1) << endl;
                 Espace* e = new Espace(T->getContenu(i-1));
                 e->addContenance(&(T->getContenance(i-1)));
@@ -407,7 +429,11 @@ void Controller::creerEspace(const Tuile* T){
                 //cout << "On ajoute " << T->getContenance(i+1) << " à " << T->getContenance(i)<<endl;
                 getEspaceTuile(T->getContenance(i), Espaces_créées)->addContenance(&(T->getContenance(i+1)));
             }
-            else if (getEspaceTuile(T->getContenance(i+1), Espaces_créées) == nullptr) {
+            else if (getEspaceTuile(T->getContenance(i+1), Espaces_créées) == nullptr && T->getContenu(i+1) == T->getContenu(i+2) && getEspaceTuile(T->getContenance(i+2), Espaces_créées) != nullptr) {
+                getEspaceTuile(T->getContenance(i+2), Espaces_créées)->addContenance(&(T->getContenance(i+1)));
+
+            }
+            else if (getEspaceTuile(T->getContenance(i+1), Espaces_créées) == nullptr  ) {
                 //cout << "On crée un espace à " << T->getContenance(i+1) << endl;
                 Espace* e = new Espace(T->getContenu(i+1));
                 e->addContenance(&(T->getContenance(i+1)));
@@ -432,17 +458,17 @@ void Controller::creerEspace(const Tuile* T){
     // On ajoute les espaces créés au plateau
 
     for (auto esp : Espaces_créées)
-        {   this->getPlateau()->ajouterEspace(esp);
+        {
+            this->getPlateau()->ajouterEspace(esp);
         }
 }
     
 
 
-vector<Espace*> Controller::fusionVoisin(const Tuile* tuile)
+void Controller::fusionVoisin(const Tuile* tuile)
 {
-    vector<Espace*> Espaces_fusionnés;
     
-    
+
 // Voisin Haut
     
     
@@ -453,61 +479,71 @@ vector<Espace*> Controller::fusionVoisin(const Tuile* tuile)
         
         if ( tuile->getContenu(0) == tuile->getVoisinHaut()->getContenu(6))
         {
-    getEspace(tuile->getContenance(0))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenance(6)));
+            Espace* toDelete = getEspace(tuile->getVoisinHaut()->getContenancePointeur(6));
+    getEspace(tuile->getContenancePointeur(0))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenancePointeur(6)));
             // Si la fusion a lieu on supprime l'espace du voisin du haut
-            this->getPlateau()->supprimerEspace(getEspace(tuile->getVoisinHaut()->getContenance(6)));
+            this->getPlateau()->supprimerEspace(toDelete);
         }
         
     // Deuxième Contenu
 
     if ( tuile->getContenu(1) == tuile->getVoisinHaut()->getContenu(5)
-            && getEspace(tuile->getContenance(1)) != getEspace(tuile->getContenance(0)) )
+            && getEspace(tuile->getVoisinHaut()->getContenancePointeur(5)) != getEspace(tuile->getContenancePointeur(1)) )
         {
-    getEspace(tuile->getContenance(1))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenance(5)));
+            Espace* toDelete = getEspace(tuile->getVoisinHaut()->getContenancePointeur(5));
+
+    getEspace(tuile->getContenancePointeur(1))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenancePointeur(5)));
             // Si la fusion a lieu on supprime l'espace du voisin du haut
-            this->getPlateau()->supprimerEspace(getEspace(tuile->getVoisinHaut()->getContenance(5)));
+            this->getPlateau()->supprimerEspace(toDelete);
         }
   // Troisième Contenu
         if ( tuile->getContenu(2) == tuile->getVoisinHaut()->getContenu(4)
-                && getEspace(tuile->getContenance(2)) != getEspace(tuile->getContenance(1)) )
+                && getEspace(tuile->getVoisinHaut()->getContenancePointeur(4)) != getEspace(tuile->getContenancePointeur(2)) )
             {
-        getEspace(tuile->getContenance(2))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenance(4)));
+                Espace* toDelete = getEspace(tuile->getVoisinHaut()->getContenancePointeur(4));
+
+        getEspace(tuile->getContenancePointeur(2))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenancePointeur(4)));
                 // Si la fusion a lieu on supprime l'espace du voisin du haut
-                this->getPlateau()->supprimerEspace(getEspace(tuile->getVoisinHaut()->getContenance(4)));
+                this->getPlateau()->supprimerEspace(toDelete);
             }
         
     }
     
     
-    
-    
+    cout<<endl<<endl;
+
     if ( tuile->getVoisinDroite() != nullptr )
     {
         // Premier Contenu
             
-            if ( tuile->getContenu(2) == tuile->getVoisinHaut()->getContenu(0))
+            if ( tuile->getContenu(2) == tuile->getVoisinDroite()->getContenu(0))
             {
-        getEspace(tuile->getContenance(2))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenance(0)));
+                Espace* toDelete = getEspace(tuile->getVoisinDroite()->getContenancePointeur(0));
+        getEspace(tuile->getContenancePointeur(2))->Espace::fusionEspace(getEspace(tuile->getVoisinDroite()->getContenancePointeur(0)));
                 // Si la fusion a lieu on supprime l'espace du voisin du haut
-                this->getPlateau()->supprimerEspace(getEspace(tuile->getVoisinHaut()->getContenance(0)));
+                this->getPlateau()->supprimerEspace(toDelete);
             }
             
         // Deuxième Contenu
 
-        if ( tuile->getContenu(1) == tuile->getVoisinHaut()->getContenu(5)
-                && getEspace(tuile->getContenance(1)) != getEspace(tuile->getContenance(0)) )
+        if ( tuile->getContenu(3) == tuile->getVoisinDroite()->getContenu(7)
+        && getEspace(tuile->getVoisinDroite()->getContenancePointeur(7)) != getEspace(tuile->getContenancePointeur(3)) )
             {
-        getEspace(tuile->getContenance(1))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenance(5)));
+                Espace* toDelete = getEspace(tuile->getVoisinDroite()->getContenancePointeur(7));
+        getEspace(tuile->getContenancePointeur(3))->Espace::fusionEspace(getEspace(tuile->getVoisinDroite()->getContenancePointeur(7)));
                 // Si la fusion a lieu on supprime l'espace du voisin du haut
-                this->getPlateau()->supprimerEspace(getEspace(tuile->getVoisinHaut()->getContenance(5)));
+                this->getPlateau()->supprimerEspace(toDelete);
             }
       // Troisième Contenu
-            if ( tuile->getContenu(2) == tuile->getVoisinHaut()->getContenu(4)
-                    && getEspace(tuile->getContenance(2)) != getEspace(tuile->getContenance(1)) )
+        
+        cout<<getEspace(tuile->getContenancePointeur(4))<<endl;
+            if ( tuile->getContenu(4) == tuile->getVoisinDroite()->getContenu(6)
+        && getEspace(tuile->getVoisinDroite()->getContenancePointeur(6)) != getEspace(tuile->getContenancePointeur(4)) )
                 {
-            getEspace(tuile->getContenance(2))->Espace::fusionEspace(getEspace(tuile->getVoisinHaut()->getContenance(4)));
+                    Espace* toDelete = getEspace(tuile->getVoisinDroite()->getContenancePointeur(6));
+            getEspace(tuile->getContenancePointeur(4))->Espace::fusionEspace(getEspace(tuile->getVoisinDroite()->getContenancePointeur(6)));
                     // Si la fusion a lieu on supprime l'espace du voisin du haut
-                    this->getPlateau()->supprimerEspace(getEspace(tuile->getVoisinHaut()->getContenance(4)));
+                    this->getPlateau()->supprimerEspace(toDelete);
                 }
         
         
@@ -516,6 +552,37 @@ vector<Espace*> Controller::fusionVoisin(const Tuile* tuile)
     
     if ( tuile->getVoisinBas() != nullptr )
     {
+        // Premier Contenu
+            
+            if ( tuile->getContenu(4) == tuile->getVoisinBas()->getContenu(2))
+            {
+                Espace* toDelete = getEspace(tuile->getVoisinBas()->getContenancePointeur(2));
+
+        getEspace(tuile->getContenancePointeur(4))->Espace::fusionEspace(getEspace(tuile->getVoisinBas()->getContenancePointeur(2)));
+                // Si la fusion a lieu on supprime l'espace du voisin du haut
+                this->getPlateau()->supprimerEspace(toDelete);
+            }
+            
+        // Deuxième Contenu
+
+        if ( tuile->getContenu(5) == tuile->getVoisinBas()->getContenu(1)
+                && getEspace(tuile->getVoisinBas()->getContenancePointeur(1)) != getEspace(tuile->getContenancePointeur(5)) )
+            {
+                Espace* toDelete = getEspace(tuile->getVoisinBas()->getContenancePointeur(1));
+        getEspace(tuile->getContenancePointeur(5))->Espace::fusionEspace(getEspace(tuile->getVoisinBas()->getContenancePointeur(1)));
+                // Si la fusion a lieu on supprime l'espace du voisin du haut
+                this->getPlateau()->supprimerEspace(toDelete);
+            }
+      // Troisième Contenu
+            if ( tuile->getContenu(6) == tuile->getVoisinBas()->getContenu(0)
+                    && getEspace(tuile->getVoisinBas()->getContenancePointeur(0)) != getEspace(tuile->getContenancePointeur(6)) )
+                {
+                    Espace* toDelete = getEspace(tuile->getVoisinBas()->getContenancePointeur(0));
+
+            getEspace(tuile->getContenancePointeur(6))->Espace::fusionEspace(getEspace(tuile->getVoisinBas()->getContenancePointeur(0)));
+                    // Si la fusion a lieu on supprime l'espace du voisin du haut
+                    this->getPlateau()->supprimerEspace(toDelete);
+                }
         
     }
     
@@ -526,8 +593,39 @@ vector<Espace*> Controller::fusionVoisin(const Tuile* tuile)
     if ( tuile->getVoisinGauche() != nullptr )
     {
         
+        // Premier Contenu
+            
+            if ( tuile->getContenu(6) == tuile->getVoisinGauche()->getContenu(4))
+            {
+                
+                Espace* toDelete = getEspace(tuile->getVoisinGauche()->getContenancePointeur(4));
+
+        getEspace(tuile->getContenancePointeur(6))->Espace::fusionEspace(getEspace(tuile->getVoisinGauche()->getContenancePointeur(4)));
+                // Si la fusion a lieu on supprime l'espace du voisin du haut
+                this->getPlateau()->supprimerEspace(toDelete);
+            }
+            
+        // Deuxième Contenu
+        
+        if ( tuile->getContenu(7) == tuile->getVoisinGauche()->getContenu(3)
+                && getEspace(tuile->getVoisinGauche()->getContenancePointeur(3)) != getEspace(tuile->getContenancePointeur(7)) )
+            {
+                Espace* toDelete = getEspace(tuile->getVoisinGauche()->getContenancePointeur(3));
+
+    getEspace(tuile->getContenancePointeur(7))->Espace::fusionEspace(getEspace(tuile->getVoisinGauche()->getContenancePointeur(3)));
+                // Si la fusion a lieu on supprime l'espace du voisin du haut
+                this->getPlateau()->supprimerEspace(toDelete);
+            }
+      // Troisième Contenu
+            if ( tuile->getContenu(0) == tuile->getVoisinGauche()->getContenu(2)
+                    && getEspace(tuile->getVoisinGauche()->getContenancePointeur(2)) != getEspace(tuile->getContenancePointeur(0)) )
+                {
+                    Espace* toDelete = getEspace(tuile->getVoisinGauche()->getContenancePointeur(2));
+            getEspace(tuile->getContenancePointeur(0))->Espace::fusionEspace(getEspace(tuile->getVoisinGauche()->getContenancePointeur(2)));
+                    // Si la fusion a lieu on supprime l'espace du voisin du haut
+                this->getPlateau()->supprimerEspace(toDelete);
+                }
     }
     
     
-    return Espaces_fusionnés;
 }

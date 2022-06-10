@@ -31,11 +31,12 @@ public :
     inline const vector<const ContenanceTuile*> getContenus() const { return contenus; }
     inline const ContenanceTuile* getContenus(int i) const { return contenus[i]; }
     inline const vector<const Meeple*> getMeeples() const { return meeples; }
+    inline const Meeple* getMeeples(int i) const { return meeples[i]; }
     inline const size_t getNbrContenanceTuile() const { return contenus.size(); }
 
     inline void addBouclier() { nbrBouclier += 1; }
     void addContenance(const ContenanceTuile* C);
-    void addMeeple(const Meeple& M);
+    void addMeeple(const Meeple* M);
     
     Espace* fusionEspace(Espace* e);
 

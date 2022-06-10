@@ -24,7 +24,7 @@ public:
     void ajouterEspace(Espace* espace);
     void supprimerEspace(Espace* espace);
     std::vector<Tuile*> getTuiles() const{return tuiles;}
-    std::vector<Espace*> getEspaces() {return espaces;}
+    std::vector<Espace*> getEspaces() const {return espaces;}
     Tuile* existeTuile(int x,int y){
         for(Tuile* tuile : tuiles){
             if(tuile->getX() == x && tuile->getY() == y){
