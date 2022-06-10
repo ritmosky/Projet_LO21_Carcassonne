@@ -95,7 +95,7 @@ void VuePartie::placerMeeple(const int Nligne, const int NCol,Tuile* tuile){
     int nbM = controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getNbrMeeples();
     if ( nbM > 0){
         cout<<"\n---------- Demande à ajouter un Meeple ----------\n";
-        vuePlacementMeeple* affichage = new vuePlacementMeeple(nullptr,this,Nligne,NCol,tuile);
+        vuePlacementMeeple* affichage = new vuePlacementMeeple(nullptr,this,Nligne,NCol,tuile,controller);
         affichage->show();
     }
 }
