@@ -37,7 +37,7 @@ class ModeJeu{
 
     public:
         virtual bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau) = 0;
-        virtual bool validationPlacementM(TypesTuiles& tp,Meeple *m,Espace *e) = 0;
+        virtual bool validationPlacementM(const TypesTuiles& tp,Meeple *m,Espace *e) = 0;
         virtual void affichage() = 0;
 
 };
@@ -84,7 +84,12 @@ class Standard : public ModeJeu{
         return true;
 
     }
-        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+        bool validationPlacementM(const TypesTuiles& tp,Meeple *m ,Espace *e){
+
+            if(e==NULL){
+                return false;
+            }
+
             if(!e->isFree() || tp==TypesTuiles::champs){
                 return false;
             }
@@ -197,7 +202,10 @@ bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
 
     }
 
-    bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+    bool validationPlacementM(const TypesTuiles& tp,Meeple *m ,Espace *e){
+        if(e==NULL){
+            return false;
+        }
         if(!e->isFree() || tp==TypesTuiles::rivière){
             return false;
         }
@@ -253,7 +261,11 @@ class AubergesEtCathedrales:public ModeJeu{
 
     }
         // un meeple ne peut pas occuper une auberge ou une cathédrale
-        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+        bool validationPlacementM(const TypesTuiles& tp,Meeple *m ,Espace *e){
+            if(e==NULL){
+                return false;
+            }
+
             if(!e->isFree() || tp==TypesTuiles::auberge || tp==TypesTuiles::cathédrale){
                 return false;
             }
@@ -310,7 +322,10 @@ class Paysan: public ModeJeu{
         return true;
 
     }
-        bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+        bool validationPlacementM(const TypesTuiles& tp,Meeple *m ,Espace *e){
+            if(e==NULL){
+                return false;
+            }
             if(!e->isFree()) {
                 return false;
             }
@@ -369,7 +384,11 @@ class Abbe : public ModeJeu{
 
     }
 
-       bool validationPlacementM(TypesTuiles& tp,Meeple *m ,Espace *e){
+       bool validationPlacementM(const TypesTuiles& tp,Meeple *m ,Espace *e){
+           if(e==NULL){
+               return false;
+           }
+
             //Si un meeple est déjà présent sur l'espace
             if(!e->isFree()){
                 return false;
