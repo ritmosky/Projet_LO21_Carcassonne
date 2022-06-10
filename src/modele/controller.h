@@ -58,7 +58,7 @@ class Controller{
         //permet de placer la tuile sur le plateau
         void placementTuile(Tuile *newTuile,int x,int y);
         //permet de placer un meeple sur un contenu de tuile
-        void placementMeeple(Joueur* j,Meeple* m,TypeMeeple tm,int i,int x,int y);
+        void placementMeeple(Joueur* j,Meeple* m,TypesTuiles tm,int i,int x,int y);
         // Vérifie si la tuile donnée serait autorisée n'importe où sur le plateau adjacent aux autres tuiles
         bool placementTuileAutorise(Tuile newTuile);
         //Vérifie si la tuile donnée peut être placée à la position x, y sur le plateau
