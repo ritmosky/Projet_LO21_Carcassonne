@@ -72,6 +72,7 @@
         newTuile->setPosX(x);
         newTuile->setPosY(y);
         plateau->ajouterTuiles(newTuile);
+        //this->fusionVoisin(newTuile);
         //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
             newTuile->setVoisinHaut(plateau->existeTuile(x,y-1));
