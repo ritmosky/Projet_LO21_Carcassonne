@@ -84,6 +84,7 @@ void VuePartie::setPlateau(){
 //    ui->plateau->horizontalHeader()->setVisible(false);
 //    ui->plateau->verticalHeader()->setVisible(false);
     Tuile *premiereTuile = this->controller->getPioche()->piocher(this->controller->getTour(), this->controller->getRiviereActive());
+    //controller->creerEspace(premiereTuile);
     placerTuile(72,72, premiereTuile);
     premiereTuile->ReplaceParChamps();
 }
@@ -210,7 +211,7 @@ void VuePartie::on_bouttonValiderTuile_clicked(){
          if(hasJardin==true){
              tuilePlace->setContenu(placementChamps, TypesTuiles::jardin);
          }
-
+        //controller->creerEspace(tuilePlace);
          placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
 
          placerMeeple(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace); // placerMeeple appellera placerTuile
