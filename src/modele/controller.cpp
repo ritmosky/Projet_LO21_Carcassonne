@@ -205,6 +205,7 @@
            return ;
         }
         else{
+            this->getJoueurs().at(getTour()%(getJoueurs().size()));
             tour++;
         }
     }
