@@ -17,7 +17,7 @@ class vueOuPlacerMeeple : public QDialog
     Q_OBJECT
 
 public:
-    explicit vueOuPlacerMeeple(int l,int c, QWidget *parent = nullptr, VuePartie* part = nullptr, Tuile* t = nullptr);
+    explicit vueOuPlacerMeeple(int l,int c, QWidget *parent = nullptr, VuePartie* part = nullptr, Tuile* t = nullptr,Controller *con=nullptr);
     ~vueOuPlacerMeeple();
     void setTuile(Tuile&);
 
@@ -38,6 +38,7 @@ private:
     int Nligne;
     int Ncol;
     Tuile* tuile;
+    Controller *controller;
 };
 
 #endif // VUEOUPLACERMEEPLE_H
