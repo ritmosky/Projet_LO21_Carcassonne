@@ -1,40 +1,43 @@
-#ifndef VUEPLACEMENTMEEPLE_H
-#define VUEPLACEMENTMEEPLE_H
-
+#include "vuePlacementMeeple.h"
+#include "modele/controller.h"
 #include "modele/tuile.h"
-#include <QDialog>
-#include <QAbstractButton>
-#include "vuePartie.h"
-#include "vueOuPlacerMeeple.h"
+#include "ui_vuePlacementMeeple.h"
 
 
-namespace Ui {
-class vuePlacementMeeple;
+
+vuePlacementMeeple::vuePlacementMeeple(QWidget *parent, VuePartie* partie, const int l, const int c ,Tuile* tuile,Controller* con):
+    QDialog(parent),
+    ui(new Ui::vuePlacementMeeple),
+    partie(partie),
+    Nligne(l),
+    NCol(c) ,
+    tuile(tuile),
+    controller(con)
+{
+    ui->setupUi(this);
 }
 
-class vuePlacementMeeple : public QDialog
-{
-    Q_OBJECT
 
-public:
-    explicit vuePlacementMeeple(QWidget *parent = nullptr, VuePartie* partie = nullptr, const int l = 0, const int c = 0,Tuile* tuile = nullptr,Controller* con=nullptr);
-    ~vuePlacementMeeple();
 
-    inline int getNligne()const {return Nligne;}
-    inline int getNCol()const {return NCol;}
+vuePlacementMeeple::~vuePlacementMeeple(){
+    delete ui;
+}
 
-private slots:
 
-    void on_Non_clicked();
-    void on_Oui_clicked();
 
-private:
-    Ui::vuePlacementMeeple *ui;
-    VuePartie* partie;
-    const int Nligne;
-    const int NCol;
-    Tuile* tuile;
-    Controller* controller;
-};
+void vuePlacementMeeple::on_Non_clicked(){
+    cout<<"Je clique sur non, je ne veux pas placer de meeple"<<endl;
+}
 
-#endif // VUEPLACEMENTMEEPLE_H
+
+
+void vuePlacementMeeple::on_Oui_clicked(){
+    cout<<"Je clique sur oui, je veux placer un meeple";
+    cout << "\nligne = " << Nligne+1 << " col = " << NCol+1;
+    cout<<"\nChoisir le contenu de la tuile d\'adresse :" << tuile;
+    // ---------- Placement du MEEPLE // ---------- //
+    vueOuPlacerMeeple* affichage = new vueOuPlacerMeeple(Nligne,NCol,nullptr,partie,tuile,controller);
+    affichage->show();
+}
+
+
