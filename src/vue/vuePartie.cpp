@@ -117,7 +117,6 @@ void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile* tuile){
 
     VueTuile* vueTuilePlace = new VueTuile(tuile);
     ui->plateau->setCellWidget(Nligne,NCol, vueTuilePlace);
-    tuile->ReplaceParChamps();
     this->controller->placementTuile(tuile,NCol,Nligne);
 
 }

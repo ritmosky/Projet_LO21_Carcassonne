@@ -162,10 +162,8 @@
             }
          }
 
-         cout << "****************************" << endl;
         //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
-            cout << " voisin haut "<< endl;
             if(newTuile.getContenu(1)!=plateau->existeTuile(x,y-1)->getContenu(5)){
                 return false;
             }
@@ -174,7 +172,6 @@
 
         //Voisin du bas
         if(plateau->existeTuile(x,y+1)){
-                        cout << " voisin bas" << endl;
             if(newTuile.getContenu(5)!=plateau->existeTuile(x,y+1)->getContenu(1)){
                 return false;
             }
@@ -182,7 +179,6 @@
 
         //Voisin de gauche
         if(plateau->existeTuile(x-1,y)){
-                        cout << " voisin gauche "<< endl;
             if(newTuile.getContenu(7)!=plateau->existeTuile(x-1,y)->getContenu(3)){
                 return false;
             }
@@ -190,7 +186,6 @@
 
         //Voisin de droite
         if(plateau->existeTuile(x+1,y)){
-                        cout << " voisin droite "<< endl;
             if(newTuile.getContenu(3)!=plateau->existeTuile(x+1,y)->getContenu(7)){
                 return false;
             }
