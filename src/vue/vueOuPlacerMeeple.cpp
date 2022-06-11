@@ -85,7 +85,7 @@ void vueOuPlacerMeeple::on_c0_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(0),m,controller->getEspace(tuile->getContenance(0)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(0),m,controller->getEspace(tuile->getContenancePointeur(0)))==false){
             insere = false;
         }
     }
@@ -112,7 +112,7 @@ void vueOuPlacerMeeple::on_c1_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(1),m,controller->getEspace(tuile->getContenance(1)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(1),m,controller->getEspace(tuile->getContenancePointeur(1)))==false){
             insere = false;
         }
     }
@@ -135,7 +135,7 @@ void vueOuPlacerMeeple::on_c2_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(2),m,controller->getEspace(tuile->getContenance(2)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(2),m,controller->getEspace(tuile->getContenancePointeur(2)))==false){
             insere = false;
         }
     }
@@ -158,7 +158,7 @@ void vueOuPlacerMeeple::on_c3_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(3),m,controller->getEspace(tuile->getContenance(3)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(3),m,controller->getEspace(tuile->getContenancePointeur(3)))==false){
             insere = false;
         }
     }
@@ -183,7 +183,7 @@ void vueOuPlacerMeeple::on_c4_clicked(){
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
 
-        if(modeJeu->validationPlacementM(tuile->getContenu(4),m,controller->getEspace(tuile->getContenance(4)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(4),m,controller->getEspace(tuile->getContenancePointeur(4)))==false){
             insere = false;
         }
     }
@@ -206,7 +206,7 @@ void vueOuPlacerMeeple::on_c5_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(5),m,controller->getEspace(tuile->getContenance(5)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(5),m,controller->getEspace(tuile->getContenancePointeur(5)))==false){
             insere = false;
         }
     }
@@ -229,7 +229,7 @@ void vueOuPlacerMeeple::on_c6_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(6),m,controller->getEspace(tuile->getContenance(6)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(6),m,controller->getEspace(tuile->getContenancePointeur(6)))==false){
             insere = false;
         }
     }
@@ -253,7 +253,7 @@ void vueOuPlacerMeeple::on_c7_clicked(){
         Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
         ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(7),m,controller->getEspace(tuile->getContenance(7)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(7),m,controller->getEspace(tuile->getContenancePointeur(7)))==false){
             insere = false;
         }
     }
@@ -276,7 +276,7 @@ void vueOuPlacerMeeple::on_c8_clicked(){
     Meeple *m = new Meeple();
     for(size_t i = nbr ; i<extensions.size();i++){
        ModeJeu *modeJeu = controller->getModeJeu(extensions[i]-1);
-        if(modeJeu->validationPlacementM(tuile->getContenu(8),m,controller->getEspace(tuile->getContenance(8)))==false){
+        if(modeJeu->validationPlacementM(tuile->getContenu(8),m,controller->getEspace(tuile->getContenancePointeur(8)))==false){
            insere = false;
         }
    }

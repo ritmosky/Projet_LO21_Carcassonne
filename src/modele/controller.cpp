@@ -45,7 +45,7 @@
     void Controller::placementMeeple(Joueur* j,Meeple* m,TypesTuiles tm,int i,int x,int y){
        Tuile *t = plateau->existeTuile(x,y);
        ContenanceTuile contenance = t->getContenance(i);
-        this->getEspace(t->getContenance(i))->addMeeple(*m);
+        this->getEspace(t->getContenancePointeur(i))->addMeeple(m);
        m->setContenance(contenance);
        m->setIdJoueur(j->getId());
        if(tm==TypesTuiles::champs){
