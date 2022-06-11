@@ -76,6 +76,7 @@ class Meeple {
         inline void setType(const NomMeeple& name) { type.setNom(name); };
         inline void setIdJoueur(int i) { id_joueur = i; }
         inline void setContenance(ContenanceTuile& ct) { contenanceTuile = &ct; }
+
 };
 
 

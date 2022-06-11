@@ -29,24 +29,16 @@ Espace* Espace::fusionEspace(Espace* e){
         
     nbrMeeple += e->nbrMeeple;
     nbrBouclier += e->nbrBouclier;
-        
-        cout<< " ------- Espace initiaux : --------- " << endl;
-        for ( auto esp : contenus){cout<<*esp<<endl;}
-        cout<< " ------- Espace qu'on va ajouter : --------- " << endl;
-        for ( auto esp : e->contenus){cout<<*esp<<endl;}
+
 
         for ( int i = 0 ; i < e->getNbrContenanceTuile() ; i++){
             addContenance(e->getContenus(i) );
-            //contenus.insert( contenus.end(), e->contenus.begin(), e->contenus.end() );
         }
-        cout<< " ------- Fusion des Espaces : --------- " << endl;
-        for ( auto esp : contenus){cout<<*esp<<endl;}
-        
+
+
         for ( int i = 0 ; i < e->getNbrMeeple() ; i++){
             addMeeple(e->getMeeples(i));
-            //contenus.insert( contenus.end(), e->contenus.begin(), e->contenus.end() );
         }
-    meeples.insert( meeples.end(), e->meeples.begin(), e->meeples.end() );
     
     }
     return this;

@@ -207,6 +207,7 @@ bool validationPlacementT(Tuile newTuile,int x,int y,Plateau *plateau){
             return false;
         }
         if(!e->isFree() || tp==TypesTuiles::rivière){
+
             return false;
         }
         return true;

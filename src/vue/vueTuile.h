@@ -20,7 +20,7 @@ public:
     explicit VueTuile(Tuile* tuile, int p, QWidget *parent = nullptr);
     ~VueTuile();
     void setContenuTuile(Tuile& tuile);
-    void addMeeple(Tuile* tuile, int p);
+    void addMeeple(Tuile* tuile, int p,int id);
     inline vector<VueContenuTuile*>& getVueContenuT() {return tabContenuTuile;}
 
 private:

@@ -67,12 +67,12 @@ void VueTuile::setContenuTuile(Tuile& tuile){
 
 
 
-void VueTuile::addMeeple(Tuile* tuile,int p/*id*/){
+void VueTuile::addMeeple(Tuile* tuile,int p,int id){
     ContenanceTuile ct = tuile->getContenance()[p];
     ui->grilleContenuTuile->removeWidget(this->tabContenuTuile[p]);
     tabContenuTuile[p]->hide();
     delete tabContenuTuile[p];
-    tabContenuTuile[p] = new VueContenuTuile(ct.getType(), ct.getBouclier(),1, true);
+    tabContenuTuile[p] = new VueContenuTuile(ct.getType(), ct.getBouclier(),id, true);
     switch (p) {
     case 0:
         ui->grilleContenuTuile->addWidget(this->tabContenuTuile[p], 0,0);

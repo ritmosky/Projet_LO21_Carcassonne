@@ -80,12 +80,9 @@ void VuePartie::setPlateau(){
     ui->plateau->setCurrentCell(76,77);
     ui->plateau->horizontalHeader()->setDefaultSectionSize(100);
     ui->plateau->verticalHeader()->setDefaultSectionSize(100);
-    // A decommenter pour ne pas voir les numeros de ligne du dessus
-//    ui->plateau->horizontalHeader()->setVisible(false);
-//    ui->plateau->verticalHeader()->setVisible(false);
     Tuile *premiereTuile = this->controller->getPioche()->piocher(this->controller->getTour(), this->controller->getRiviereActive());
-    //controller->creerEspace(premiereTuile);
     placerTuile(72,72, premiereTuile);
+    controller->creerEspace(premiereTuile);
     premiereTuile->ReplaceParChamps();
 }
 
@@ -123,17 +120,6 @@ void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile* tuile){
     tuile->ReplaceParChamps();
     this->controller->placementTuile(tuile,NCol,Nligne);
 
-    cout << " --------------------------  Affichage des tuiles présentes sur le plateau ------------------------------------- " << endl;
-    std::vector<Tuile*> tuiles = controller->getPlateau()->getTuiles();
-     for(Tuile* t : tuiles){
-         cout << *t << endl << endl;
-         cout << t->getX() << " " << t->getY() << endl;
-     }
-     cout<<endl<<endl<<endl;
-     cout<<"Etat de la Pioche :"<<endl;
-     for(size_t i = 0; i < controller->getPioche()->getNbTuiles(); i++){
-         cout << controller->getPioche()->getTuile(i) << endl << endl;
-     }
 }
 
 
@@ -141,7 +127,7 @@ void VuePartie::placerTuile(const int Nligne, const int NCol,Tuile* tuile){
 // la fonction permet de changer l'affichage d'une tuile en ajoutant un MEEPLE
 void VuePartie::updateVueTuileAddM(int l, int c, int p, Tuile* T){
     VueTuile* vueTuilePlace = new VueTuile(T);
-    vueTuilePlace->addMeeple(T, p);
+    vueTuilePlace->addMeeple(T, p,controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getId()-1);
     ui->plateau->setCellWidget(l,c,vueTuilePlace);
 }
 
@@ -149,8 +135,6 @@ void VuePartie::updateVueTuileAddM(int l, int c, int p, Tuile* T){
 // la fonction permet de changer l'affichage d'une tuile en retirant un MEEPLE
 void VuePartie::updateVueTuileRemoveM(int l, int c){
     // regarder dans meeple si une adresse de ContenaceTuile de la tuile s'y trouve
-    cout << "\n##### Je retire le meeple sur la tuile en ligne = "<< l << " et col = "<< c;
-    cout << "\ntuile = "<< controller->getPlateau()->existeTuile(c-1,l-1); //col,line
     Tuile* T = controller->getPlateau()->existeTuile(c-1,l-1);
     VueTuile* vT = new VueTuile(T);
     ui->plateau->setCellWidget(l-1,c-1,vT);
@@ -211,11 +195,12 @@ void VuePartie::on_bouttonValiderTuile_clicked(){
          if(hasJardin==true){
              tuilePlace->setContenu(placementChamps, TypesTuiles::jardin);
          }
-        //controller->creerEspace(tuilePlace);
+
          placerTuile(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace);
+         controller->creerEspace(tuilePlace);
+         controller->fusionVoisin(tuilePlace);
 
          placerMeeple(ui->plateau->currentRow(),ui->plateau->currentColumn(),tuilePlace); // placerMeeple appellera placerTuile
-         cout << "\n";
          retirerMeeple();
 
          controller->nextTour();

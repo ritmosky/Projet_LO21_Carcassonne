@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">border: 1px solid blue;</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -444,7 +444,7 @@
      <rect>
       <x>920</x>
       <y>470</y>
-      <width>351</width>
+      <width>466</width>
       <height>41</height>
      </rect>
     </property>

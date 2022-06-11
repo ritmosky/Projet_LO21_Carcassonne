@@ -44,9 +44,10 @@
 
     void Controller::placementMeeple(Joueur* j,Meeple* m,TypesTuiles tm,int i,int x,int y){
        Tuile *t = plateau->existeTuile(x,y);
-       ContenanceTuile contenance = t->getContenance(i);
-        this->getEspace(t->getContenancePointeur(i))->addMeeple(m);
-       m->setContenance(contenance);
+       ContenanceTuile *contenance = t->getContenancePointeur(i);
+
+       this->getEspace(t->getContenancePointeur(i))->addMeeple(m);
+       m->setContenance(*contenance);
        m->setIdJoueur(j->getId());
        if(tm==TypesTuiles::champs){
            m->setType(NomMeeple::paysan);
@@ -73,7 +74,6 @@
         newTuile->setPosX(x);
         newTuile->setPosY(y);
         plateau->ajouterTuiles(newTuile);
-        //this->fusionVoisin(newTuile);
         //Voisin du haut
         if(plateau->existeTuile(x,y-1)){
             newTuile->setVoisinHaut(plateau->existeTuile(x,y-1));
@@ -446,14 +446,6 @@ void Controller::creerEspace(const Tuile* T){
     
     
 }
-    cout<< " Nouvelle Tuile" << endl <<endl;
-    for (auto esp : Espaces_créées)
-    {   cout<< " ----- Nouvel Espace ----" << endl;
-        for (int i = 0; i < esp->getContenus().size() ; i++)
-        {
-                    cout << *(esp->getContenus(i)) << endl ;
-        }
-    }
     
     // On ajoute les espaces créés au plateau
 

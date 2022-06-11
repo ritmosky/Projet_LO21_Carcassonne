@@ -32,9 +32,6 @@ void vuePlacementMeeple::on_Non_clicked(){
 
 
 void vuePlacementMeeple::on_Oui_clicked(){
-    cout<<"Je clique sur oui, je veux placer un meeple";
-    cout << "\nligne = " << Nligne+1 << " col = " << NCol+1;
-    cout<<"\nChoisir le contenu de la tuile d\'adresse :" << tuile;
     // ---------- Placement du MEEPLE // ---------- //
     vueOuPlacerMeeple* affichage = new vueOuPlacerMeeple(Nligne,NCol,nullptr,partie,tuile,controller);
     affichage->show();
