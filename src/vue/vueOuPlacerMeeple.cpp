@@ -99,7 +99,7 @@ void vueOuPlacerMeeple::on_c0_clicked(){
 
    if(insere==true){
    partie->updateVueTuileAddM(this->Nligne, this->Ncol, 0, tuile);
-    controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(0),0,Ncol,Nligne);
+    controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(0),0,Ncol,Nligne);
 
    }
    else{
@@ -129,7 +129,7 @@ void vueOuPlacerMeeple::on_c1_clicked(){
     }
     if(insere==true){
         partie->updateVueTuileAddM(this->Nligne, this->Ncol, 1, tuile);
-         controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(1),1,Ncol,Nligne);
+         controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(1),1,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -156,7 +156,7 @@ void vueOuPlacerMeeple::on_c2_clicked(){
     }
     if(insere==true){
         partie->updateVueTuileAddM(this->Nligne, this->Ncol, 2, tuile);
-         controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(2),2,Ncol,Nligne);
+         controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(2),2,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -184,7 +184,7 @@ void vueOuPlacerMeeple::on_c3_clicked(){
 
     if(insere==true){
     partie->updateVueTuileAddM(this->Nligne, this->Ncol, 3, tuile);
-     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(3),3,Ncol,Nligne);
+     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(3),3,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -216,7 +216,7 @@ void vueOuPlacerMeeple::on_c4_clicked(){
     }
     if(insere==true){
     partie->updateVueTuileAddM(this->Nligne, this->Ncol, 4, tuile);
-     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(4),4,Ncol,Nligne);
+     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(4),4,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -243,7 +243,7 @@ void vueOuPlacerMeeple::on_c5_clicked(){
     }
     if(insere==true){
     partie->updateVueTuileAddM(this->Nligne, this->Ncol, 5, tuile);
-     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(5),5,Ncol,Nligne);
+     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(5),5,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -270,7 +270,7 @@ void vueOuPlacerMeeple::on_c6_clicked(){
     }
     if(insere==true){
     partie->updateVueTuileAddM(this->Nligne, this->Ncol, 6, tuile);
-     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(6),6,Ncol,Nligne);
+     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(6),6,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -298,7 +298,7 @@ void vueOuPlacerMeeple::on_c7_clicked(){
     }
     if(insere==true){
     partie->updateVueTuileAddM(this->Nligne, this->Ncol, 7, tuile);
-     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(7),7,Ncol,Nligne);
+     controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(7),7,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
@@ -327,7 +327,7 @@ void vueOuPlacerMeeple::on_c8_clicked(){
     if(insere==true){
         partie->updateVueTuileAddM(this->Nligne, this->Ncol, 8, tuile);
         cout << Ncol - 1 << " " << Nligne-1 << endl;
-        controller->placementMeeple(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size())),m,tuile->getContenu(8),8,Ncol,Nligne);
+        controller->placementMeeple(controller->getJoueurs().at(controller->getTour()-1%(controller->getJoueurs().size())),m,tuile->getContenu(8),8,Ncol,Nligne);
     }
     else{
         cout << "ITS IMPOSSIBLE" << endl;
