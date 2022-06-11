@@ -31,6 +31,7 @@ public:
 
     void updateVueTuileAddM(int l, int c, int p, Tuile* T);
     void updateVueTuileRemoveM(int l, int c);
+    void partieFinie();
 
     Tuile *tuilePlace;
     VueTuile* vueTuilePlace ;
@@ -45,6 +46,10 @@ private slots:
 
     void on_rotationTuile_clicked();
 
+
+
+
+    void on_bouttonFinPartie_clicked();
 
 private:
     Ui::VuePartie *ui;

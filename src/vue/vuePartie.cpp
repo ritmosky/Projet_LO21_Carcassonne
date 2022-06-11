@@ -222,3 +222,23 @@ void VuePartie::on_rotationTuile_clicked(){
     ui->espaceTuilePlace->addWidget(vueTuilePlace);
 }
 
+
+void VuePartie::partieFinie(){
+    delete ui->affNbrMeeple;
+    delete ui->labelNomJ;
+    delete ui->nbrMeepleRestant;
+    ui->affCestAuTour->setText("Il n'y a plus aucune carte à piocher, la partie est désormais terminée.\n Les joueurs doivent désormais ajouter leurs points de fin de partie en suivant les règles du jeu via les boutons + et - habituels!");
+    delete vueTuilePlace;
+    delete ui->bouttonValiderTuile;
+    delete ui->label_2;
+    delete ui->rotationTuile;
+
+}
+
+
+
+void VuePartie::on_bouttonFinPartie_clicked()
+{
+    this->partieFinie();
+}
+

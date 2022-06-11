@@ -444,8 +444,8 @@
      <rect>
       <x>920</x>
       <y>470</y>
-      <width>466</width>
-      <height>41</height>
+      <width>351</width>
+      <height>32</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="conteneurBoutton">
@@ -466,7 +466,14 @@
      <item>
       <widget class="QPushButton" name="bouttonValiderTuile">
        <property name="text">
-        <string>Valider Placement Tuile</string>
+        <string>Valider</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="bouttonFinPartie">
+       <property name="text">
+        <string>Fin Partie</string>
        </property>
       </widget>
      </item>
