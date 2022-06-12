@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project:  Fichier source de controller.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">controller.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="controller_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _CONTROLLER_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _CONTROLLER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="pioche_8h.html">pioche.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="joueur_8h.html">joueur.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="plateau_8h.html">plateau.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="tuile_8h.html">tuile.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;meeple.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;modeJeu.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacestd.html">std</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_controller.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="class_controller.html">Controller</a>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">bool</span> fini;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        vector&lt;Joueur*&gt; listeJoueurs;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        vector&lt;int&gt; extensions;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_class" href="class_mode_jeu.html">ModeJeu</a>* modeJeu[5];</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_class" href="class_plateau.html">Plateau</a> *plateau;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <a class="code hl_class" href="class_pioche.html">Pioche</a> *pioche;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">bool</span> riviereActive =<span class="keyword">false</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">bool</span> paysansActive = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">bool</span> aubergeActive = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">bool</span> abbeActive = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordtype">int</span> tour;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordtype">int</span> nbJoueurs;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">int</span> numJoueurActu; <span class="comment">// Va de 0 à nbrJoueur - 1</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_class" href="class_controller.html">Controller</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_controller.html#a02bfa6cfb913e7cfc4f8c5b02522de30">   60</a></span>        <a class="code hl_function" href="class_controller.html#a02bfa6cfb913e7cfc4f8c5b02522de30">Controller</a>(<span class="keywordtype">int</span> nj);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_class" href="class_controller.html">Controller</a>(<span class="keywordtype">int</span> nj,vector&lt;string&gt; listeNomJoueur,vector&lt;int&gt; listeNumExtensions);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">//Destructeur</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_class" href="class_controller.html">~Controller</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_class" href="class_controller.html">Controller</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_controller.html">Controller</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_class" href="class_controller.html">Controller</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_controller.html">Controller</a>&amp;) = delete ;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> getPaysansActive()<span class="keyword"> const </span>{<span class="keywordflow">return</span> paysansActive;}</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> getAbbeActive()<span class="keyword"> const </span>{<span class="keywordflow">return</span> abbeActive;}</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> getRiviereActive()<span class="keyword"> const </span>{<span class="keywordflow">return</span> riviereActive;}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> getAubergeActive()<span class="keyword"> const </span>{<span class="keywordflow">return</span> aubergeActive;}</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_controller.html#a6a0814993e386375a25437c04b3aea50">   77</a></span>     <a class="code hl_class" href="class_espace.html">Espace</a>* <a class="code hl_function" href="class_controller.html#a6a0814993e386375a25437c04b3aea50">getEspace</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_contenance_tuile.html">ContenanceTuile</a>* c);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="class_controller.html#abfb7e42d24d5fbcea0981880f83d5403">   85</a></span>    <a class="code hl_class" href="class_espace.html">Espace</a>* <a class="code hl_function" href="class_controller.html#abfb7e42d24d5fbcea0981880f83d5403">getEspaceTuile</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_contenance_tuile.html">ContenanceTuile</a>&amp; c,<span class="keyword">const</span> vector&lt;Espace*&gt; e);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="class_controller.html#ae660175da04677bb567f9287c548b1a0">   91</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#ae660175da04677bb567f9287c548b1a0">creerEspace</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tuile.html">Tuile</a>* T);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_controller.html#a213e72d46dc5b4e05c2721fab3a0ef59">   97</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a213e72d46dc5b4e05c2721fab3a0ef59">fusionVoisin</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_tuile.html">Tuile</a>* tuile);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="class_controller.html#a1ec549a7ef19e2dfb11e7eae76c98076">  106</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a1ec549a7ef19e2dfb11e7eae76c98076">placementTuile</a>(<a class="code hl_class" href="class_tuile.html">Tuile</a> *newTuile,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="class_controller.html#a28ab0de6aa456ec221799f63c9f029f0">  117</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a28ab0de6aa456ec221799f63c9f029f0">placementMeeple</a>(<a class="code hl_class" href="class_joueur.html">Joueur</a>* j,<a class="code hl_class" href="class_meeple.html">Meeple</a>* m,<a class="code hl_enumeration" href="tuile_8h.html#a228ffd15c300aae6815ade710199fe41">TypesTuiles</a> tm,<span class="keywordtype">int</span> i,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="class_controller.html#ad3b521ffc13de90f1bf07f88b5441b28">  123</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="class_controller.html#ad3b521ffc13de90f1bf07f88b5441b28">placementTuileAutorise</a>(<a class="code hl_class" href="class_tuile.html">Tuile</a> newTuile);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="comment">//Vérifie si la tuile donnée peut être placée à la position x, y sur le plateau</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="class_controller.html#a94e398394c411e83cf6b1896a504ed2d">  134</a></span><span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="class_controller.html#a94e398394c411e83cf6b1896a504ed2d">estCompatible</a>(<a class="code hl_class" href="class_tuile.html">Tuile</a> newTuile,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>       <span class="comment">// void compteScore(State s);</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>       <span class="comment">// void compteScore(TypesTuiles t, State s);</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="class_controller.html#a9165526fdaa8c5bbbf0b94715d7b924a">  141</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a9165526fdaa8c5bbbf0b94715d7b924a">nextTour</a>();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="comment">//void compteScoreAbbaye(State s);</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="class_controller.html#aefdaa01e55bd59fe3ca47a8a14ed61d1">  147</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#aefdaa01e55bd59fe3ca47a8a14ed61d1">AffichageJoueurs</a>(){</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;listeJoueurs.size();i++){</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                cout &lt;&lt; <span class="stringliteral">&quot;Joueur &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; : &quot;</span> &lt;&lt; listeJoueurs.at(i)-&gt;getNbrMeeples() &lt;&lt; <span class="stringliteral">&quot; meeples&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        vector&lt;Joueur*&gt; getJoueurs(){</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <span class="keywordflow">return</span> listeJoueurs;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">//Getters</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> getFini()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            <span class="keywordflow">return</span> this-&gt;fini;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keyword">inline</span> <span class="keywordtype">int</span> getNbJoueur()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            <span class="keywordflow">return</span> this-&gt;nbJoueurs;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="keyword">inline</span> <span class="keywordtype">int</span> getTour()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            <span class="keywordflow">return</span> this-&gt;tour;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>         <span class="keyword">inline</span> <a class="code hl_class" href="class_pioche.html">Pioche</a>* getPioche()<span class="keyword"> const</span>{<span class="keywordflow">return</span> this-&gt;pioche;}</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>         <span class="keyword">inline</span> <span class="keywordtype">int</span> getNumJoueurActu()<span class="keyword"> const</span>{<span class="keywordflow">return</span> this-&gt;numJoueurActu;}</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>         <span class="keyword">inline</span> <a class="code hl_class" href="class_plateau.html">Plateau</a>* getPlateau()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            <span class="keywordflow">return</span> this-&gt;plateau;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <span class="keyword">inline</span> vector&lt;int&gt; getExtensions()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            <span class="keywordflow">return</span> this-&gt;extensions;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="comment">//retourner le modedejeu</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keyword">inline</span> <a class="code hl_class" href="class_mode_jeu.html">ModeJeu</a>* getModeJeu(<span class="keywordtype">int</span> i)<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            <span class="keywordflow">return</span> this-&gt;modeJeu[i];</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">//Fonction test</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_controller.html#ad3b521ffc13de90f1bf07f88b5441b28">placementTuileAutorise</a>(<a class="code hl_class" href="class_tuile.html">Tuile</a> newTuile,<a class="code hl_class" href="class_plateau.html">Plateau</a>* plateau);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_controller.html#a94e398394c411e83cf6b1896a504ed2d">estCompatible</a>(<a class="code hl_class" href="class_tuile.html">Tuile</a> newTuile,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y,<a class="code hl_class" href="class_plateau.html">Plateau</a> *plateau);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordtype">bool</span> validationPlacementRiviere(<a class="code hl_class" href="class_tuile.html">Tuile</a> newTuile,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y,<a class="code hl_class" href="class_plateau.html">Plateau</a> *plateau);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a28ab0de6aa456ec221799f63c9f029f0">placementMeeple</a>(<a class="code hl_class" href="class_joueur.html">Joueur</a>* j,<a class="code hl_class" href="class_meeple.html">Meeple</a>* m,<a class="code hl_class" href="class_type_meeple.html">TypeMeeple</a> tm,<span class="keywordtype">int</span> i,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y,<a class="code hl_class" href="class_plateau.html">Plateau</a> *plateau);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a1ec549a7ef19e2dfb11e7eae76c98076">placementTuile</a>(<a class="code hl_class" href="class_tuile.html">Tuile</a> *newTuile,<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y,<a class="code hl_class" href="class_plateau.html">Plateau</a> *plateau);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>};</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_contenance_tuile_html"><div class="ttname"><a href="class_contenance_tuile.html">ContenanceTuile</a></div><div class="ttdef"><b>Definition:</b> tuile.h:50</div></div>
+<div class="ttc" id="aclass_controller_html"><div class="ttname"><a href="class_controller.html">Controller</a></div><div class="ttdef"><b>Definition:</b> controller.h:30</div></div>
+<div class="ttc" id="aclass_controller_html_a02bfa6cfb913e7cfc4f8c5b02522de30"><div class="ttname"><a href="class_controller.html#a02bfa6cfb913e7cfc4f8c5b02522de30">Controller::Controller</a></div><div class="ttdeci">Controller(int nj)</div><div class="ttdoc">Le controller contient les principaux algorithmes permettant de gerer une partie.</div></div>
+<div class="ttc" id="aclass_controller_html_a1ec549a7ef19e2dfb11e7eae76c98076"><div class="ttname"><a href="class_controller.html#a1ec549a7ef19e2dfb11e7eae76c98076">Controller::placementTuile</a></div><div class="ttdeci">void placementTuile(Tuile *newTuile, int x, int y)</div><div class="ttdoc">Permet de placer la tuile sur le plateau en attribuant tous ses voisins s'il en a et ses coordonnées ...</div></div>
+<div class="ttc" id="aclass_controller_html_a213e72d46dc5b4e05c2721fab3a0ef59"><div class="ttname"><a href="class_controller.html#a213e72d46dc5b4e05c2721fab3a0ef59">Controller::fusionVoisin</a></div><div class="ttdeci">void fusionVoisin(const Tuile *tuile)</div><div class="ttdoc">Permet de fusionner les différents espaces de deux tuiles différentes et de regrouper les mêmes espac...</div></div>
+<div class="ttc" id="aclass_controller_html_a28ab0de6aa456ec221799f63c9f029f0"><div class="ttname"><a href="class_controller.html#a28ab0de6aa456ec221799f63c9f029f0">Controller::placementMeeple</a></div><div class="ttdeci">void placementMeeple(Joueur *j, Meeple *m, TypesTuiles tm, int i, int x, int y)</div><div class="ttdoc">Permet de placer un meeple sur une contenu de tuile en initialisant son type, le contenu où il est,...</div></div>
+<div class="ttc" id="aclass_controller_html_a6a0814993e386375a25437c04b3aea50"><div class="ttname"><a href="class_controller.html#a6a0814993e386375a25437c04b3aea50">Controller::getEspace</a></div><div class="ttdeci">Espace * getEspace(const ContenanceTuile *c)</div><div class="ttdoc">Permet de récuperer l'espace d'une contenue de tuile.</div></div>
+<div class="ttc" id="aclass_controller_html_a9165526fdaa8c5bbbf0b94715d7b924a"><div class="ttname"><a href="class_controller.html#a9165526fdaa8c5bbbf0b94715d7b924a">Controller::nextTour</a></div><div class="ttdeci">void nextTour()</div><div class="ttdoc">Permet de passer au joueur suivant, d'incrémenter le nombre de tour et de terminer la partie si elle ...</div></div>
+<div class="ttc" id="aclass_controller_html_a94e398394c411e83cf6b1896a504ed2d"><div class="ttname"><a href="class_controller.html#a94e398394c411e83cf6b1896a504ed2d">Controller::estCompatible</a></div><div class="ttdeci">bool estCompatible(Tuile newTuile, int x, int y)</div><div class="ttdoc">Vérifie si la tuile donnée peut être placée à la position x, y sur le plateau.</div></div>
+<div class="ttc" id="aclass_controller_html_abfb7e42d24d5fbcea0981880f83d5403"><div class="ttname"><a href="class_controller.html#abfb7e42d24d5fbcea0981880f83d5403">Controller::getEspaceTuile</a></div><div class="ttdeci">Espace * getEspaceTuile(const ContenanceTuile &amp;c, const vector&lt; Espace * &gt; e)</div><div class="ttdoc">Permet de récuperer l'espace d'une contenue de tuile.</div></div>
+<div class="ttc" id="aclass_controller_html_ad3b521ffc13de90f1bf07f88b5441b28"><div class="ttname"><a href="class_controller.html#ad3b521ffc13de90f1bf07f88b5441b28">Controller::placementTuileAutorise</a></div><div class="ttdeci">bool placementTuileAutorise(Tuile newTuile)</div><div class="ttdoc">Vérifie si la tuile donnée peut être autorisée n'importe où sur le plateau, à côté d'autres tuiles et...</div></div>
+<div class="ttc" id="aclass_controller_html_ae660175da04677bb567f9287c548b1a0"><div class="ttname"><a href="class_controller.html#ae660175da04677bb567f9287c548b1a0">Controller::creerEspace</a></div><div class="ttdeci">void creerEspace(const Tuile *T)</div><div class="ttdoc">Permet de regrouper les différents espaces d'une même tuile en prenant tous les cas possibles selon l...</div></div>
+<div class="ttc" id="aclass_controller_html_aefdaa01e55bd59fe3ca47a8a14ed61d1"><div class="ttname"><a href="class_controller.html#aefdaa01e55bd59fe3ca47a8a14ed61d1">Controller::AffichageJoueurs</a></div><div class="ttdeci">void AffichageJoueurs()</div><div class="ttdoc">la méthode AffichageJoueurs permet d'afficher tous les joueurs de la partie.</div><div class="ttdef"><b>Definition:</b> controller.h:147</div></div>
+<div class="ttc" id="aclass_espace_html"><div class="ttname"><a href="class_espace.html">Espace</a></div><div class="ttdoc">La classe Espace contient les différents éléments d'un Espace (ensemble de ContenuTuile de même type ...</div><div class="ttdef"><b>Definition:</b> espace.h:19</div></div>
+<div class="ttc" id="aclass_joueur_html"><div class="ttname"><a href="class_joueur.html">Joueur</a></div><div class="ttdef"><b>Definition:</b> joueur.h:19</div></div>
+<div class="ttc" id="aclass_meeple_html"><div class="ttname"><a href="class_meeple.html">Meeple</a></div><div class="ttdoc">la classe fille</div><div class="ttdef"><b>Definition:</b> meeple.h:71</div></div>
+<div class="ttc" id="aclass_mode_jeu_html"><div class="ttname"><a href="class_mode_jeu.html">ModeJeu</a></div><div class="ttdoc">La classe ModeJeu implémentation du design pattern Template Method.</div><div class="ttdef"><b>Definition:</b> modeJeu.h:36</div></div>
+<div class="ttc" id="aclass_pioche_html"><div class="ttname"><a href="class_pioche.html">Pioche</a></div><div class="ttdef"><b>Definition:</b> pioche.h:15</div></div>
+<div class="ttc" id="aclass_plateau_html"><div class="ttname"><a href="class_plateau.html">Plateau</a></div><div class="ttdoc">La classe Plateau permet de gérer le plateau, avec les tuiles, les espaces.</div><div class="ttdef"><b>Definition:</b> plateau.h:16</div></div>
+<div class="ttc" id="aclass_tuile_html"><div class="ttname"><a href="class_tuile.html">Tuile</a></div><div class="ttdef"><b>Definition:</b> tuile.h:95</div></div>
+<div class="ttc" id="aclass_type_meeple_html"><div class="ttname"><a href="class_type_meeple.html">TypeMeeple</a></div><div class="ttdoc">Classe mère.</div><div class="ttdef"><b>Definition:</b> meeple.h:42</div></div>
+<div class="ttc" id="ajoueur_8h_html"><div class="ttname"><a href="joueur_8h.html">joueur.h</a></div><div class="ttdoc">Details.</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="apioche_8h_html"><div class="ttname"><a href="pioche_8h.html">pioche.h</a></div></div>
+<div class="ttc" id="aplateau_8h_html"><div class="ttname"><a href="plateau_8h.html">plateau.h</a></div></div>
+<div class="ttc" id="atuile_8h_html"><div class="ttname"><a href="tuile_8h.html">tuile.h</a></div></div>
+<div class="ttc" id="atuile_8h_html_a228ffd15c300aae6815ade710199fe41"><div class="ttname"><a href="tuile_8h.html#a228ffd15c300aae6815ade710199fe41">TypesTuiles</a></div><div class="ttdeci">TypesTuiles</div><div class="ttdef"><b>Definition:</b> tuile.h:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>

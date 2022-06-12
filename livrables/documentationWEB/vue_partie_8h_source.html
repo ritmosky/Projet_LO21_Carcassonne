@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project:  Fichier source de vuePartie.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">vuePartie.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef VUEPARTIE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define VUEPARTIE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;QMainWindow&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;vueTuile.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;../modele/controller.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span>Ui {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="class_vue_partie.html">VuePartie</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_vue_partie.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="class_vue_partie.html">VuePartie</a> : <span class="keyword">public</span> QMainWindow</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    Q_OBJECT</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_vue_partie.html#adac04bf37d61aff050a6af21fc0fd2b0">   28</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="class_vue_partie.html#adac04bf37d61aff050a6af21fc0fd2b0">VuePartie</a>(<a class="code hl_class" href="class_controller.html">Controller</a>* c, QWidget *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="class_vue_partie.html">~VuePartie</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_vue_partie.html#a2a4031e3a3cd1ea9b2f992e5fe7f2ae6">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#a2a4031e3a3cd1ea9b2f992e5fe7f2ae6">setAffichageScore</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_vue_partie.html#a4c51611757fe71fc841912e813dca0a6">   39</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#a4c51611757fe71fc841912e813dca0a6">setAffichageTuile</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_vue_partie.html#a79efe949dd718e187f583fd170a72d63">   44</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#a79efe949dd718e187f583fd170a72d63">setJoueurActu</a>();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_vue_partie.html#a76ef456192353b2e548840c1a960d759">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#a76ef456192353b2e548840c1a960d759">setPlateau</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> piocherCarte();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_vue_partie.html#ae134e10eeaad22f7190c62fafa85d01f">   58</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#ae134e10eeaad22f7190c62fafa85d01f">placerMeeple</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> Nligne, <span class="keyword">const</span> <span class="keywordtype">int</span> NCol,<a class="code hl_class" href="class_tuile.html">Tuile</a>* tuile);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> retirerMeeple();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_vue_partie.html#a3e2350af56e8add9701598266646436b">   67</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#a3e2350af56e8add9701598266646436b">placerTuile</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> Nligne,<span class="keyword">const</span> <span class="keywordtype">int</span> NCol,<a class="code hl_class" href="class_tuile.html">Tuile</a>* tuile);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> updateVueTuileAddM(<span class="keywordtype">int</span> l, <span class="keywordtype">int</span> c, <span class="keywordtype">int</span> p, <a class="code hl_class" href="class_tuile.html">Tuile</a>* T);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> updateVueTuileRemoveM(<span class="keywordtype">int</span> l, <span class="keywordtype">int</span> c);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="class_vue_partie.html#a69d2d0b321820c53dc1b1492bbe5db27">   75</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_vue_partie.html#a69d2d0b321820c53dc1b1492bbe5db27">partieFinie</a>();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_class" href="class_tuile.html">Tuile</a> *tuilePlace;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_class" href="class_vue_tuile.html">VueTuile</a>* vueTuilePlace ;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">private</span> slots:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> on_zoomIn_clicked();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> on_zoomOut_clicked();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">void</span> on_bouttonValiderTuile_clicked();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> on_rotationTuile_clicked();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> on_bouttonFinPartie_clicked();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    Ui::VuePartie *ui;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_class" href="class_controller.html">Controller</a>* controller;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif </span><span class="comment">// VUEPARTIE_H</span></div>
+<div class="ttc" id="aclass_controller_html"><div class="ttname"><a href="class_controller.html">Controller</a></div><div class="ttdef"><b>Definition:</b> controller.h:30</div></div>
+<div class="ttc" id="aclass_tuile_html"><div class="ttname"><a href="class_tuile.html">Tuile</a></div><div class="ttdef"><b>Definition:</b> tuile.h:95</div></div>
+<div class="ttc" id="aclass_vue_partie_html"><div class="ttname"><a href="class_vue_partie.html">VuePartie</a></div><div class="ttdoc">La classe VuePartie Est decomposer en plusieurs partie : un vertical layout contenant des VueScore1Jo...</div><div class="ttdef"><b>Definition:</b> vuePartie.h:17</div></div>
+<div class="ttc" id="aclass_vue_partie_html_a2a4031e3a3cd1ea9b2f992e5fe7f2ae6"><div class="ttname"><a href="class_vue_partie.html#a2a4031e3a3cd1ea9b2f992e5fe7f2ae6">VuePartie::setAffichageScore</a></div><div class="ttdeci">void setAffichageScore()</div><div class="ttdoc">Initialise le vertical layout dedie au informations des joueurs : converti le vecteur de Joueur fourn...</div></div>
+<div class="ttc" id="aclass_vue_partie_html_a3e2350af56e8add9701598266646436b"><div class="ttname"><a href="class_vue_partie.html#a3e2350af56e8add9701598266646436b">VuePartie::placerTuile</a></div><div class="ttdeci">void placerTuile(const int Nligne, const int NCol, Tuile *tuile)</div><div class="ttdoc">Contruit et ajoute la VueTuile à partir d'une tuile du modele, a la position donnee en parametre de l...</div></div>
+<div class="ttc" id="aclass_vue_partie_html_a4c51611757fe71fc841912e813dca0a6"><div class="ttname"><a href="class_vue_partie.html#a4c51611757fe71fc841912e813dca0a6">VuePartie::setAffichageTuile</a></div><div class="ttdeci">void setAffichageTuile()</div><div class="ttdoc">affiche la tuile a placer en bas a droite de la fenetre.</div></div>
+<div class="ttc" id="aclass_vue_partie_html_a69d2d0b321820c53dc1b1492bbe5db27"><div class="ttname"><a href="class_vue_partie.html#a69d2d0b321820c53dc1b1492bbe5db27">VuePartie::partieFinie</a></div><div class="ttdeci">void partieFinie()</div><div class="ttdoc">supprime l'ensemble des widget non nécessaire pour le décompte des points</div></div>
+<div class="ttc" id="aclass_vue_partie_html_a76ef456192353b2e548840c1a960d759"><div class="ttname"><a href="class_vue_partie.html#a76ef456192353b2e548840c1a960d759">VuePartie::setPlateau</a></div><div class="ttdeci">void setPlateau()</div><div class="ttdoc">initialise le plateau : centrage, affichage de la premiere tuile piochée</div></div>
+<div class="ttc" id="aclass_vue_partie_html_a79efe949dd718e187f583fd170a72d63"><div class="ttname"><a href="class_vue_partie.html#a79efe949dd718e187f583fd170a72d63">VuePartie::setJoueurActu</a></div><div class="ttdeci">void setJoueurActu()</div><div class="ttdoc">Récupère la string du joueur devant jouer via le controller, la transforme en QString via fromStdStri...</div></div>
+<div class="ttc" id="aclass_vue_partie_html_adac04bf37d61aff050a6af21fc0fd2b0"><div class="ttname"><a href="class_vue_partie.html#adac04bf37d61aff050a6af21fc0fd2b0">VuePartie::VuePartie</a></div><div class="ttdeci">VuePartie(Controller *c, QWidget *parent=nullptr)</div><div class="ttdoc">constructeur appellant setAffichageScore, setAffichageTuile, setJoueurActu, setPlateau</div></div>
+<div class="ttc" id="aclass_vue_partie_html_ae134e10eeaad22f7190c62fafa85d01f"><div class="ttname"><a href="class_vue_partie.html#ae134e10eeaad22f7190c62fafa85d01f">VuePartie::placerMeeple</a></div><div class="ttdeci">void placerMeeple(const int Nligne, const int NCol, Tuile *tuile)</div><div class="ttdoc">placerMeeple</div></div>
+<div class="ttc" id="aclass_vue_tuile_html"><div class="ttname"><a href="class_vue_tuile.html">VueTuile</a></div><div class="ttdef"><b>Definition:</b> vueTuile.h:15</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+</small></address>
+</body>
+</html>
