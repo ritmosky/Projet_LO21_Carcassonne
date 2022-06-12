@@ -208,7 +208,12 @@ void VuePartie::on_bouttonValiderTuile_clicked(){
          ui->numTour->display(controller->getTour());
          ui->labelNomJ->setText(QString::fromStdString(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getName()));
          ui->nbrMeepleRestant->display(controller->getJoueurs().at(controller->getTour()%(controller->getJoueurs().size()))->getNbrMeeples());
+                  if(controller->getPioche()->estVide()==true){
+                 delete vueTuilePlace;
+    }
+         else{
          piocherCarte();
+         }
     }
     else{
         cout << " INCOMPATIBLEEEEEEEEEEEE "<< endl;
