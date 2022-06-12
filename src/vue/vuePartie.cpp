@@ -137,6 +137,8 @@ void VuePartie::updateVueTuileRemoveM(int l, int c){
     Tuile* T = controller->getPlateau()->existeTuile(c-1,l-1);
     VueTuile* vT = new VueTuile(T);
     ui->plateau->setCellWidget(l-1,c-1,vT);
+    int tour = controller->getTour()-1;
+    controller->getJoueurs().at(tour%(controller->getJoueurs().size()))->addnbrMeeple();
 }
 
 

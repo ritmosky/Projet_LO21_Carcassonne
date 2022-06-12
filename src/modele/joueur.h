@@ -37,6 +37,7 @@ public:
     void addMeeple(const Meeple& m);
     void addName(const string& str);
     void removeMeeple(){nbrMeeples--;}
+    void addnbrMeeple(){nbrMeeples++;}
         void setNbMeeple(int i){
         nbrMeeples = i;
     }
