@@ -26,7 +26,7 @@ void Espace::addMeeple(const Meeple* M){
 Espace* Espace::fusionEspace(Espace* e){
     if (type == e->type)
     {
-        
+
     nbrMeeple += e->nbrMeeple;
     nbrBouclier += e->nbrBouclier;
 
